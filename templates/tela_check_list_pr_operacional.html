@@ -1,0 +1,525 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#004319", "primary-fixed": "#d5e3ff", "on-tertiary-fixed": "#002109", "on-secondary-fixed": "#001d31", "error": "#ba1a1a", "on-background": "#0d1c2e", "secondary-container": "#5bb8fe", "inverse-primary": "#adc8f5", "surface-container": "#e6eeff", "on-primary-fixed": "#001c3b", "secondary-fixed": "#cce5ff", "on-primary-container": "#8aa4cf", "on-tertiary-fixed-variant": "#005320", "primary": "#022448", "tertiary-fixed": "#7ffc97", "surface-container-highest": "#d5e3fc", "surface-dim": "#ccdbf3", "surface-container-high": "#dce9ff", "error-container": "#ffdad6", "outline-variant": "#c4c6cf", "secondary-fixed-dim": "#93ccff", "on-secondary-fixed-variant": "#004b73", "on-error": "#ffffff", "outline": "#74777f", "tertiary": "#002a0d", "tertiary-fixed-dim": "#62df7d", "surface-variant": "#d5e3fc", "on-surface": "#0d1c2e", "primary-container": "#1e3a5f", "secondary": "#006398", "background": "#f8f9ff", "inverse-surface": "#233144", "on-secondary-container": "#00476e", "inverse-on-surface": "#eaf1ff", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#38b95d", "primary-fixed-dim": "#adc8f5", "surface-bright": "#f8f9ff", "on-surface-variant": "#43474e", "on-error-container": "#93000a", "on-secondary": "#ffffff", "surface": "#f8f9ff", "surface-container-low": "#eff4ff", "on-primary": "#ffffff", "surface-tint": "#455f87", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#2d486d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "0.75rem", "space-md": "0.75rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin": "1rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-lg-mobile": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "telemetry-metric": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }], "label-lg": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "telemetry-metric": ["28px", { "lineHeight": "34px", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[18px] shrink-0">local_shipping</span><span class="font-label-md text-label-md text-primary font-bold truncate">Caminhão Pipa Atego 1719 • {{ EQUIPAMENTO }}</span></div><div class="flex items-center gap-space-sm mt-0.5"><div class="inline-flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded"><span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold">Conectado</span></div><span class="inline-flex items-center font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-primary-container text-surface-bright font-bold uppercase tracking-wider">1º Turno</span></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-margin pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-md">
+<!-- Operational Overview & Shift Context -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fact_check</span>
+<span class="font-headline-sm text-headline-sm text-primary">Inspeção Pré-Operacional</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full uppercase">Form: 0011 • RDO</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      Verificação obrigatória antes da partida do Atego 1719 ({{ EQUIPAMENTO }}). Garanta a conformidade dos 6 pontos críticos.
+    </p>
+<!-- Inspection Hero Visual Card -->
+<div class="relative w-full h-32 rounded-lg overflow-hidden mt-1 shadow-sm">
+<div class="bg-cover bg-center w-full h-full flex items-end p-space-sm" data-alt="Heavy Mercedes Atego 1719 industrial water truck parked on a sunny quarry haul road during morning safety inspection. Deep navy blue chassis with pristine tank body under bright clear outdoor lighting, crisp industrial machinery details and dust." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbx0VIVL8ZYiAy2HtGbNH8fkMz_5WlAD3TsubnryMevMzAodcIlZFnIPudrSAFzDI9964_emDCpnsmJpx18HTy0-STCbtgVr02BD9_rWTjyytgihDPclkhm75PEBt4aaTeuu8YXqAaA1rup4TP0XU0iatiArF2tHqasOxMjCPGW3UMX8s9MBlL3_mAAk6CnRBjNnUATWgF58yms2qiExbTkk9xUC-fR98fuc8LM-DTUo0CKqHntUvg')">
+<div class="bg-primary/85 backdrop-blur-md rounded px-2.5 py-1 text-on-primary flex items-center gap-1.5 shadow">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span class="font-label-sm text-label-sm">Caminhão Pipa • Apoio Operacional</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Equipment Status Card (Dynamic summary) -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-sm transition-all duration-300" id="status-card">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-on-surface">Status Geral do Equipamento</span>
+<div class="inline-flex items-center gap-1 bg-surface-container-highest text-on-surface px-space-sm py-0.5 rounded-full transition-colors" id="status-badge">
+<span class="w-2.5 h-2.5 rounded-full bg-outline" id="status-dot"></span>
+<span class="font-label-sm text-label-sm" id="status-text">Pendente</span>
+</div>
+</div>
+<!-- Progress Indicator Bar -->
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant mb-1">
+<span class="">Itens Inspecionados</span>
+<span class="font-label-md text-label-md text-primary font-bold" id="progress-counter">0 / 6 Verificados</span>
+</div>
+<div class="w-full bg-surface-dim h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-0 transition-all duration-300 rounded-full" id="progress-bar"></div>
+</div>
+<!-- Quick Mass-Fill Action Button with Joy / Tactile Feedback -->
+<div class="mt-space-md pt-space-xs flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-body-sm text-body-sm">Todos os itens em ordem?</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-space-md py-2 rounded-lg shadow active:scale-95 transition-transform flex items-center gap-1.5" id="btn-mark-all" onclick="markAllCompliant()" type="button">
+<span class="material-symbols-outlined text-[16px]">done_all</span>
+<span class="">Marcar Todos Sim</span>
+</button>
+</div>
+</section>
+<!-- Interactive Checklist Items (6 Essential Document Rows) -->
+<section class="flex flex-col gap-space-sm" id="checklist-container">
+<!-- 1. Lanternagem -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">highlight</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">1. Lanternagem &amp; Iluminação</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Faróis altos/baixos, setas, giroflex, ré</span>
+</div>
+</div>
+</div>
+<!-- Segmented Buttons (Sim / Não) -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-1-sim" onclick="selectItemChoice(1, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-1-nao" onclick="selectItemChoice(1, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<!-- Expandable Sub-form for Issue Logging -->
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-1">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Relatar Anomalia de Iluminação</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione o defeito identificado...</option>
+<option value="farol_queimado">Farol dianteiro queimado</option>
+<option value="giroflex_inoperante">Giroflex inoperante ou quebrado</option>
+<option value="lanterna_traseira">Lanterna traseira / luz de freio danificada</option>
+<option value="sinalizador_re">Alarme sonoro / luz de ré sem ativação</option>
+<option value="outro">Outro defeito elétrico</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Fotografar Avaria (Opcional)</span>
+</button>
+</div>
+</div>
+<!-- 2. Pneus -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">tire_repair</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">2. Pneus &amp; Rodas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Calibragem, sulcos, cortes, porcas</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-2-sim" onclick="selectItemChoice(2, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-2-nao" onclick="selectItemChoice(2, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-2">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Relatar Problema nos Pneus</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione a condição encontrada...</option>
+<option value="pneu_furado">Pneu murcho / furado</option>
+<option value="desgaste_excessivo">Desgaste excessivo (abaixo do TWI)</option>
+<option value="corte_lateral">Corte lateral / bolha visível</option>
+<option value="porca_solta">Porca de roda frouxa ou faltante</option>
+<option value="estepe_inoperante">Estepe danificado</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Fotografar Pneu Avariado</span>
+</button>
+</div>
+</div>
+<!-- 3. Nível de Água -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">water_drop</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">3. Nível de Água (Arrefecimento)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Reservatório de expansão do radiador</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-3-sim" onclick="selectItemChoice(3, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-3-nao" onclick="selectItemChoice(3, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-3">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Relatar Anomalia de Arrefecimento</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione o motivo da reprovação...</option>
+<option value="nivel_baixo">Abaixo do nível mínimo (requer reposição)</option>
+<option value="vazamento_visivel">Vazamento aparente em mangueiras/radiador</option>
+<option value="tampa_danificada">Tampa do reservatório danificada ou sem vedação</option>
+<option value="contaminacao">Água contaminada com resíduos</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Fotografar Nível / Vazamento</span>
+</button>
+</div>
+</div>
+<!-- 4. Nível de Óleo -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">oil_barrel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">4. Nível de Óleo do Motor</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Vareta de medição entre marcas mín/máx</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-4-sim" onclick="selectItemChoice(4, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-4-nao" onclick="selectItemChoice(4, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-4">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Relatar Anomalia do Lubrificante</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione a inconformidade...</option>
+<option value="oleo_baixo">Nível abaixo da marca mínima da vareta</option>
+<option value="vazamento_carter">Gotejamento ou vazamento sob o cárter</option>
+<option value="oleo_leitoso">Óleo com coloração estranha (emulsão)</option>
+<option value="oleo_sobrecarregado">Nível acima do limite máximo</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Registrar Foto da Vareta</span>
+</button>
+</div>
+</div>
+<!-- 5. Freios -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">disc_full</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">5. Freios (Serviço &amp; Estacionário)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Pressão pneumática, maneco e pedal</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-5-sim" onclick="selectItemChoice(5, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-5-nao" onclick="selectItemChoice(5, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-5">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Falha Crítica de Frenagem</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione o defeito de frenagem...</option>
+<option value="falta_ar">Pressão pneumática não atinge 8 bar</option>
+<option value="maneco_inoperante">Freio de estacionamento não trava</option>
+<option value="pedal_esponjoso">Pedal de freio longo / sem resposta</option>
+<option value="vazamento_valvula">Vazamento contínuo de ar comprimido</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Fotografar Manômetro / Falha</span>
+</button>
+</div>
+</div>
+<!-- 6. Direção -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-item-id="6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">swap_driving_apps_wheel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface">6. Sistema de Direção</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Folga no volante, fluído hidráulico, ruídos</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-6-sim" onclick="selectItemChoice(6, 'sim')" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">SIM (Apto)</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98" id="btn-6-nao" onclick="selectItemChoice(6, 'nao')" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="">NÃO (Inapto)</span>
+</button>
+</div>
+<div class="hidden flex-col gap-space-sm bg-error-container/40 p-space-sm rounded-lg mt-1 transition-all" id="drawer-6">
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-sm text-label-sm font-bold">Relatar Anomalia na Direção</span>
+</div>
+<select class="w-full h-11 bg-surface-container-lowest text-on-surface rounded-lg px-space-sm font-body-sm text-body-sm">
+<option value="">Selecione a irregularidade...</option>
+<option value="folga_excessiva">Folga excessiva na caixa de direção</option>
+<option value="direcao_pesada">Direção excessivamente dura / travando</option>
+<option value="vazamento_oleo_direcao">Nível baixo / vazamento de óleo hidráulico</option>
+<option value="ruido_terminal">Estalos em manobras nos terminais</option>
+</select>
+<button class="h-10 bg-surface-container-lowest text-on-surface rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-dim" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="">Fotografar Componente</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Observations & Notes Section (From physical RDO footer) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="obs-input">
+<span class="material-symbols-outlined text-[18px] text-primary">edit_note</span>
+<span class="">Observações Gerais do Checklist</span>
+</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Opcional</span>
+</div>
+<textarea class="w-full bg-surface-container-low rounded-lg p-space-sm font-body-md text-body-md text-on-surface outline-none focus:bg-surface-container transition-colors resize-none" id="obs-input" placeholder="Escreva detalhes adicionais ou peculiaridades da pista / equipamento..." rows="2"></textarea>
+</section>
+<!-- Digital Operator Confirmation Badge -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">badge</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-md text-label-md text-on-surface truncate">Operador: Carlos Menezes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Matrícula: 10482 • 1º Turno (07:00 - 15:20)</span>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]">verified_user</span>
+</div>
+<!-- Quick Audio Memo or Photo attachment banner -->
+<div class="flex items-center justify-between pt-1 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="">Hora de Abertura: 07:02</span>
+</div>
+<span class="bg-surface-container px-2 py-0.5 rounded text-on-surface">GPS: Frente Mina Sul</span>
+</div>
+</section>
+<!-- Final CTA Tray -->
+<section class="pt-space-xs flex flex-col gap-space-xs">
+<button class="w-full h-14 bg-primary text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-98 transition-all flex items-center justify-center gap-2" id="submit-btn" onclick="handleChecklistSubmit()" type="button">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span class="">Finalizar e Liberar Equipamento</span>
+</button>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant">Dados salvos e sincronizados com o prontuário operacional.</p>
+</section>
+</div>
+<script>
+  // Inspection State Management
+  const checklistState = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null
+  };
+
+  function selectItemChoice(itemId, choice) {
+    checklistState[itemId] = choice;
+
+    const btnSim = document.getElementById(`btn-${itemId}-sim`);
+    const btnNao = document.getElementById(`btn-${itemId}-nao`);
+    const drawer = document.getElementById(`drawer-${itemId}`);
+
+    if (choice === 'sim') {
+      // Style Sim as Compliant Active Green
+      btnSim.className = "h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-tertiary-container text-on-tertiary-container font-bold shadow-inner";
+      btnNao.className = "h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98 opacity-50";
+      
+      // Collapse negative details drawer
+      if (drawer) drawer.classList.add('hidden');
+    } else {
+      // Style Nao as Incompliant Red
+      btnNao.className = "h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-error text-on-error font-bold shadow-inner";
+      btnSim.className = "h-12 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all bg-transparent text-on-surface active:scale-98 opacity-50";
+      
+      // Expand breakdown drawer
+      if (drawer) drawer.classList.remove('hidden');
+    }
+
+    updateOverallStatus();
+  }
+
+  function markAllCompliant() {
+    for (let i = 1; i <= 6; i++) {
+      selectItemChoice(i, 'sim');
+    }
+  }
+
+  function updateOverallStatus() {
+    const answeredCount = Object.values(checklistState).filter(val => val !== null).length;
+    const hasDefect = Object.values(checklistState).some(val => val === 'nao');
+
+    // Update Progress
+    const counterEl = document.getElementById('progress-counter');
+    const barEl = document.getElementById('progress-bar');
+    const pct = (answeredCount / 6) * 100;
+    
+    counterEl.innerText = `${answeredCount} / 6 Verificados`;
+    barEl.style.width = `${pct}%`;
+
+    // Update Banner
+    const statusCard = document.getElementById('status-card');
+    const statusBadge = document.getElementById('status-badge');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (answeredCount === 6) {
+      if (hasDefect) {
+        // Equipment Blocked / Issue Identified
+        statusBadge.className = "inline-flex items-center gap-1 bg-error-container text-on-error-container px-space-sm py-0.5 rounded-full";
+        statusDot.className = "w-2.5 h-2.5 rounded-full bg-error animate-pulse";
+        statusText.innerText = "Bloqueado / Manutenção";
+        submitBtn.className = "w-full h-14 bg-error text-on-error font-label-lg text-label-lg rounded-xl shadow-md active:scale-98 transition-all flex items-center justify-center gap-2";
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">report</span><span>Registrar com Inconformidade</span>';
+      } else {
+        // 100% Compliant
+        statusBadge.className = "inline-flex items-center gap-1 bg-tertiary-container text-on-tertiary-container px-space-sm py-0.5 rounded-full";
+        statusDot.className = "w-2.5 h-2.5 rounded-full bg-on-tertiary-container";
+        statusText.innerText = "Apto para Operação";
+        submitBtn.className = "w-full h-14 bg-primary text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-98 transition-all flex items-center justify-center gap-2";
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Finalizar e Liberar Caminhão</span>';
+      }
+    } else {
+      statusBadge.className = "inline-flex items-center gap-1 bg-surface-container-highest text-on-surface px-space-sm py-0.5 rounded-full";
+      statusDot.className = "w-2.5 h-2.5 rounded-full bg-outline";
+      statusText.innerText = "Pendente";
+      submitBtn.className = "w-full h-14 bg-primary text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-98 transition-all flex items-center justify-center gap-2";
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span>Finalizar e Liberar Equipamento</span>';
+    }
+  }
+
+  function handleChecklistSubmit() {
+    const answeredCount = Object.values(checklistState).filter(val => val !== null).length;
+    if (answeredCount < 6) {
+      alert("Por favor, verifique todos os 6 itens obrigatórios antes de prosseguir com a liberação.");
+      return;
+    }
+
+    const hasDefect = Object.values(checklistState).some(val => val === 'nao');
+    if (hasDefect) {
+      alert("Checklist registrado! Ordem de serviço de manutenção aberta automaticamente para Atego 1719 ({{ EQUIPAMENTO }}).");
+    } else {
+      alert("Inspeção Pré-Operacional concluída com sucesso! Equipamento 100% liberado para trabalho.");
+    }
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-20 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="rdo-atual" href="#"><span class="material-symbols-outlined text-[26px]">assignment</span><span class="font-label-sm text-label-sm mt-1">RDO Atual</span></a><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="paradas" href="#"><span class="material-symbols-outlined text-[26px]">pause_circle</span><span class="font-label-sm text-label-sm mt-1">Paradas</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[72px] h-14 transition-all text-primary font-bold" data-path="checklist" href="#"><span class="material-symbols-outlined text-[26px]">fact_check</span><span class="font-label-sm text-label-sm mt-1">Checklist</span></a><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="historico" href="#"><span class="material-symbols-outlined text-[26px]">history</span><span class="font-label-sm text-label-sm mt-1">Histórico</span></a></div></nav>
+
+
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

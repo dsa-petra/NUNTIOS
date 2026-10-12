@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#004319", "primary-fixed": "#d5e3ff", "on-tertiary-fixed": "#002109", "on-secondary-fixed": "#001d31", "error": "#ba1a1a", "on-background": "#0d1c2e", "secondary-container": "#5bb8fe", "inverse-primary": "#adc8f5", "surface-container": "#e6eeff", "on-primary-fixed": "#001c3b", "secondary-fixed": "#cce5ff", "on-primary-container": "#8aa4cf", "on-tertiary-fixed-variant": "#005320", "primary": "#022448", "tertiary-fixed": "#7ffc97", "surface-container-highest": "#d5e3fc", "surface-dim": "#ccdbf3", "surface-container-high": "#dce9ff", "error-container": "#ffdad6", "outline-variant": "#c4c6cf", "secondary-fixed-dim": "#93ccff", "on-secondary-fixed-variant": "#004b73", "on-error": "#ffffff", "outline": "#74777f", "tertiary": "#002a0d", "tertiary-fixed-dim": "#62df7d", "surface-variant": "#d5e3fc", "on-surface": "#0d1c2e", "primary-container": "#1e3a5f", "secondary": "#006398", "background": "#f8f9ff", "inverse-surface": "#233144", "on-secondary-container": "#00476e", "inverse-on-surface": "#eaf1ff", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#38b95d", "primary-fixed-dim": "#adc8f5", "surface-bright": "#f8f9ff", "on-surface-variant": "#43474e", "on-error-container": "#93000a", "on-secondary": "#ffffff", "surface": "#f8f9ff", "surface-container-low": "#eff4ff", "on-primary": "#ffffff", "surface-tint": "#455f87", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#2d486d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "0.75rem", "space-md": "0.75rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin": "1rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-lg-mobile": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "telemetry-metric": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }], "label-lg": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "telemetry-metric": ["28px", { "lineHeight": "34px", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[18px] shrink-0">local_shipping</span><span class="font-label-md text-label-md text-primary font-bold truncate">Caminhão Pipa Atego 1719 • {{ EQUIPAMENTO }}</span></div><div class="flex items-center gap-space-sm mt-0.5"><div class="inline-flex items-center gap-1 bg-surface-container px-space-xs py-0.5 rounded"><span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold">Online • Supabase</span></div><span class="inline-flex items-center font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-primary-container text-surface-bright font-bold uppercase tracking-wider">1º Turno</span></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-margin pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-md">
+<!-- Operational Header Information Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">description</span>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Form: 0011 • Rev: 01</span>
+<h2 class="font-headline-sm text-headline-sm text-primary leading-tight">RDO • Caminhão Pipa {{ EQUIPAMENTO }}</h2>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-block bg-surface-container-high text-primary font-label-sm text-label-sm px-2 py-0.5 rounded">PO-PRD: 0007 / 00017</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">Oper. Apoio</span>
+</div>
+</div>
+<!-- Segmented Shift Picker (1º vs 2º Motorista) -->
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Escala do Turno</span>
+<div class="grid grid-cols-2 p-1 bg-surface-container rounded-xl gap-1" id="shiftSelector">
+<button class="h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all bg-primary text-on-primary shadow-sm" id="shift-btn-1" onclick="setShift(1)" type="button">
+<span class="material-symbols-outlined text-[18px]">airline_seat_recline_normal</span>
+<span>1º Motorista</span>
+</button>
+<button class="h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all text-on-surface hover:bg-surface-container-highest" id="shift-btn-2" onclick="setShift(2)" type="button">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>2º Motorista</span>
+</button>
+</div>
+</div>
+<!-- Operator Selection & Date Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold" for="operatorSelect">Operador Titular</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[20px] pointer-events-none">engineering</span>
+<select class="w-full h-14 pl-10 pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg appearance-none focus:outline-none focus:bg-surface-container-high transition-colors" id="operatorSelect">
+<option value="op1">João Carlos Silveira (Mat. 48821)</option>
+<option value="op2">Marcos Antônio Barbosa (Mat. 51209)</option>
+<option value="op3">Cláudio Roberto Lima (Mat. 39910)</option>
+<option value="op4">Valter Mendes Souza (Mat. 60233)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 text-on-surface-variant text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold" for="recordDate">Data do Boletim</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[20px] pointer-events-none">calendar_today</span>
+<input class="w-full h-14 pl-10 pr-3 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="recordDate" type="date" value="2024-05-18"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry: Horometers & Operational Hours -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">speed</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Horímetro &amp; Jornada</h3>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-2 py-0.5 rounded">Delta Automático</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Horímetro Inicial</label>
+<input class="h-14 px-space-sm bg-surface-container-low text-primary font-headline-sm text-headline-sm rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors text-center font-bold" id="horoInitial" oninput="calculateDelta()" step="0.1" type="number" value="8421.4"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Horímetro Final</label>
+<input class="h-14 px-space-sm bg-surface-container-low text-primary font-headline-sm text-headline-sm rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors text-center font-bold" id="horoFinal" oninput="calculateDelta()" step="0.1" type="number" value="8428.8"/>
+</div>
+</div>
+<!-- Delta Horometer Metric Display -->
+<div class="flex items-center justify-between p-space-sm bg-primary-container text-surface-bright rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary-container text-[20px]">timelapse</span>
+<span class="font-label-md text-label-md">Total Horas Trabalhadas:</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-telemetry-metric text-telemetry-metric text-secondary-container" id="deltaValue">7.4</span>
+<span class="font-label-md text-label-md text-surface-container-highest">h</span>
+</div>
+</div>
+<!-- Shift Time Window -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Hora Inicial</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[18px] pointer-events-none">schedule</span>
+<input class="w-full h-12 pl-9 pr-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="timeInitial" type="time" value="07:00"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Hora Final</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[18px] pointer-events-none">schedule</span>
+<input class="w-full h-12 pl-9 pr-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="timeFinal" type="time" value="15:30"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Water Tank Volume Control Section -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">water_drop</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Controle de Tanques de Água</h3>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-secondary text-[14px]">local_shipping</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container font-bold">Cap. 10.000 L</span>
+</div>
+</div>
+<!-- Stepper 1: Açude Interno -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex flex-col min-w-0 pr-2">
+<span class="font-label-md text-label-md text-primary font-bold">Açude Interno</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Abastecimento mina / frentes</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="w-12 h-12 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-headline-md text-headline-md active:bg-secondary-container transition-colors shadow-sm select-none" onclick="adjustCount('tankAcude', -1)" type="button">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="w-14 h-12 text-center bg-surface-container-lowest text-primary font-headline-sm text-headline-sm font-bold rounded-lg focus:outline-none shadow-sm" id="tankAcude" min="0" oninput="updateTankTotal()" type="number" value="4"/>
+<button class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container transition-colors shadow-sm select-none" onclick="adjustCount('tankAcude', 1)" type="button">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Stepper 2: Restaurante / Bases -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex flex-col min-w-0 pr-2">
+<span class="font-label-md text-label-md text-primary font-bold">Ponto Restaurante</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Caixas de apoio / instalações</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="w-12 h-12 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-headline-md text-headline-md active:bg-secondary-container transition-colors shadow-sm select-none" onclick="adjustCount('tankRest', -1)" type="button">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="w-14 h-12 text-center bg-surface-container-lowest text-primary font-headline-sm text-headline-sm font-bold rounded-lg focus:outline-none shadow-sm" id="tankRest" min="0" oninput="updateTankTotal()" type="number" value="1"/>
+<button class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md active:bg-primary-container transition-colors shadow-sm select-none" onclick="adjustCount('tankRest', 1)" type="button">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Volume Transported Summary Chip -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Volume Estimado Entregue:</span>
+<div class="inline-flex items-center gap-1.5 bg-tertiary-container text-tertiary-fixed font-label-md text-label-md px-3 py-1 rounded-full font-bold">
+<span class="material-symbols-outlined text-[16px]">water</span>
+<span id="volumeSummary">50 m³ (5 tanques)</span>
+</div>
+</div>
+</div>
+<!-- Operational Activities & Plant Support Services -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">construction</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Demais Serviços Realizados</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Apontamentos</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      Toque para habilitar frentes atendidas e incremente o número de viagens ou ciclos:
+    </p>
+<!-- Services Grid List -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm" id="servicesGrid">
+<!-- Service 1: Perfuratriz -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-perfuratriz">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-perfuratriz" onchange="toggleService('perfuratriz')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-perfuratriz">Perfuratriz</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-perfuratriz">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('perfuratriz', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-perfuratriz">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('perfuratriz', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 2: Rebritagem -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-rebritagem">
+<div class="flex items-center gap-2 min-w-0">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-rebritagem" onchange="toggleService('rebritagem')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-rebritagem">Rebritagem</label>
+</div>
+<div class="flex items-center gap-1 transition-opacity" id="ctrl-rebritagem">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('rebritagem', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-rebritagem">2</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('rebritagem', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 3: Primário -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-primario">
+<div class="flex items-center gap-2 min-w-0">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-primario" onchange="toggleService('primario')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-primario">Primário</label>
+</div>
+<div class="flex items-center gap-1 transition-opacity" id="ctrl-primario">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('primario', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-primario">1</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('primario', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 4: Lavar Asfalto -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-asfalto">
+<div class="flex items-center gap-2 min-w-0">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-asfalto" onchange="toggleService('asfalto')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-asfalto">Lavar Asfalto</label>
+</div>
+<div class="flex items-center gap-1 transition-opacity" id="ctrl-asfalto">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('asfalto', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-asfalto">1</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('asfalto', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 5: U&M -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-um">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-um" onchange="toggleService('um')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-um">U&amp;M</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-um">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('um', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-um">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('um', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 6: Polimix -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-polimix">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-polimix" onchange="toggleService('polimix')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-polimix">Polimix</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-polimix">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('polimix', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-polimix">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('polimix', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 7: Supermix -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-supermix">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-supermix" onchange="toggleService('supermix')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-supermix">Supermix</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-supermix">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('supermix', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-supermix">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('supermix', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 8: Brasmix -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-brasmix">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-brasmix" onchange="toggleService('brasmix')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-brasmix">Brasmix</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-brasmix">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('brasmix', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-brasmix">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('brasmix', 1)" type="button">+</button>
+</div>
+</div>
+<!-- Service 9: Concretop -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between transition-all" id="service-box-concretop">
+<div class="flex items-center gap-2 min-w-0">
+<input class="w-5 h-5 rounded text-primary focus:ring-0" id="chk-concretop" onchange="toggleService('concretop')" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface truncate cursor-pointer" for="chk-concretop">Concretop</label>
+</div>
+<div class="flex items-center gap-1 opacity-40 transition-opacity" id="ctrl-concretop">
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('concretop', -1)" type="button">-</button>
+<span class="w-6 text-center font-label-md text-label-md text-primary font-bold" id="val-concretop">0</span>
+<button class="w-8 h-8 rounded bg-surface-container text-primary font-bold flex items-center justify-center" onclick="adjustServiceVal('concretop', 1)" type="button">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Field Notes Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">notes</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Observações do Turno</h3>
+</div>
+<button class="inline-flex items-center gap-1 text-secondary bg-surface-container px-2.5 py-1 rounded-full font-label-sm text-label-sm active:bg-secondary-container transition-colors" onclick="simulateVoiceRecord()" type="button">
+<span class="material-symbols-outlined text-[16px]">mic</span>
+<span>Gravar Voz</span>
+</button>
+</div>
+<!-- Quick Phrase Chips for Gloved Ergonomics -->
+<div class="flex flex-wrap gap-1.5 py-1">
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full transition-colors" onclick="insertObservation('Pista molhada com sucesso.')" type="button">
+        + Pista umectada
+      </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full transition-colors" onclick="insertObservation('Bomba de recalque operando normalmente.')" type="button">
+        + Bomba OK
+      </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full transition-colors" onclick="insertObservation('Abastecimento de água lento no açude.')" type="button">
+        + Açude com baixa vazão
+      </button>
+</div>
+<textarea class="w-full p-3 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:outline-none focus:bg-surface-container-high transition-colors resize-none" id="notesArea" placeholder="Digite observações adicionais da operação, estado das pistas ou solicitações de apoio..." rows="3"></textarea>
+</div>
+<!-- Primary Sticky Bottom Action Bar with Supabase Real-Time Hook -->
+<div class="pt-space-xs pb-safe">
+<button class="w-full h-14 bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:bg-primary transition-all" id="syncBtn" onclick="syncReport()" type="button">
+<span class="material-symbols-outlined text-[24px]">cloud_sync</span>
+<span>Sincronizar RDO em Tempo Real</span>
+</button>
+<div class="flex items-center justify-center gap-1 mt-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-ping"></span>
+<span>Conexão com Supabase em tempo real • Fila local vazia</span>
+</div>
+</div>
+</div>
+<script>
+  let currentShift = 1;
+
+  function setShift(shift) {
+    currentShift = shift;
+    const btn1 = document.getElementById('shift-btn-1');
+    const btn2 = document.getElementById('shift-btn-2');
+    const opSelect = document.getElementById('operatorSelect');
+
+    if (shift === 1) {
+      btn1.className = 'h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all bg-primary text-on-primary shadow-sm';
+      btn2.className = 'h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all text-on-surface hover:bg-surface-container-highest';
+      opSelect.value = 'op1';
+      document.getElementById('timeInitial').value = '07:00';
+      document.getElementById('timeFinal').value = '15:30';
+    } else {
+      btn2.className = 'h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all bg-primary text-on-primary shadow-sm';
+      btn1.className = 'h-12 flex items-center justify-center gap-2 rounded-lg font-label-md text-label-md transition-all text-on-surface hover:bg-surface-container-highest';
+      opSelect.value = 'op2';
+      document.getElementById('timeInitial').value = '15:30';
+      document.getElementById('timeFinal').value = '23:00';
+    }
+  }
+
+  function calculateDelta() {
+    const init = parseFloat(document.getElementById('horoInitial').value) || 0;
+    const fin = parseFloat(document.getElementById('horoFinal').value) || 0;
+    const delta = Math.max(0, fin - init);
+    document.getElementById('deltaValue').textContent = delta.toFixed(1);
+  }
+
+  function adjustCount(inputId, amount) {
+    const input = document.getElementById(inputId);
+    let val = parseInt(input.value) || 0;
+    val = Math.max(0, val + amount);
+    input.value = val;
+    updateTankTotal();
+  }
+
+  function updateTankTotal() {
+    const acude = parseInt(document.getElementById('tankAcude').value) || 0;
+    const rest = parseInt(document.getElementById('tankRest').value) || 0;
+    const totalTanks = acude + rest;
+    const volumeM3 = totalTanks * 10;
+    document.getElementById('volumeSummary').innerHTML = `${volumeM3} m&sup3; (${totalTanks} tanque${totalTanks !== 1 ? 's' : ''})`;
+  }
+
+  function toggleService(serviceId) {
+    const chk = document.getElementById(`chk-${serviceId}`);
+    const ctrl = document.getElementById(`ctrl-${serviceId}`);
+    const valEl = document.getElementById(`val-${serviceId}`);
+    if (chk.checked) {
+      ctrl.classList.remove('opacity-40');
+      if (parseInt(valEl.textContent) === 0) {
+        valEl.textContent = '1';
+      }
+    } else {
+      ctrl.classList.add('opacity-40');
+      valEl.textContent = '0';
+    }
+  }
+
+  function adjustServiceVal(serviceId, amount) {
+    const valEl = document.getElementById(`val-${serviceId}`);
+    const chk = document.getElementById(`chk-${serviceId}`);
+    let val = parseInt(valEl.textContent) || 0;
+    val = Math.max(0, val + amount);
+    valEl.textContent = val;
+    if (val > 0) {
+      chk.checked = true;
+      document.getElementById(`ctrl-${serviceId}`).classList.remove('opacity-40');
+    } else {
+      chk.checked = false;
+      document.getElementById(`ctrl-${serviceId}`).classList.add('opacity-40');
+    }
+  }
+
+  function insertObservation(text) {
+    const area = document.getElementById('notesArea');
+    if (area.value.trim() === '') {
+      area.value = text;
+    } else {
+      area.value += ' ' + text;
+    }
+  }
+
+  function simulateVoiceRecord() {
+    const area = document.getElementById('notesArea');
+    const existing = area.value ? area.value + ' ' : '';
+    area.value = existing + 'Área de rebritagem umectada após descarregamento das caçambas.';
+  }
+
+  function syncReport() {
+    const syncBtn = document.getElementById('syncBtn');
+    syncBtn.classList.remove('bg-primary-container');
+    syncBtn.classList.add('bg-tertiary-container');
+    syncBtn.innerHTML = `
+      <span class="material-symbols-outlined text-[24px] text-tertiary-fixed">check_circle</span>
+      <span class="text-tertiary-fixed font-bold">RDO Sincronizado com Sucesso!</span>
+    `;
+    setTimeout(() => {
+      syncBtn.classList.add('bg-primary-container');
+      syncBtn.classList.remove('bg-tertiary-container');
+      syncBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[24px]">cloud_sync</span>
+        <span>Sincronizar RDO em Tempo Real</span>
+      `;
+    }, 2500);
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-20 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[72px] h-14 transition-all text-primary font-bold" data-path="rdo-atual" href="#"><span class="material-symbols-outlined text-[26px]">assignment</span><span class="font-label-sm text-label-sm mt-1">RDO Atual</span></a><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="paradas" href="#"><span class="material-symbols-outlined text-[26px]">pause_circle</span><span class="font-label-sm text-label-sm mt-1">Paradas</span></a><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="checklist" href="#"><span class="material-symbols-outlined text-[26px]">fact_check</span><span class="font-label-sm text-label-sm mt-1">Checklist</span></a><a class="flex flex-col items-center justify-center min-w-[72px] h-14 text-on-surface-variant hover:text-on-surface transition-all" data-path="historico" href="#"><span class="material-symbols-outlined text-[26px]">history</span><span class="font-label-sm text-label-sm mt-1">Histórico</span></a></div></nav>
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

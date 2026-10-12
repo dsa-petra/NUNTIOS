@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes pulse-subtle{0%,100%{opacity:1;}50%{opacity:0.4;}}.animate-sync{animation:pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'surface-container': '#e6eeff', 'on-primary-fixed-variant': '#2d486d', 'surface-container-lowest': '#ffffff', 'on-secondary-container': '#00476e', 'outline': '#74777f', 'inverse-on-surface': '#eaf1ff', 'tertiary': '#002a0d', 'primary-fixed-dim': '#adc8f5', 'on-primary-container': '#8aa4cf', 'on-secondary': '#ffffff', 'surface-bright': '#f8f9ff', 'on-tertiary-fixed': '#002109', 'secondary-fixed-dim': '#93ccff', 'inverse-primary': '#adc8f5', 'on-primary-fixed': '#001c3b', 'primary-container': '#1e3a5f', 'on-tertiary-fixed-variant': '#005320', 'on-tertiary': '#ffffff', 'secondary-container': '#5bb8fe', 'tertiary-container': '#004319', 'surface-tint': '#455f87', 'secondary-fixed': '#cce5ff', 'on-surface': '#0d1c2e', 'secondary': '#006398', 'surface-dim': '#ccdbf3', 'tertiary-fixed': '#7ffc97', 'surface-container-low': '#eff4ff', 'background': '#f8f9ff', 'outline-variant': '#c4c6cf', 'surface-variant': '#d5e3fc', 'error': '#ba1a1a', 'error-container': '#ffdad6', 'surface-container-high': '#dce9ff', 'on-secondary-fixed': '#001d31', 'on-primary': '#ffffff', 'primary-fixed': '#d5e3ff', 'on-background': '#0d1c2e', 'on-error-container': '#93000a', 'primary': '#022448', 'inverse-surface': '#233144', 'on-secondary-fixed-variant': '#004b73', 'on-surface-variant': '#43474e', 'tertiary-fixed-dim': '#62df7d', 'on-tertiary-container': '#38b95d', 'surface': '#f8f9ff', 'surface-container-highest': '#d5e3fc', 'on-error': '#ffffff' }, 'borderRadius': { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' }, 'spacing': { 'space-lg': '1.25rem', 'space-sm': '0.5rem', 'gutter': '0.75rem', 'margin': '1rem', 'space-xl': '2rem', 'space-xs': '0.25rem', 'space-md': '0.75rem' }, 'fontFamily': { 'label-md': ['IBM Plex Sans'], 'body-sm': ['IBM Plex Sans'], 'label-lg': ['IBM Plex Sans'], 'headline-lg-mobile': ['IBM Plex Sans'], 'headline-sm': ['IBM Plex Sans'], 'label-sm': ['IBM Plex Sans'], 'body-lg': ['IBM Plex Sans'], 'headline-md': ['IBM Plex Sans'], 'body-md': ['IBM Plex Sans'], 'telemetry-metric': ['IBM Plex Sans'], 'headline-lg': ['IBM Plex Sans'] }, 'fontSize': { 'label-md': ['13px', { 'lineHeight': '16px', 'fontWeight': '600' }], 'body-sm': ['13px', { 'lineHeight': '18px', 'fontWeight': '400' }], 'label-lg': ['15px', { 'lineHeight': '20px', 'fontWeight': '600' }], 'headline-lg-mobile': ['26px', { 'lineHeight': '32px', 'fontWeight': '700' }], 'headline-sm': ['18px', { 'lineHeight': '24px', 'fontWeight': '600' }], 'label-sm': ['11px', { 'lineHeight': '14px', 'fontWeight': '700' }], 'body-lg': ['16px', { 'lineHeight': '24px', 'fontWeight': '400' }], 'headline-md': ['22px', { 'lineHeight': '28px', 'fontWeight': '600' }], 'body-md': ['15px', { 'lineHeight': '22px', 'fontWeight': '400' }], 'telemetry-metric': ['28px', { 'lineHeight': '34px', 'fontWeight': '700' }], 'headline-lg': ['32px', { 'lineHeight': '40px', 'fontWeight': '700' }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary tracking-wider">PETRA</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface">1º TURNO</span></div><div class="flex items-center gap-space-xs mt-0.5"><span class="material-symbols-outlined text-[14px] text-secondary">precision_manufacturing</span><span class="font-label-md text-label-md text-on-surface font-bold tracking-tight truncate">PRF-04 · SANDVIK DI550</span></div></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-sync"></span><span class="font-label-sm text-label-sm text-tertiary-container hidden sm:inline">CONECTADO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-20 bg-surface"><div class="flex flex-col w-full">
+<div class="px-margin pt-space-md pb-space-lg flex flex-col gap-space-md">
+<div class="bg-surface-container-high rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[22px]">assignment</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider">FORM: 0015 · RDO MINERAÇÃO</span>
+<span class="font-headline-sm text-headline-sm text-primary">Insumos &amp; Troca de Escala</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container-lowest text-primary">{{ EQUIPAMENTO }}</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Frente Norte</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">info</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sincronizado com telemetria de furação e horímetro.</span>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-sm h-28 bg-surface-container">
+<div class="bg-cover bg-center absolute inset-0" data-alt="Heavy open pit quarry mining drill rig at sunset with industrial dust and bright work lamps, rugged machinery in yellow and steel tones, cinematic technical photography with high contrast and sharp mechanical details" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9TrWoxeyplb7fClLPgJYIZVfSFbZ7KzyX66D9LNQO9hOWqq_bNNii3EGXqlDFiazKxEgfnZe6Pmcqwku5JfizYKpsCqUSYHfgpH9NmswKlh5NfF-6dYGnIqFZGnydkVuLBx7sFqPlI-0qCKVd4JTEGGofSPVPgT8OwHrOTs193Zslqu7eZ7qcKPFJ52FVfSEdbl6jAqVPXDX2J1WvboSCJP5Ij7WssOv_Cq_rTWem3GOfrEi67IGM')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent flex items-end p-space-md">
+<div class="flex justify-between items-end w-full">
+<div>
+<span class="font-label-sm text-label-sm text-secondary-fixed tracking-wide uppercase">Operação de Furo</span>
+<p class="font-headline-sm text-headline-sm text-on-primary">{{ EQUIPAMENTO }} · Sandvik DI550</p>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-surface-variant">Furação do Turno</span>
+<p class="font-headline-sm text-headline-sm text-on-primary"><span id="meters-display">74.5</span> m</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 1: ABASTECIMENTO DE DIESEL -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">local_gas_station</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Abastecimento de Diesel</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Campo diesel_abastecido_litros</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary-container">COMBUSTÍVEL</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="comboio-select">Caminhão Comboio / Fornecedor</label>
+<div class="relative">
+<select class="w-full h-14 bg-surface-container-low text-on-surface font-body-lg text-body-lg rounded-lg px-space-md pr-10 appearance-none focus:outline-none focus:bg-surface-container" id="comboio-select">
+<option selected="" value="ut37">{{ EQUIPAMENTO }} · Caminhão Pipa/Comboio (Mercedes Axor)</option>
+<option value="ut12">{{ EQUIPAMENTO }} · Comboio Rápido de Pista (VW Constellation)</option>
+<option value="base">Tanque Estacionário Base 02</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-4 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Volume Abastecido</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Leitura de Bomba</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-telemetry-metric text-telemetry-metric text-primary" id="liters-val">180.0</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">Litros</span>
+</div>
+<button class="h-10 px-space-md rounded bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1" id="toggle-keypad-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">dialpad</span>
+            Ajustar
+          </button>
+</div>
+<div class="grid grid-cols-4 gap-space-xs mt-space-sm pt-space-xs" id="quick-keypad">
+<button class="num-btn h-12 rounded bg-surface-container-lowest font-headline-sm text-headline-sm text-primary flex items-center justify-center shadow-sm" data-add="10" type="button">+10L</button>
+<button class="num-btn h-12 rounded bg-surface-container-lowest font-headline-sm text-headline-sm text-primary flex items-center justify-center shadow-sm" data-add="50" type="button">+50L</button>
+<button class="num-btn h-12 rounded bg-surface-container-lowest font-headline-sm text-headline-sm text-primary flex items-center justify-center shadow-sm" data-add="100" type="button">+100L</button>
+<button class="h-12 rounded bg-error-container text-on-error-container font-label-md text-label-md flex items-center justify-center shadow-sm" id="clear-diesel" type="button">
+<span class="material-symbols-outlined text-[20px]">backspace</span>
+</button>
+</div>
+</div>
+<!-- Métricas em Tempo Real -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-high rounded-lg p-space-md flex flex-col">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">trending_down</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Consumo Horário</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-on-surface" id="hourly-rate">21.4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">L/h</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Meta: 22.0 L/h</span>
+</div>
+<div class="bg-surface-container-high rounded-lg p-space-md flex flex-col">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">straighten</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Consumo Linear</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-on-surface" id="linear-rate">2.41</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">L/m</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Meta: 2.65 L/m</span>
+</div>
+</div>
+<!-- Banner de Eficiência Cruzada -->
+<div class="bg-surface-container rounded-lg p-space-md flex items-center justify-between" id="efficiency-banner">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-tertiary">Consumo Eficiente</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">-2.7% abaixo do limite do prontuário</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-1 rounded bg-tertiary text-on-tertiary uppercase">OK</span>
+</div>
+</div>
+<!-- CARD 2: TROCA DE ESCALA DE AÇO -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">construction</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Troca de Escala de Aço</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Itens de desgaste e consumíveis</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-variant text-on-surface-variant">SEÇÃO RDO</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- ITEM: BIT -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm transition-all duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">lens_blur</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">BIT (Broca de Botões)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Cód. BIT-T45-89R</span>
+</div>
+</div>
+<div class="flex h-11 bg-surface-container rounded-lg p-1 w-36 gap-1">
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant" data-state="nao" data-target="bit-sub" type="button">NÃO</button>
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-primary text-on-primary" data-state="sim" data-target="bit-sub" type="button">SIM</button>
+</div>
+</div>
+<!-- Campos extras condicionais para o BIT -->
+<div class="pt-space-sm grid grid-cols-2 gap-space-sm" id="bit-sub">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Diâmetro (pol/mm)</label>
+<div class="relative">
+<select class="w-full h-12 bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded px-space-sm appearance-none focus:outline-none">
+<option selected="">3½" (89 mm)</option>
+<option>4" (102 mm)</option>
+<option>4½" (115 mm)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-3 pointer-events-none text-[18px] text-on-surface-variant">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Metros Acumulados</label>
+<div class="flex items-center h-12 bg-surface-container-lowest rounded px-space-sm">
+<input class="w-full font-headline-sm text-headline-sm text-primary bg-transparent focus:outline-none" type="number" value="420"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">m</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ITEM: PUNHO -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">hardware</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">PUNHO (Shank Adapter)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Cód. PNH-HLX5-T45</span>
+</div>
+</div>
+<div class="flex h-11 bg-surface-container rounded-lg p-1 w-36 gap-1">
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-primary text-on-primary" data-state="nao" type="button">NÃO</button>
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant" data-state="sim" type="button">SIM</button>
+</div>
+</div>
+<!-- ITEM: HASTE -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">straighten</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">HASTE (T38 / T45)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Cód. HST-MF45-3660</span>
+</div>
+</div>
+<div class="flex h-11 bg-surface-container rounded-lg p-1 w-36 gap-1">
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-primary text-on-primary" data-state="nao" type="button">NÃO</button>
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant" data-state="sim" type="button">SIM</button>
+</div>
+</div>
+<!-- ITEM: LUVA -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">settings_input_component</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">LUVA (Coupling)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Cód. LUV-T45-55</span>
+</div>
+</div>
+<div class="flex h-11 bg-surface-container rounded-lg p-1 w-36 gap-1">
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-primary text-on-primary" data-state="nao" type="button">NÃO</button>
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant" data-state="sim" type="button">SIM</button>
+</div>
+</div>
+<!-- ITEM: DIAROC -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">motion_photos_on</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">DIAROC (Rebolo / Afiação)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Cód. REB-AF-BOR</span>
+</div>
+</div>
+<div class="flex h-11 bg-surface-container rounded-lg p-1 w-36 gap-1">
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant" data-state="nao" type="button">NÃO</button>
+<button class="toggle-choice flex-1 rounded font-label-md text-label-md transition-colors bg-primary text-on-primary" data-state="sim" type="button">SIM</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 3: HISTÓRICO RÁPIDO & VIDA ÚTIL -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Histórico de Trocas &amp; Vida Útil</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Previsão e descarte operacional</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Broca Atual -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">BIT Atual (Nº Série #9822)</span>
+<span class="font-label-sm text-label-sm text-error font-bold">84% Vida Útil</span>
+</div>
+<!-- Barra de Progresso SVG -->
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-error h-2.5 rounded-full" style="width: 84%"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-sm text-body-sm pt-0.5">
+<span>420m perfurados</span>
+<span>Limite previsto: 500m</span>
+</div>
+</div>
+<!-- Item 2: Punho Atual -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">PUNHO Shank (Nº Série #4101)</span>
+<span class="font-label-sm text-label-sm text-tertiary-container font-bold">38% Vida Útil</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-on-tertiary-container h-2.5 rounded-full" style="width: 38%"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-sm text-body-sm pt-0.5">
+<span>1.140m perfurados</span>
+<span>Limite previsto: 3.000m</span>
+</div>
+</div>
+</div>
+<!-- Resumo da Última Afiação -->
+<div class="bg-surface-container rounded-lg p-space-md flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">build_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Última Afiação Realizada</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ontem às 22:15 · 3 botões recuperados</span>
+<span class="font-label-sm text-label-sm text-secondary mt-0.5">Operador: Silva Jr. (Turno 2)</span>
+</div>
+</div>
+</div>
+<!-- BOTÃO DE AÇÃO PRINCIPAL -->
+<div class="pt-space-xs pb-space-md flex flex-col gap-space-xs">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:opacity-90 transition-transform active:scale-[0.99]" id="submit-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">task_alt</span>
+<span>Confirmar Registro de Insumos e Escala</span>
+</button>
+<div class="flex items-center justify-center gap-1 text-on-surface-variant py-1">
+<span class="material-symbols-outlined text-[14px]">offline_pin</span>
+<span class="font-label-sm text-label-sm">Gravação em cache offline garantida</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    let currentLiters = 180.0;
+    const drilledMeters = 74.5;
+    const workingHours = 8.4;
+    const targetHourly = 22.0;
+
+    const litersDisplay = document.getElementById('liters-val');
+    const hourlyDisplay = document.getElementById('hourly-rate');
+    const linearDisplay = document.getElementById('linear-rate');
+    const banner = document.getElementById('efficiency-banner');
+
+    function updateCalculations() {
+      litersDisplay.textContent = currentLiters.toFixed(1);
+      const hourly = currentLiters / workingHours;
+      const linear = currentLiters / drilledMeters;
+
+      hourlyDisplay.textContent = hourly.toFixed(1);
+      linearDisplay.textContent = linear.toFixed(2);
+
+      if (hourly <= targetHourly) {
+        banner.className = 'bg-surface-container rounded-lg p-space-md flex items-center justify-between';
+        banner.innerHTML = `
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-tertiary">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-tertiary font-bold">Consumo Eficiente</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">${((1 - (hourly/targetHourly))*100).toFixed(1)}% abaixo do limite</span>
+            </div>
+          </div>
+          <span class="font-label-sm text-label-sm px-space-xs py-1 rounded bg-tertiary text-on-tertiary uppercase">OK</span>
+        `;
+      } else {
+        banner.className = 'bg-error-container rounded-lg p-space-md flex items-center justify-between';
+        banner.innerHTML = `
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-full bg-error flex items-center justify-center text-on-error">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-on-error-container font-bold">Consumo Alto</span>
+              <span class="font-body-sm text-body-sm text-on-error-container">${(((hourly/targetHourly) - 1)*100).toFixed(1)}% acima da meta (22.0 L/h)</span>
+            </div>
+          </div>
+          <span class="font-label-sm text-label-sm px-space-xs py-1 rounded bg-error text-on-error uppercase">ALERTA</span>
+        `;
+      }
+    }
+
+    document.querySelectorAll('.num-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const add = parseFloat(btn.dataset.add);
+        currentLiters += add;
+        updateCalculations();
+      });
+    });
+
+    const clearBtn = document.getElementById('clear-diesel');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        currentLiters = 0.0;
+        updateCalculations();
+      });
+    }
+
+    const toggleBtn = document.getElementById('toggle-keypad-btn');
+    const keypad = document.getElementById('quick-keypad');
+    if (toggleBtn && keypad) {
+      toggleBtn.addEventListener('click', () => {
+        keypad.classList.toggle('hidden');
+      });
+    }
+
+    document.querySelectorAll('.toggle-choice').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const parent = this.parentElement;
+        const sibling = parent.querySelector(this === parent.firstElementChild ? ':last-child' : ':first-child');
+        
+        this.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        this.classList.add('bg-primary', 'text-on-primary');
+
+        sibling.classList.remove('bg-primary', 'text-on-primary');
+        sibling.classList.add('bg-surface-container', 'text-on-surface-variant');
+
+        const targetId = this.dataset.target || (sibling ? sibling.dataset.target : null);
+        if (targetId) {
+          const subContent = document.getElementById(targetId);
+          if (subContent) {
+            if (this.dataset.state === 'sim') {
+              subContent.classList.remove('hidden');
+            } else {
+              subContent.classList.add('hidden');
+            }
+          }
+        }
+      });
+    });
+
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const initialText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+          <span>Registrando no RDO...</span>
+        `;
+        setTimeout(() => {
+          submitBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[22px]">check_circle</span>
+            <span>Insumos & Escala Gravados com Sucesso!</span>
+          `;
+          submitBtn.classList.remove('bg-primary');
+          submitBtn.classList.add('bg-tertiary-container', 'text-on-tertiary-container');
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = initialText;
+            submitBtn.classList.remove('bg-tertiary-container', 'text-on-tertiary-container');
+            submitBtn.classList.add('bg-primary');
+          }, 2400);
+        }, 800);
+      });
+    }
+
+    updateCalculations();
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold"><div class="flex items-center justify-around h-20 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-xs py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="apontamento" href="#"><span class="material-symbols-outlined text-[24px]">speed</span><span class="font-label-sm text-label-sm mt-1">Apontamento</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-xs py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="checklist" href="#"><span class="material-symbols-outlined text-[24px]">fact_check</span><span class="font-label-sm text-label-sm mt-1">Checklist</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-xs py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="paradas" href="#"><span class="material-symbols-outlined text-[24px]">pause_circle</span><span class="font-label-sm text-label-sm mt-1">Paradas</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-xs py-1 transition-colors text-primary font-bold" data-path="consumo-e-escala" href="#"><span class="material-symbols-outlined text-[24px]">local_gas_station</span><span class="font-label-sm text-label-sm mt-1">Consumo</span></a></div></nav>
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

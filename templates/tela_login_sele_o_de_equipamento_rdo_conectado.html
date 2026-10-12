@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="pt-BR" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><title>Petra Mineração</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface":"#f8f9ff","inverse-primary":"#adc8f5","surface-container-highest":"#d5e3fc","on-primary-container":"#8aa4cf","on-secondary-fixed-variant":"#004b73","on-tertiary-fixed":"#002109","secondary":"#006398","on-primary":"#ffffff","error":"#ba1a1a","primary":"#022448","surface-container-high":"#dce9ff","primary-fixed-dim":"#adc8f5","secondary-fixed":"#cce5ff","on-secondary-fixed":"#001d31","on-primary-fixed":"#001c3b","inverse-on-surface":"#eaf1ff","on-secondary-container":"#00476e","background":"#f8f9ff","on-tertiary-container":"#38b95d","primary-container":"#1e3a5f","inverse-surface":"#233144","on-primary-fixed-variant":"#2d486d","tertiary-fixed-dim":"#62df7d","secondary-fixed-dim":"#93ccff","surface-tint":"#455f87","surface-dim":"#ccdbf3","on-tertiary-fixed-variant":"#005320","surface-container":"#e6eeff","tertiary-container":"#004319","secondary-container":"#5bb8fe","surface-container-lowest":"#ffffff","on-background":"#0d1c2e","on-error-container":"#93000a","outline-variant":"#c4c6cf","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-variant":"#d5e3fc","tertiary":"#002a0d","on-surface-variant":"#43474e","on-error":"#ffffff","outline":"#74777f","primary-fixed":"#d5e3ff","error-container":"#ffdad6","on-surface":"#0d1c2e","surface-bright":"#f8f9ff","tertiary-fixed":"#7ffc97","surface-container-low":"#eff4ff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xs":"0.25rem","space-md":"0.75rem","margin":"1rem","gutter":"0.75rem","space-lg":"1.25rem","space-xl":"2rem"},fontFamily:{"telemetry-metric":["IBM Plex Sans"],"body-md":["IBM Plex Sans"],"label-lg":["IBM Plex Sans"],"headline-md":["IBM Plex Sans"],"headline-sm":["IBM Plex Sans"],"body-sm":["IBM Plex Sans"],"label-md":["IBM Plex Sans"],"headline-lg-mobile":["IBM Plex Sans"],"headline-lg":["IBM Plex Sans"],"label-sm":["IBM Plex Sans"],"body-lg":["IBM Plex Sans"]},fontSize:{"telemetry-metric":["28px",{lineHeight:"34px",fontWeight:"700"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"label-lg":["15px",{lineHeight:"20px",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"28px",fontWeight:"600"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"label-md":["13px",{lineHeight:"16px",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"32px",fontWeight:"700"}],"headline-lg":["32px",{lineHeight:"40px",fontWeight:"700"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}};</script></head><body class="min-h-full bg-surface text-on-surface font-body-md text-body-md flex flex-col pt-safe pb-safe"><main class="flex-1 flex flex-col w-full bg-surface"><div class="flex flex-col w-full">
+<!-- Status & Network Connectivity Strip -->
+<div class="px-margin pt-space-md pb-space-sm bg-surface-container flex flex-wrap items-center justify-between gap-space-xs text-on-surface-variant">
+<div class="flex items-center gap-space-xs" id="cloud-status-indicator">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-on-tertiary-container opacity-75" id="cloud-ping-dot"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary-container" id="cloud-status-dot"></span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wide" id="cloud-status-text">CONECTADO À NUVEM · SISTEMA SINCRONIZADO</span>
+</div>
+<div class="flex items-center gap-1 bg-surface px-space-xs py-0.5 rounded-DEFAULT text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">offline_pin</span>
+<span class="font-label-sm text-label-sm">Offline-First Ativo</span>
+</div>
+</div>
+<!-- Industrial Header & Identity Hero -->
+<div class="px-margin pt-space-lg pb-space-md bg-surface flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-md"><img alt="Petra - Areia Industrial e Britas" class="h-12 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEO1sQltESVKnVCNEWJnaPIA6_yeVk-l6l1tiEPVpZRXb9OVauGfyZDcbbL0uf_QQTdG0GAHonqMzVVg2I0nx9Hsxq5PnIsdDe2B49lvOGBaRA6G8DTmnfxhq-xvstEo3kzpBesT3tiJyn--4xvkO7uenvxa-ln3X7r2tBDQMVxLRK2QsDRWouAgm61-QDp3PG8h4BAbg9wucp679AdWDgHadL_M5n-FwxdB11buVEsdXk2ORhiWWEo_LuWUa34maW1Q"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="font-headline-md text-headline-md text-primary tracking-tight font-semibold">MINERAÇÃO</span><span class="bg-primary text-on-primary font-label-sm text-label-sm px-1.5 py-0.5 rounded-DEFAULT">RDO</span></div><p class="font-body-sm text-body-sm text-on-surface-variant truncate">Sistema Operacional RDO Digital · Mina &amp; Planta</p></div></div>
+</div>
+<!-- Operational Form Workspace -->
+<div class="px-margin flex flex-col gap-space-lg pb-space-xl">
+<!-- Operator Access Card -->
+<div class="bg-surface-container-lowest rounded-xl p-margin shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-none">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">badge</span>
+<span class="font-label-lg text-label-lg text-on-surface">Credenciamento de Campo</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary px-2 py-0.5 rounded-DEFAULT font-semibold">TURNO ATUAL</span>
+</div>
+<!-- Quick Operator Badge Presets -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Matrícula Operador</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-[20px]">assignment_ind</span>
+<input class="w-full h-14 pl-11 pr-space-md bg-surface-container-low text-on-surface font-label-lg text-label-lg rounded-lg outline-none focus:bg-surface-container focus:text-primary transition-colors" id="operator-badge-input" placeholder="Ex: OP-102" value="OP-102">
+</div>
+<div class="flex items-center gap-space-xs pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Atalhos rápidos:</span>
+<button class="px-2 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm rounded-DEFAULT hover:bg-surface-container-high transition-colors" onclick="selectBadge('OP-102')" type="button">OP-102</button>
+<button class="px-2 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm rounded-DEFAULT hover:bg-surface-container-high transition-colors" onclick="selectBadge('OP-512')" type="button">OP-512</button>
+<button class="px-2 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm rounded-DEFAULT hover:bg-surface-container-high transition-colors" onclick="selectBadge('OP-615')" type="button">OP-615</button>
+</div>
+</div>
+<!-- PIN Operacional Input -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Senha Operacional / PIN</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-[20px]">lock</span>
+<input class="w-full h-14 pl-11 pr-12 bg-surface-container-low text-on-surface font-label-lg text-label-lg rounded-lg outline-none focus:bg-surface-container tracking-widest transition-colors" id="operator-pin-input" placeholder="PIN de 4 dígitos" type="password" value="5678"/>
+<button aria-label="Alternar exibição de senha" class="absolute right-2 h-10 w-10 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" id="toggle-pin-btn" onclick="togglePinVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="pin-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Shift Selector Segmented Control -->
+<div class="flex flex-col gap-space-xs pt-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Escala &amp; Turno de Trabalho</label>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container p-1 rounded-lg">
+<button class="h-12 rounded-lg bg-primary text-on-primary flex flex-col items-center justify-center shadow-sm transition-all" id="shift-1-btn" onclick="setShift(1)" type="button">
+<span class="font-label-md text-label-md">1º Turno Diurno</span>
+<span class="font-label-sm text-label-sm opacity-90">07:00 – 15:48</span>
+</button>
+<button class="h-12 rounded-lg bg-transparent text-on-surface-variant flex flex-col items-center justify-center hover:bg-surface-container-high transition-all" id="shift-2-btn" onclick="setShift(2)" type="button">
+<span class="font-label-md text-label-md">2º Turno Noturno</span>
+<span class="font-label-sm text-label-sm opacity-80">15:48 – 00:30</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Active Tag & Fleet Selection Module -->
+<div class="bg-surface-container-lowest rounded-xl p-margin shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">directions_bus</span>
+<span class="font-label-lg text-label-lg text-on-surface">TAG do Equipamento</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-2 py-0.5 rounded-DEFAULT">FROTA ATIVA</span>
+</div>
+<!-- Sector Quick Category Chips -->
+<div class="flex gap-space-xs overflow-x-auto pb-1 -mx-1 px-1">
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-on-primary transition-colors" id="cat-ALL" onclick="filterCategory('ALL')" type="button">
+          Todos
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-CARGA" onclick="filterCategory('CARGA')" type="button">
+          Carga &amp; Transp.
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-ESCAV" onclick="filterCategory('ESCAV')" type="button">
+          Escavação
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-CARREG" onclick="filterCategory('CARREG')" type="button">
+          Carregamento
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-PERF" onclick="filterCategory('PERF')" type="button">
+          Perfuração
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-BRIT" onclick="filterCategory('BRIT')" type="button">
+          Britagem
+        </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors" id="cat-APOIO" onclick="filterCategory('APOIO')" type="button">
+          Apoio
+        </button>
+</div>
+<!-- Equipment Dropdown Selector with Big Ergonomic Target -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="equipment-select">Selecionar TAG Cadastrada</label>
+<div class="relative flex items-center">
+<select class="w-full h-14 pl-4 pr-10 bg-surface-container-low text-on-surface font-label-lg text-label-lg rounded-lg outline-none appearance-none focus:bg-surface-container transition-colors" id="equipment-select" onchange="handleTagChange(this.value)">
+<optgroup label="Carga e Transporte">
+<option selected value="UT-34">UT-34 · Mercedes-Benz Axor 4144 (Basculante 8x4)</option>
+<option value="UT-35">UT-35 · Mercedes-Benz Actros 4844</option>
+<option value="UT-32">UT-32 · Mercedes-Benz Axor 3344</option>
+<option value="UT-33">UT-33 · Mercedes-Benz Axor 4144 (Reserva)</option>
+</optgroup>
+<optgroup label="Escavação Pesada">
+<option value="UC-11">UC-11 · Volvo EC460B (Rompedor / Concha 3.2m³)</option>
+<option value="UC-12">UC-12 · Volvo EC480D Escavadeira</option>
+<option value="UC-10">UC-10 · Komatsu PC350LC</option>
+</optgroup>
+<optgroup label="Carregamento &amp; Pátio">
+<option value="UC-15">UC-15 · Volvo L120F (Pá Carregadeira 3.5m³)</option>
+<option value="UC-14">UC-14 · Volvo L120E</option>
+<option value="UC-16">UC-16 · Caterpillar 966H</option>
+</optgroup>
+<optgroup label="Perfuração de Rocha">
+<option value="UP-34">UP-34 · Fox 8-20 (Perfuratriz Hidráulica)</option>
+<option value="UP-35">UP-35 · PW-5000 Furukawa</option>
+<option value="UP-32">UP-32 · Atlas Copco XA-420</option>
+</optgroup>
+<optgroup label="Britagem &amp; Industrial">
+<option value="UB-02">UB-02 · Metso Nordberg C125 (Britador Primário)</option>
+<option value="UB-03">UB-03 · Rebritador Cônico S3000</option>
+<option value="TR-USINA-04">TR-USINA-04 · Usina de Agregados Traço Fácil</option>
+</optgroup>
+<optgroup label="Equipamentos de Apoio">
+<option value="MN-01">MN-01 · Caterpillar 120B Motoniveladora</option>
+<option value="PIPA-01">PIPA-01 · Mercedes Atego 1719 Pipa</option>
+<option value="PIPA-02">PIPA-02 · Mercedes Atron 2729 Pipa</option>
+</optgroup>
+</select>
+<span class="material-symbols-outlined absolute right-3 text-on-surface-variant pointer-events-none text-[24px]">arrow_drop_down</span>
+</div>
+</div>
+<!-- Live Machine Preview Bento Card -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm transition-all duration-200" id="machine-preview-card">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary" id="preview-tag">UT-34</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-DEFAULT bg-primary-container text-on-primary" id="preview-category-badge">Carga &amp; Transporte</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface truncate" id="preview-model">Mercedes-Benz Axor 4144 (Basculante 8x4)</p>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest shrink-0 flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[28px]" id="preview-icon">local_shipping</span>
+</div>
+</div>
+<!-- Status Strip -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Último Horímetro</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-on-surface" id="preview-horometer">14.820,4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">h</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Liberação Operacional</span>
+<div class="flex items-center gap-1.5 mt-0.5" id="preview-status-pill">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">verified</span>
+<span class="font-label-md text-label-md text-tertiary-container" id="preview-status-text">Apto p/ Operação</span>
+</div>
+</div>
+</div>
+<!-- Machine Location / Plant Assignment Note -->
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-1">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="" id="preview-location">Mina Sul · Frente de Lavra 03</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary" id="preview-sub-status">Operação Liberada</span>
+</div>
+<div id="preview-bloqueio-aviso" class="hidden mt-2 p-3 rounded-lg bg-red-950/20 text-red-300 border border-red-500/30 text-xs"></div>
+</div>
+</div>
+<!-- Primary Action Controls -->
+<div class="flex flex-col gap-space-sm">
+<button class="w-full h-14 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99]" id="btn-login-rdo" onclick="handleAccessRdo()" type="button">
+<span class="material-symbols-outlined text-[22px]">play_circle</span>
+<span class="">ACESSAR E ABRIR RDO DO EQUIPAMENTO</span>
+</button>
+<button class="w-full h-14 bg-surface-container-high hover:bg-surface-container-highest text-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors" onclick="handleTelemetryQuickView()" type="button">
+<span class="material-symbols-outlined text-[20px]">history_toggle_off</span>
+<span class="">CONSULTAR HISTÓRICO DO EQUIPAMENTO</span>
+</button>
+</div>
+<!-- Security & Synced Engine Footnote -->
+<div class="flex flex-col items-center justify-center gap-1 text-center pt-space-xs">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">security</span>
+<span class="">Petra Mineração S/A · Acesso Seguro Homologado</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-75">
+        Petra Mineração S/A · RDO Digital Mobile <span class="font-semibold text-on-surface">v2.4.1 (Mina Sul)</span>
+</p>
+</div>
+</div>
+<!-- Inline Micro-Interactions Controller & Supabase Integration -->
+<script>
+    const SUPABASE_URL = 'https://mgzyrcnkmaepybaeznij.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nenlyY25rbWFlcHliYWV6bmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NzIxMDQsImV4cCI6MjEwNzA0ODEwNH0.kAtmUAKSn53owxV8eNHfSOtkeQkjs5RkxVD54p_2Vlk';
+    const supabase = (window.supabase && window.supabase.createClient) ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+    let fleetDatabase = {
+      'UT-34': { tag: 'UT-34', model: 'Mercedes-Benz Axor 4144 (Basculante 8x4)', cat: 'Carga & Transporte', catCode: 'CARGA', horometer: '14.820,4', status: 'Apto para Operação', icon: 'local_shipping', loc: 'Mina Sul · Frente de Lavra 03' },
+      'UT-35': { tag: 'UT-35', model: 'Mercedes-Benz Actros 4844', cat: 'Carga & Transporte', catCode: 'CARGA', horometer: '11.340,8', status: 'Apto para Operação', icon: 'local_shipping', loc: 'Mina Sul · Frente de Lavra 01' },
+      'UT-32': { tag: 'UT-32', model: 'Mercedes-Benz Axor 3344', cat: 'Carga & Transporte', catCode: 'CARGA', horometer: '9.215,1', status: 'Checklist Pendente', icon: 'local_shipping', loc: 'Oficina Central' },
+      'UT-33': { tag: 'UT-33', model: 'Mercedes-Benz Axor 4144 (Reserva)', cat: 'Carga & Transporte', catCode: 'CARGA', horometer: '16.902,3', status: 'Apto para Operação', icon: 'local_shipping', loc: 'Pátio de Estéril' },
+      
+      'UC-11': { tag: 'UC-11', model: 'Volvo EC460B (Rompedor / Concha 3.2m³)', cat: 'Escavação', catCode: 'ESCAV', horometer: '18.441,7', status: 'Apto para Operação', icon: 'construction', loc: 'Mina Norte · Bancada 780' },
+      'UC-12': { tag: 'UC-12', model: 'Volvo EC480D Escavadeira', cat: 'Escavação', catCode: 'ESCAV', horometer: '12.650,0', status: 'Apto para Operação', icon: 'construction', loc: 'Frente de Minério 02' },
+      'UC-10': { tag: 'UC-10', model: 'Komatsu PC350LC', cat: 'Escavação', catCode: 'ESCAV', horometer: '8.410,2', status: 'Checklist Pendente', icon: 'construction', loc: 'Mina Sul · Acesso 04' },
+
+      'UC-15': { tag: 'UC-15', model: 'Volvo L120F (Pá Carregadeira 3.5m³)', cat: 'Carregamento & Pátio', catCode: 'CARREG', horometer: '15.112,6', status: 'Apto para Operação', icon: 'front_loader', loc: 'Alimentação Britagem Primária' },
+      'UC-14': { tag: 'UC-14', model: 'Volvo L120E', cat: 'Carregamento & Pátio', catCode: 'CARREG', horometer: '21.034,9', status: 'Apto para Operação', icon: 'front_loader', loc: 'Pátio de Finos' },
+      'UC-16': { tag: 'UC-16', model: 'Caterpillar 966H', cat: 'Carregamento & Pátio', catCode: 'CARREG', horometer: '17.480,0', status: 'Checklist Pendente', icon: 'front_loader', loc: 'Depósito de Brita 01' },
+
+      'UP-34': { tag: 'UP-34', model: 'Fox 8-20 (Perfuratriz Hidráulica)', cat: 'Perfuração', catCode: 'PERF', horometer: '6.720,5', status: 'Apto para Operação', icon: 'engineering', loc: 'Plano de Fogo 42 · Bancada 810' },
+      'UP-35': { tag: 'UP-35', model: 'PW-5000 Furukawa', cat: 'Perfuração', catCode: 'PERF', horometer: '9.310,2', status: 'Apto para Operação', icon: 'engineering', loc: 'Plano de Fogo 41' },
+      'UP-32': { tag: 'UP-32', model: 'Atlas Copco XA-420', cat: 'Perfuração', catCode: 'PERF', horometer: '13.080,0', status: 'Checklist Pendente', icon: 'engineering', loc: 'Área de Apoio Geotécnico' },
+
+      'UB-02': { tag: 'UB-02', model: 'Metso Nordberg C125 (Britador Primário)', cat: 'Britagem & Industrial', catCode: 'BRIT', horometer: '32.180,9', status: 'Apto para Operação', icon: 'factory', loc: 'Planta de Britagem Primária' },
+      'UB-03': { tag: 'UB-03', model: 'Rebritador Cônico S3000', cat: 'Britagem & Industrial', catCode: 'BRIT', horometer: '28.940,4', status: 'Apto para Operação', icon: 'factory', loc: 'Planta Secundária' },
+      'TR-USINA-04': { tag: 'TR-USINA-04', model: 'Usina de Agregados Traço Fácil', cat: 'Britagem & Industrial', catCode: 'BRIT', horometer: '10.510,3', status: 'Apto para Operação', icon: 'factory', loc: 'Complexo de Classificação' },
+
+      'MN-01': { tag: 'MN-01', model: 'Caterpillar 120B Motoniveladora', cat: 'Apoio', catCode: 'APOIO', horometer: '19.822,1', status: 'Apto para Operação', icon: 'agriculture', loc: 'Acessos Principais Mina Sul' },
+      'PIPA-01': { tag: 'PIPA-01', model: 'Mercedes Atego 1719 Pipa', cat: 'Apoio', catCode: 'APOIO', horometer: '7.890,4', status: 'Apto para Operação', icon: 'water_drop', loc: 'Umectação Pistas de Rolamento' },
+      'PIPA-02': { tag: 'PIPA-02', model: 'Mercedes Atron 2729 Pipa', cat: 'Apoio', catCode: 'APOIO', horometer: '11.450,2', status: 'Apto para Operação', icon: 'water_drop', loc: 'Umectação Acesso Britador' }
+    };
+
+    let activeShift = 1;
+
+    function getCategoryCode(catName) {
+      if (!catName) return 'ALL';
+      const c = catName.toUpperCase();
+      if (c.includes('CARGA') || c.includes('TRANSP')) return 'CARGA';
+      if (c.includes('ESCAV')) return 'ESCAV';
+      if (c.includes('CARREG') || c.includes('PÁ')) return 'CARREG';
+      if (c.includes('PERF')) return 'PERF';
+      if (c.includes('BRIT') || c.includes('USINA') || c.includes('INDUSTR')) return 'BRIT';
+      if (c.includes('APOIO')) return 'APOIO';
+      return 'ALL';
+    }
+
+    function getCategoryIcon(catCode) {
+      switch(catCode) {
+        case 'CARGA': return 'local_shipping';
+        case 'ESCAV': return 'construction';
+        case 'CARREG': return 'front_loader';
+        case 'PERF': return 'engineering';
+        case 'BRIT': return 'factory';
+        case 'APOIO': return 'agriculture';
+        default: return 'precision_manufacturing';
+      }
+    }
+
+    function updateCloudStatus(online, message) {
+      const ping = document.getElementById('cloud-ping-dot');
+      const dot = document.getElementById('cloud-status-dot');
+      const text = document.getElementById('cloud-status-text');
+      if (!text || !dot) return;
+
+      if (online) {
+        if (ping) ping.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-on-tertiary-container opacity-75';
+        dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary-container';
+        text.textContent = message || 'CONECTADO À NUVEM · SISTEMA SINCRONIZADO';
+      } else {
+        if (ping) ping.className = 'hidden';
+        dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-error';
+        text.textContent = message || 'DESCONECTADO · MODO LOCAL ATIVO';
+      }
+    }
+
+    async function checkCloudConnection() {
+      if (!supabase) {
+        updateCloudStatus(false, 'MODO LOCAL · NUVEM INDISPONÍVEL');
+        return;
+      }
+      try {
+        const { error, status } = await supabase.from('prontuario_equipamentos').select('id_equipamento').limit(1);
+        updateCloudStatus(true, 'CONECTADO AO SUPABASE · SINCRONIZADO');
+      } catch (err) {
+        updateCloudStatus(false, 'SINCRONIZAÇÃO PENDENTE · MODO LOCAL');
+      }
+    }
+
+    async function loadEquipmentsFromCloud() {
+      let equipamentos = null;
+      try {
+        const resp = await fetch('/api/equipamentos');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json && json.dados && json.dados.length > 0) {
+            equipamentos = json.dados;
+          }
+        }
+      } catch (e) {}
+
+      if (!equipamentos && supabase) {
+        try {
+          const { data, error } = await supabase
+            .from('prontuario_equipamentos')
+            .select('*');
+
+          if (!error && data && data.length > 0) {
+            equipamentos = data;
+          }
+        } catch (err) {
+          console.warn('Consulta remota ao Supabase:', err);
+        }
+      }
+
+      const select = document.getElementById('equipment-select');
+      const tagAnterior = select ? select.value : 'UT-34';
+
+      if (equipamentos && equipamentos.length > 0) {
+        equipamentos.forEach(item => {
+          const tag = item.id_equipamento || item.tag;
+          if (tag) {
+            if (!fleetDatabase[tag]) {
+              fleetDatabase[tag] = { tag, model: item.nome_equipamento || tag, cat: item.categoria || 'Mina', catCode: getCategoryCode(item.categoria), horometer: '0,0', status: item.status_operacional || 'Apto para Operação', icon: getCategoryIcon(getCategoryCode(item.categoria)), loc: item.localizacao || 'Pátio Petra' };
+            }
+            if (item.nome_equipamento) fleetDatabase[tag].model = item.nome_equipamento;
+            if (item.categoria) {
+              fleetDatabase[tag].cat = item.categoria;
+              fleetDatabase[tag].catCode = getCategoryCode(item.categoria);
+            }
+            if (item.status_operacional) fleetDatabase[tag].status = item.status_operacional;
+            if (item.localizacao) fleetDatabase[tag].loc = item.localizacao;
+            if (item.horometro_acumulado_total !== undefined) {
+              fleetDatabase[tag].horometer = Number(item.horometro_acumulado_total).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+            }
+            fleetDatabase[tag].liberado_para_operador = (item.liberado_para_operador !== false);
+            fleetDatabase[tag].aval_mecanico = item.aval_mecanico || null;
+            fleetDatabase[tag].ordem_servico = item.ordem_servico || null;
+          }
+        });
+
+        // Reconstrói as opções do select agrupando por Liberados vs Bloqueados na Oficina
+        if (select) {
+          select.innerHTML = '';
+
+          const liberados = [];
+          const bloqueados = [];
+
+          Object.keys(fleetDatabase).forEach(k => {
+            if (fleetDatabase[k].liberado_para_operador) {
+              liberados.push(fleetDatabase[k]);
+            } else {
+              bloqueados.push(fleetDatabase[k]);
+            }
+          });
+
+          // Grupo 1: Liberados para Operação (com Aval do Mecânico)
+          const optgroupLib = document.createElement('optgroup');
+          optgroupLib.label = '✅ Disponíveis · Aval do Mecânico Concedido';
+          liberados.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.tag;
+            opt.textContent = `✅ ${m.tag} · ${m.model}`;
+            optgroupLib.appendChild(opt);
+          });
+          select.appendChild(optgroupLib);
+
+          // Grupo 2: Bloqueados na Oficina (Aguardando Aval)
+          if (bloqueados.length > 0) {
+            const optgroupBloq = document.createElement('optgroup');
+            optgroupBloq.label = '⛔ Bloqueados na Oficina · Aguardando Aval do Mecânico';
+            bloqueados.forEach(m => {
+              const opt = document.createElement('option');
+              opt.value = m.tag;
+              opt.textContent = `⛔ [OFICINA] ${m.tag} · ${m.model} (Aguardando Aval)`;
+              opt.className = 'text-rose-500 font-bold';
+              optgroupBloq.appendChild(opt);
+            });
+            select.appendChild(optgroupBloq);
+          }
+
+          if (fleetDatabase[tagAnterior]) {
+            select.value = tagAnterior;
+          } else if (liberados.length > 0) {
+            select.value = liberados[0].tag;
+          }
+        }
+      }
+
+      if (select && select.value) {
+        await handleTagChange(select.value);
+      }
+    }
+
+    async function fetchEquipmentMaintenance(tagId) {
+      if (!supabase) return null;
+      try {
+        const { data, error } = await supabase
+          .from('relogio_manutencao')
+          .select('*')
+          .eq('id_equipamento', tagId)
+          .maybeSingle();
+
+        if (!error && data) {
+          return {
+            horimetro: data.horimetro_acumulado_total ?? data.horimetro,
+            status_operacao: data.status_manutencao ?? data.status_operacao ?? data.status
+          };
+        }
+      } catch (e) {
+        console.warn('Consulta ao relógio de manutenção:', e);
+      }
+      return null;
+    }
+
+    function selectBadge(badgeId) {
+      const input = document.getElementById('operator-badge-input');
+      if (input) {
+        input.value = badgeId;
+        input.focus();
+      }
+    }
+
+    function togglePinVisibility() {
+      const pinInput = document.getElementById('operator-pin-input');
+      const pinIcon = document.getElementById('pin-icon');
+      if (pinInput && pinIcon) {
+        if (pinInput.type === 'password') {
+          pinInput.type = 'text';
+          pinIcon.textContent = 'visibility_off';
+        } else {
+          pinInput.type = 'password';
+          pinIcon.textContent = 'visibility';
+        }
+      }
+    }
+
+    function setShift(shiftNumber) {
+      activeShift = shiftNumber;
+      const s1 = document.getElementById('shift-1-btn');
+      const s2 = document.getElementById('shift-2-btn');
+
+      if (shiftNumber === 1) {
+        s1.className = 'h-12 rounded-lg bg-primary text-on-primary flex flex-col items-center justify-center shadow-sm transition-all';
+        s2.className = 'h-12 rounded-lg bg-transparent text-on-surface-variant flex flex-col items-center justify-center hover:bg-surface-container-high transition-all';
+      } else {
+        s2.className = 'h-12 rounded-lg bg-primary text-on-primary flex flex-col items-center justify-center shadow-sm transition-all';
+        s1.className = 'h-12 rounded-lg bg-transparent text-on-surface-variant flex flex-col items-center justify-center hover:bg-surface-container-high transition-all';
+      }
+    }
+
+    async function handleTagChange(tagId) {
+      const data = fleetDatabase[tagId];
+      if (!data) return;
+
+      document.getElementById('preview-tag').textContent = data.tag;
+      document.getElementById('preview-category-badge').textContent = data.cat;
+      document.getElementById('preview-model').textContent = data.model;
+      document.getElementById('preview-icon').textContent = data.icon;
+      document.getElementById('preview-location').textContent = data.loc;
+
+      // Horímetro
+      let horometerValue = data.horometer;
+      document.getElementById('preview-horometer').textContent = horometerValue;
+
+      const statusPill = document.getElementById('preview-status-pill');
+      const subStatus = document.getElementById('preview-sub-status');
+      const avisoBloqueio = document.getElementById('preview-bloqueio-aviso');
+      const btnAcessar = document.getElementById('btn-login-rdo');
+
+      const isLiberado = data.liberado_para_operador !== false;
+
+      if (isLiberado) {
+        if (statusPill) {
+          statusPill.innerHTML = `
+            <span class="material-symbols-outlined text-on-tertiary-container text-[18px]">verified</span>
+            <span class="font-label-md text-label-md text-tertiary-container" id="preview-status-text">Apto p/ Operação</span>
+          `;
+        }
+        if (subStatus) {
+          const nomeMec = data.aval_mecanico?.nome || 'Mecânico';
+          subStatus.textContent = `Aval Concedido (${nomeMec})`;
+          subStatus.className = 'font-label-sm text-label-sm text-emerald-600 font-semibold';
+        }
+        if (avisoBloqueio) {
+          avisoBloqueio.classList.add('hidden');
+        }
+        if (btnAcessar) {
+          btnAcessar.disabled = false;
+          btnAcessar.className = 'w-full h-14 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99] cursor-pointer';
+          btnAcessar.innerHTML = `
+            <span class="material-symbols-outlined text-[22px]">play_circle</span>
+            <span>ACESSAR E ABRIR RDO DO EQUIPAMENTO</span>
+          `;
+        }
+      } else {
+        if (statusPill) {
+          statusPill.innerHTML = `
+            <span class="material-symbols-outlined text-error text-[18px]">lock</span>
+            <span class="font-label-md text-label-md text-error" id="preview-status-text">Bloqueado na Oficina</span>
+          `;
+        }
+        if (subStatus) {
+          subStatus.textContent = '⛔ Aguardando Aval do Mecânico';
+          subStatus.className = 'font-label-sm text-label-sm text-rose-500 font-bold';
+        }
+        if (avisoBloqueio) {
+          avisoBloqueio.classList.remove('hidden');
+          avisoBloqueio.innerHTML = `
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-rose-400 text-[20px] shrink-0 mt-0.5">warning</span>
+              <div>
+                <strong class="block text-rose-300 font-bold">Equipamento Bloqueado para Operadores</strong>
+                <p class="text-slate-300 text-[11px] mt-0.5">Esta máquina está na oficina ou com checklist pendente. Conforme regra da Petra Mineração, ela <strong>só poderá ser operada após o Aval Técnico do Mecânico</strong> no Modo Manutenção.</p>
+                <a href="/tela_liberacao_oficina.html" class="inline-flex items-center gap-1 mt-2 text-amber-400 hover:text-amber-300 font-bold underline text-[11px]">
+                  <span>Ir para Liberação de Oficina</span>
+                  <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          `;
+        }
+        if (btnAcessar) {
+          btnAcessar.disabled = true;
+          btnAcessar.className = 'w-full h-14 bg-slate-800 text-slate-400 border border-slate-700 rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-none cursor-not-allowed opacity-75';
+          btnAcessar.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] text-rose-400">lock</span>
+            <span>BLOQUEADO · AGUARDANDO AVAL DO MECÂNICO</span>
+          `;
+        }
+      }
+    }
+
+    function filterCategory(catCode) {
+      const cats = ['ALL', 'CARGA', 'ESCAV', 'CARREG', 'PERF', 'BRIT', 'APOIO'];
+      cats.forEach(c => {
+        const btn = document.getElementById('cat-' + c);
+        if (btn) {
+          if (c === catCode) {
+            btn.className = 'shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-on-primary transition-colors';
+          } else {
+            btn.className = 'shrink-0 px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant transition-colors';
+          }
+        }
+      });
+
+      const select = document.getElementById('equipment-select');
+      if (!select) return;
+
+      if (catCode === 'ALL') {
+        handleTagChange(select.value);
+        return;
+      }
+
+      // Pick first matching tag in that category
+      for (const [key, val] of Object.entries(fleetDatabase)) {
+        if (val.catCode === catCode) {
+          select.value = key;
+          handleTagChange(key);
+          break;
+        }
+      }
+    }
+
+    async function validateOperator(matricula) {
+      if (!supabase) return { valid: true, nome: matricula };
+      try {
+        const { data, error } = await supabase
+          .from('tb_operadores')
+          .select('matricula_operador, ativo, nome')
+          .eq('matricula_operador', matricula)
+          .maybeSingle();
+
+        if (error) {
+          console.warn('Erro ao consultar operador:', error);
+          // Permite fallback gracioso mantendo operação de campo
+          return { valid: true, nome: matricula };
+        }
+
+        if (data) {
+          if (data.ativo === false || data.ativo === 'false' || data.ativo === 0) {
+            return { valid: false, reason: 'Operador Inativo no Sistema' };
+          }
+          return { valid: true, nome: data.nome || matricula };
+        } else {
+          // Matrícula não encontrada mas permite fluxo ou alerta conforme configuração
+          return { valid: false, reason: 'Matrícula não cadastrada' };
+        }
+      } catch (err) {
+        console.warn('Exceção ao validar operador:', err);
+        return { valid: true, nome: matricula };
+      }
+    }
+
+    async function handleAccessRdo() {
+      const btn = document.getElementById('btn-login-rdo');
+      const badge = document.getElementById('operator-badge-input').value.trim();
+      const pin = document.getElementById('operator-pin-input').value.trim();
+      const select = document.getElementById('equipment-select').value;
+      
+      if (!btn) return;
+      if (!badge) {
+        alert('Por favor, informe a matrícula do operador.');
+        return;
+      }
+
+      // Validação estrita do Aval do Mecânico
+      const equipSelecionado = fleetDatabase[select];
+      if (equipSelecionado && equipSelecionado.liberado_para_operador === false) {
+        alert(`⛔ ACESSO BLOQUEADO PELA OFICINA!\n\nO equipamento ${select} (${equipSelecionado.model}) está na oficina ou com checklist pendente.\n\nConforme regra da Petra Mineração, esta máquina só pode ser operada após o Aval Técnico do Mecânico no Modo Manutenção.`);
+        return;
+      }
+
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin text-[20px]">sync</span>
+        <span>VALIDANDO AUTORIZAÇÃO E ABRINDO RDO...</span>
+      `;
+      btn.disabled = true;
+
+      // Validação do operador na tabela tb_operadores
+      const operatorStatus = await validateOperator(badge);
+
+      if (!operatorStatus.valid) {
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">error</span>
+          <span>ACESSO NEGADO: ${operatorStatus.reason}</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 2500);
+        return;
+      }
+
+      // Registro/Abertura do RDO concluída
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+        <span>RDO LIBERADO: ${badge} · ${select}</span>
+      `;
+      setTimeout(() => {
+        const routeMap = {
+          'UT-34': '/tela_apontamento_basculante_ut_34.html',
+          'UC-11': '/tela_apontamento_escavadeira_ec460b_uc_11.html',
+          'UC-15': '/tela_apontamento_carregadeira_l120f_uc_15.html',
+          'UP-34': '/tela_apontamento_perfuratriz_up_34.html',
+          'MN-01': '/tela_apontamento_motoniveladora_120b_mn_01.html',
+          'TR-USINA-04': '/tela_apontamento_usina_tra_o_f_cil.html'
+        };
+        const dest = routeMap[select] || '/tela_apontamento_basculante_ut_34.html';
+        window.location.href = dest;
+      }, 1000);
+    }
+
+    async function handleTelemetryQuickView() {
+      const tag = document.getElementById('equipment-select').value;
+      const previewCard = document.getElementById('machine-preview-card');
+      if (previewCard) {
+        previewCard.classList.add('bg-surface-container-high');
+      }
+      setTimeout(() => {
+        window.location.href = '/tela_hist_rico_e_telemetria_rdo.html';
+      }, 300);
+    }
+
+    // Inicialização da conexão e sincronização de dados em tempo real
+    document.addEventListener('DOMContentLoaded', () => {
+      checkCloudConnection();
+      loadEquipmentsFromCloud();
+      // Polling contínuo para atualizar imediatamente quando mecânico conceder Aval
+      setInterval(loadEquipmentsFromCloud, 5000);
+    });
+  </script>
+</div></main>
+
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

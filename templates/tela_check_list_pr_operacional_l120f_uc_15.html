@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'surface-variant': '#d5e3fc', 'outline': '#74777f', 'secondary-container': '#5bb8fe', 'on-background': '#0d1c2e', 'inverse-surface': '#233144', 'outline-variant': '#c4c6cf', 'on-primary-fixed-variant': '#2d486d', 'tertiary-fixed-dim': '#62df7d', 'primary-container': '#1e3a5f', 'surface-bright': '#f8f9ff', 'on-primary': '#ffffff', 'surface-container-high': '#dce9ff', 'inverse-primary': '#adc8f5', 'tertiary-container': '#004319', 'on-secondary': '#ffffff', 'on-primary-fixed': '#001c3b', 'inverse-on-surface': '#eaf1ff', 'background': '#f8f9ff', 'on-tertiary': '#ffffff', 'primary-fixed-dim': '#adc8f5', 'on-secondary-fixed': '#001d31', 'surface': '#f8f9ff', 'error-container': '#ffdad6', 'on-secondary-fixed-variant': '#004b73', 'tertiary': '#002a0d', 'on-primary-container': '#8aa4cf', 'surface-container-low': '#eff4ff', 'on-error': '#ffffff', 'on-surface': '#0d1c2e', 'tertiary-fixed': '#7ffc97', 'primary': '#022448', 'on-tertiary-container': '#38b95d', 'secondary-fixed-dim': '#93ccff', 'on-tertiary-fixed': '#002109', 'surface-container-highest': '#d5e3fc', 'on-secondary-container': '#00476e', 'surface-container-lowest': '#ffffff', 'secondary-fixed': '#cce5ff', 'surface-dim': '#ccdbf3', 'on-error-container': '#93000a', 'on-tertiary-fixed-variant': '#005320', 'surface-tint': '#455f87', 'surface-container': '#e6eeff', 'secondary': '#006398', 'on-surface-variant': '#43474e', 'primary-fixed': '#d5e3ff', 'error': '#ba1a1a' }, borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' }, spacing: { 'space-xl': '2rem', 'space-sm': '0.5rem', 'space-xs': '0.25rem', 'space-lg': '1.25rem', 'margin': '1rem', 'space-md': '0.75rem', 'gutter': '0.75rem' }, fontFamily: { 'headline-lg-mobile': ['IBM Plex Sans'], 'label-sm': ['IBM Plex Sans'], 'headline-sm': ['IBM Plex Sans'], 'telemetry-metric': ['IBM Plex Sans'], 'body-md': ['IBM Plex Sans'], 'headline-lg': ['IBM Plex Sans'], 'headline-md': ['IBM Plex Sans'], 'label-md': ['IBM Plex Sans'], 'body-lg': ['IBM Plex Sans'], 'label-lg': ['IBM Plex Sans'], 'body-sm': ['IBM Plex Sans'] }, fontSize: { 'headline-lg-mobile': ['26px', { lineHeight: '32px', fontWeight: '700' }], 'label-sm': ['11px', { lineHeight: '14px', fontWeight: '700' }], 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'telemetry-metric': ['28px', { lineHeight: '34px', fontWeight: '700' }], 'body-md': ['15px', { lineHeight: '22px', fontWeight: '400' }], 'headline-lg': ['32px', { lineHeight: '40px', fontWeight: '700' }], 'headline-md': ['22px', { lineHeight: '28px', fontWeight: '600' }], 'label-md': ['13px', { lineHeight: '16px', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'label-lg': ['15px', { lineHeight: '20px', fontWeight: '600' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased selection:bg-secondary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><div class="w-11 h-11 rounded-lg bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[24px]">hardware</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Petra Mineração</span><span class="text-outline-variant font-body-sm text-body-sm">•</span><span class="font-label-sm text-label-sm bg-surface-container-high text-on-primary-fixed-variant px-space-xs py-0.5 rounded">1º Turno</span></div><div class="flex items-center gap-space-xs mt-0.5"><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">{{ EQUIPAMENTO }} · VOLVO L120F</h1><div class="w-2 h-2 rounded-full bg-on-tertiary-container shrink-0" title="Operacional"></div></div></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden sm:flex flex-col items-end"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Form: 0016</span><span class="font-label-sm text-label-sm text-tertiary-container">OP. ATIVO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-margin pt-space-md pb-space-lg flex flex-col gap-space-md">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary via-primary-container to-secondary p-space-md text-on-primary shadow-lg">
+<div class="relative z-10 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-wide">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            Inspeção Dinâmica
+          </span>
+<span class="font-label-md text-label-md bg-surface-container-lowest/20 backdrop-blur px-space-xs py-0.5 rounded text-on-primary" id="counter-badge">
+            7/7 Verificados
+          </span>
+</div>
+<div class="mt-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-primary" id="status-headline">Equipamento Apto para Operação</h2>
+<p class="font-body-sm text-body-sm text-on-primary/80" id="status-sub">7/7 Itens Conformes · Pronto para liberação de lavra</p>
+</div>
+<div class="mt-space-xs w-full bg-on-primary/20 rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary-fixed h-full transition-all duration-300 ease-out" id="progress-bar" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="relative h-28 rounded-xl overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Volvo L120F front wheel loader heavy machinery operating under bright midday sunlight in an open pit stone quarry, surrounded by dusty gravel tracks and towering rock ledges, industrial photography style with deep blue shadows and sharp sun reflections on yellow-orange steel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlCR3HtGGFABRhe5aE1UY58IiTjK-XacVZEoCuZpXuQUFQPD998zGj4SAu4gZWCoUQFOFt5l3IbTc1j-fVMpNTYkTmIQfekXeHR0dKeifBychwA3ahf3HzqFCGaaVfxW_G3CuaBTU8TtKZ6BPNp0NspfdKwyL1734IUFpkuF_f3D_-QLguvMVtN3mGVNw8MpT55Yf5ym3dmrxq0aeLVrGSgliLaIMy1EjtyK4gNnucgU10qqAV_8tl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-space-xs">
+<span class="font-label-sm text-label-sm text-on-primary uppercase tracking-tight flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">tire_repair</span> Chassi &amp; Rodagem
+          </span>
+</div>
+</div>
+<div class="relative h-28 rounded-xl overflow-hidden shadow-sm group">
+<img class="w-full h-full object-cover" data-alt="Close up view of the hydraulic loader cylinders, articulated center joint, and engine maintenance hood of a Volvo mining machine, heavy duty mechanics, daylight reflection on industrial steel, clean high contrast machinery details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGB0GBSbz1upUlMO0HI0iT3tI_Zuh45qBD0x6HftMuT-zVbfzBdV1OnxtMeKshHLWrOyKg6Cupgam1Q8ezyn8-xU2653stCdIFmGkLn3ZqhBCesJr-9CwQkm30V_0zKoNeLP49AFgJYEQduq3N830IeVYuFE6yGVcT1TrfGwZra7MuOUD4WclVeKwWcb3-ZREJr7QUdwGQo4s2NuiMl6Sljj-hJM-ZD3CsqtMF6CM8cwnd5gzdhZTh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-space-xs">
+<span class="font-label-sm text-label-sm text-on-primary uppercase tracking-tight flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">oil_barrel</span> Motor D7E &amp; Fluídos
+          </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">checklist_rtl</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Critérios Obrigatórios (FORM: 0016)</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">7 Requisitos</span>
+</div>
+<div class="flex flex-col gap-space-md" id="checklist-items">
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="lanternagem">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 01</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Lanternagem &amp; Iluminação</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Faróis dianteiros de serviço, lanternas traseiras, sinalizador giroflex 360° e alarme de marcha à ré sonoro.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('lanternagem', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('lanternagem', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="pneus">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">adjust</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 02</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Pneus &amp; Rodagem</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Pressão e calibragem (dianteiros/traseiros), ausência de cortes na banda de rodagem e torque nas porcas de fixação.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('pneus', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('pneus', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="arrefecimento">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">water_drop</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 03</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Nível de Água &amp; Arrefecimento</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Inspeção no vaso de expansão, nível do líquido de arrefecimento e vedação estanque da tampa pressurizada.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('arrefecimento', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('arrefecimento', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="oleo_motor">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">opacity</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 04</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Nível de Óleo do Motor (D7E)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Vareta medidora entre marcas mín/máx, especificação 15W40 e verificação no cárter para ausência de gotejamentos.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('oleo_motor', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('oleo_motor', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="freios">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">cloud_download</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 05</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Sistema de Freios</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Resposta do freio de serviço no pedal, freio de estacionamento em rampa de inclinação e carga nos acumuladores.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('freios', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('freios', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="direcao">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 06</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Direção &amp; Articulação Central</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Folga do volante, retorno centrado e lubrificação dos pinos centrais e cilindros hidráulicos de direção.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('direcao', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('direcao', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+<div class="checklist-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all" data-id="eletrica">
+<div class="flex items-start gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Item 07</span>
+<span class="status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold">● Apto</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">Painel &amp; Parte Elétrica</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Display Volvo Contronic sem alertas graves, buzina, sensor de pesagem da caçamba e carga das baterias.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm" onclick="setChoice('eletrica', true)" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            SIM (APTO)
+          </button>
+<button class="btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform" onclick="setChoice('eletrica', false)" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+            NÃO (FALHA)
+          </button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">info</span>
+<span class="font-body-sm text-body-sm">Itens omitidos por regra do equipamento {{ EQUIPAMENTO }}: Esteiras, Martelete e Compressor de ar.</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-[16px] text-on-surface flex items-center gap-1.5" for="obs-input">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+          Observações do Operador
+        </label>
+<span class="font-label-sm text-label-sm text-outline" id="char-counter">0 / 250</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm active:bg-secondary-container transition-colors" onclick="insertTag('Pneus calibrados OK')" type="button">
+          + Pneus calibrados OK
+        </button>
+<button class="px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm active:bg-secondary-container transition-colors" onclick="insertTag('Nível de óleo regular')" type="button">
+          + Nível de óleo regular
+        </button>
+<button class="px-space-xs py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm active:bg-secondary-container transition-colors" onclick="insertTag('Radiador limpo')" type="button">
+          + Radiador limpo
+        </button>
+</div>
+<div class="relative mt-1">
+<textarea class="w-full rounded-lg bg-surface-container-low p-space-sm font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 focus:bg-surface-container-lowest" id="obs-input" maxlength="250" oninput="updateCharCount(this)" placeholder="Anote eventuais condições observadas na inspeção pré-turno..." rows="3"></textarea>
+</div>
+</div>
+<div class="pt-space-xs">
+<button class="w-full min-h-[56px] rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:scale-[0.99] transition-all" id="save-btn" onclick="saveChecklist()" type="button">
+<span class="material-symbols-outlined text-[24px]">save</span>
+<span>Salvar Checklist no RDO Digital (JSONB)</span>
+</button>
+</div>
+<div class="opacity-0 pointer-events-none transition-opacity duration-300 rounded-lg p-space-md text-center bg-inverse-surface text-inverse-on-surface font-label-md text-label-md shadow-lg flex items-center justify-center gap-space-sm" id="toast">
+<span class="material-symbols-outlined text-tertiary-fixed text-[20px]">cloud_done</span>
+<span id="toast-message">Checklist gravado com sucesso no registro digital!</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const checklistState = {
+      lanternagem: true,
+      pneus: true,
+      arrefecimento: true,
+      oleo_motor: true,
+      freios: true,
+      direcao: true,
+      eletrica: true
+    };
+
+    window.setChoice = function(key, isApproved) {
+      checklistState[key] = isApproved;
+      const card = document.querySelector(`[data-id="${key}"]`);
+      if (!card) return;
+
+      const passBtn = card.querySelector('.btn-pass');
+      const failBtn = card.querySelector('.btn-fail');
+      const indicator = card.querySelector('.status-indicator');
+
+      if (isApproved) {
+        passBtn.className = 'btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-tertiary-container text-on-tertiary font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm';
+        failBtn.className = 'btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform';
+        indicator.textContent = '● Apto';
+        indicator.className = 'status-indicator font-label-sm text-label-sm text-on-tertiary-container font-semibold';
+      } else {
+        passBtn.className = 'btn-pass flex items-center justify-center gap-1.5 h-14 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg active:scale-95 transition-transform';
+        failBtn.className = 'btn-fail flex items-center justify-center gap-1.5 h-14 rounded-lg bg-error text-on-error font-label-lg text-label-lg active:scale-95 transition-transform shadow-sm';
+        indicator.textContent = '▲ Falha';
+        indicator.className = 'status-indicator font-label-sm text-label-sm text-error font-semibold';
+      }
+
+      refreshSummary();
+    };
+
+    function refreshSummary() {
+      const keys = Object.keys(checklistState);
+      const passedCount = keys.filter(k => checklistState[k]).length;
+      const total = keys.length;
+
+      const badge = document.getElementById('counter-badge');
+      const headline = document.getElementById('status-headline');
+      const sub = document.getElementById('status-sub');
+      const bar = document.getElementById('progress-bar');
+
+      const pct = Math.round((passedCount / total) * 100);
+      bar.style.width = pct + '%';
+
+      if (passedCount === total) {
+        badge.textContent = `${passedCount}/${total} Conformes`;
+        headline.textContent = 'Equipamento Apto para Operação';
+        sub.textContent = '7/7 Itens Conformes · Pronto para liberação de lavra';
+        bar.className = 'bg-tertiary-fixed h-full transition-all duration-300 ease-out';
+      } else {
+        badge.textContent = `${passedCount}/${total} Conformes`;
+        headline.textContent = 'Alerta: Não Conformidade Detectada';
+        const failCount = total - passedCount;
+        sub.textContent = `${failCount} item(ns) com restrição operacional imediata`;
+        bar.className = 'bg-error-container h-full transition-all duration-300 ease-out';
+      }
+    }
+
+    window.updateCharCount = function(textarea) {
+      const counter = document.getElementById('char-counter');
+      counter.textContent = `${textarea.value.length} / 250`;
+    };
+
+    window.insertTag = function(tagText) {
+      const ta = document.getElementById('obs-input');
+      const current = ta.value.trim();
+      if (!current.includes(tagText)) {
+        ta.value = current ? `${current}. ${tagText}` : tagText;
+        updateCharCount(ta);
+      }
+    };
+
+    window.saveChecklist = function() {
+      const textarea = document.getElementById('obs-input');
+      const payload = {
+        form_id: "FORM: 0016",
+        equipamento: "{{ EQUIPAMENTO }} · VOLVO L120F",
+        turno: "1º Turno",
+        data_hora: new Date().toISOString(),
+        itens_avaliados: checklistState,
+        itens_omitidos: {
+          requer_esteira_rodante: false,
+          requer_horimetro_martelo: false,
+          requer_pressao_compressor: false
+        },
+        observacoes: textarea.value.trim(),
+        status_geral: Object.values(checklistState).every(Boolean) ? "APTO" : "COM_PENDENCIA"
+      };
+
+      console.log("RDO Digital JSONB:", JSON.stringify(payload));
+
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      
+      if (payload.status_geral === "APTO") {
+        toastMsg.textContent = "Checklist 100% conforme gravado no RDO Digital!";
+      } else {
+        toastMsg.textContent = "Checklist com restrições gravado com aviso à Manutenção!";
+      }
+
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3500);
+    };
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(13,28,46,0.06)]" data-active-classes="text-primary font-bold"><div class="grid grid-cols-4 items-center h-20 px-space-xs max-w-lg mx-auto"><a class="flex flex-col items-center justify-center gap-1 h-full min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="apontamento" href="#"><div class="w-10 h-7 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-[24px]">front_loader</span></div><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Apontamento</span></a><a class="flex flex-col items-center justify-center gap-1 h-full min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="estoque" href="#"><div class="w-10 h-7 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-[24px]">inventory_2</span></div><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Estoque</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 h-full min-h-[44px] transition-colors text-primary font-bold" data-path="checklist" href="#"><div class="w-10 h-7 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-[24px]">fact_check</span></div><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Checklist</span></a><a class="flex flex-col items-center justify-center gap-1 h-full min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="paradas" href="#"><div class="w-10 h-7 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-[24px]">warning</span></div><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Paradas</span></a></div></nav>
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

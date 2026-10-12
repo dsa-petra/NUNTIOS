@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#f8f9ff", "secondary-fixed": "#cce5ff", "surface-variant": "#d5e3fc", "background": "#f8f9ff", "on-tertiary-fixed-variant": "#005320", "surface-container-lowest": "#ffffff", "surface-tint": "#455f87", "on-error": "#ffffff", "surface-dim": "#ccdbf3", "tertiary-container": "#004319", "tertiary-fixed": "#7ffc97", "surface-container-low": "#eff4ff", "on-surface-variant": "#43474e", "on-secondary-fixed-variant": "#004b73", "tertiary": "#002a0d", "surface-container": "#e6eeff", "surface-bright": "#f8f9ff", "on-primary": "#ffffff", "primary-fixed": "#d5e3ff", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#62df7d", "on-error-container": "#93000a", "secondary-fixed-dim": "#93ccff", "on-background": "#0d1c2e", "on-tertiary-container": "#38b95d", "error": "#ba1a1a", "surface-container-highest": "#d5e3fc", "on-secondary-fixed": "#001d31", "outline": "#74777f", "secondary-container": "#5bb8fe", "on-secondary-container": "#00476e", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#002109", "on-primary-fixed": "#001c3b", "on-surface": "#0d1c2e", "outline-variant": "#c4c6cf", "inverse-surface": "#233144", "primary-fixed-dim": "#adc8f5", "inverse-on-surface": "#eaf1ff", "inverse-primary": "#adc8f5", "on-primary-container": "#8aa4cf", "primary-container": "#1e3a5f", "secondary": "#006398", "on-primary-fixed-variant": "#2d486d", "primary": "#022448" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin": "1rem", "gutter": "0.75rem", "space-xs": "0.25rem", "space-lg": "1.25rem", "space-xl": "2rem", "space-md": "0.75rem", "space-sm": "0.5rem" }, fontFamily: { "telemetry-metric": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "headline-lg-mobile": ["IBM Plex Sans"] }, fontSize: { "telemetry-metric": ["28px", { "lineHeight": "34px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-lg": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col antialiased min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex flex-col min-w-0 flex-1 justify-center"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm uppercase tracking-wide text-primary truncate">PETRA MINERAÇÃO</span><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider shrink-0">1º Turno</span></div><div class="flex items-center gap-space-xs mt-0.5"><span class="font-label-sm text-label-sm text-on-surface-variant truncate">BRITAGEM · {{ EQUIPAMENTO }} / REBRITAGEM</span><span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed-variant"></span>Em Operação</span></div></div><div class="flex items-center gap-space-sm shrink-0"><span class="hidden sm:inline-block font-label-md text-label-md text-primary font-bold tracking-tight uppercase">Apontamento</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 px-margin bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-md">
+<!-- Operational Header & Sync Tag -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm uppercase tracking-wider">FORM: 0020</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase font-semibold">REV: 01</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">•</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">PO-PRD.0006</span>
+</div>
+<!-- Supabase Realtime Sync State Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed transition-colors font-label-sm text-label-sm" id="syncBadge">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-fixed-variant animate-pulse" id="syncDot"></span>
+<span class="font-bold" id="syncText">Supabase Conectado</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-0.5">
+<div class="flex flex-col min-w-0">
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight truncate">C125 · Britagem Primária</h1>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Unidade Beneficiamento {{ EQUIPAMENTO }} · Praça Superior</span>
+</div>
+<div class="text-right shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase block">DATA RDO</span>
+<span class="font-label-md text-label-md text-primary font-bold">Hoje, 24 Mai</span>
+</div>
+</div>
+</section>
+<!-- Shift & Operator Selection Form Section -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-md text-label-md uppercase text-secondary font-bold tracking-wider">Parâmetros de Turno</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">tb_operadores</span>
+</div>
+<!-- Segmented Shift Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Selecione o Turno</label>
+<div class="grid grid-cols-2 gap-space-xs p-1 rounded-xl bg-surface-container">
+<button class="h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center bg-primary text-on-primary shadow-sm transition-all" id="shiftBtn1" onclick="selectShift(1)" type="button">
+<span>1º Turno</span>
+<span class="font-label-sm text-label-sm opacity-90">07:00 – 15:48</span>
+</button>
+<button class="h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all" id="shiftBtn2" onclick="selectShift(2)" type="button">
+<span>2º Turno</span>
+<span class="font-label-sm text-label-sm opacity-80">15:48 – 00:15</span>
+</button>
+</div>
+</div>
+<!-- Operator Selection Input -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider" for="operatorSelect">Operador de Planta Responsável</label>
+<div class="relative flex items-center">
+<select class="w-full h-14 pl-12 pr-10 rounded-xl bg-surface-container-low text-on-surface font-label-lg text-label-lg appearance-none outline-none focus:bg-surface-container-high transition-colors" id="operatorSelect">
+<option selected="" value="{{ NOME_OPERADOR }}</option>
+<option value="{{ NOME_OPERADOR }}</option>
+<option value="{{ NOME_OPERADOR }}</option>
+<option value="{{ NOME_OPERADOR }}</option>
+</select>
+<div class="absolute left-3.5 pointer-events-none flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">badge</span>
+</div>
+<div class="absolute right-3.5 pointer-events-none flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[22px]">unfold_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Horometer & Working Hours Bento Box -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">timer</span>
+<span class="font-label-md text-label-md uppercase text-secondary font-bold tracking-wider">Horímetro e Janela Temporal</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">Britador C125</span>
+</div>
+<!-- Live Calculated Horometer Cards -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Horímetro Inicial</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">6.812,4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">h</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">login</span> 07:00 Início
+        </span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Horímetro Final</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight" id="finalHorometer">6.820,9</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">h</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">logout</span> 15:48 Término
+        </span>
+</div>
+</div>
+<!-- Operational Yield & Hours Highlights -->
+<div class="grid grid-cols-2 gap-space-sm p-space-sm rounded-xl bg-surface-container">
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container-lowest text-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">Horas Efetivas</span>
+<span class="font-telemetry-metric text-telemetry-metric text-primary mt-0.5 font-bold">8,50<span class="text-[16px] font-normal text-on-surface-variant ml-0.5">h</span></span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant font-bold mt-0.5">Janela 8,8h total</span>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container-lowest text-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">Rendimento Operac.</span>
+<span class="font-telemetry-metric text-telemetry-metric text-secondary mt-0.5 font-bold">96,2<span class="text-[16px] font-normal text-on-surface-variant ml-0.5">%</span></span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant font-bold mt-0.5">Meta &gt; 92,0% (Atingida)</span>
+</div>
+</div>
+</section>
+<!-- Scale & Production Feeder Statistics Section -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">conveyor_belt</span>
+<span class="font-label-md text-label-md uppercase text-secondary font-bold tracking-wider">Produção e Balança BC-01</span>
+</div>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed-variant"></span>
+        Alimentação Contínua
+      </span>
+</div>
+<!-- Production Big Metric Banner -->
+<div class="p-space-md rounded-xl bg-primary text-on-primary flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-container">Volume Britado no Turno</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">108% Meta PCP</span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight">1.850</span>
+<span class="font-label-lg text-label-lg text-on-primary-container">Toneladas</span>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm font-bold text-secondary-fixed">217,6</span>
+<span class="font-label-sm text-label-sm text-on-primary-container block">t/hora média</span>
+</div>
+</div>
+<!-- Progress Bar against target -->
+<div class="w-full bg-primary-container h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-primary-container mt-0.5">
+<span>Meta Turno: 1.700 t</span>
+<span class="text-secondary-fixed font-bold">+150 t excedente</span>
+</div>
+</div>
+<!-- Scale Absolute Readings -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Totalizador Inicial</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">142.300 t</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Leitura às 07:00</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Totalizador Final</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">144.150 t</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Leitura às 15:48</span>
+</div>
+</div>
+<!-- Tremonha Feed Status Pill -->
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">waves</span>
+<span class="font-label-md text-label-md text-on-surface">Tremonha de Britagem Primária</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-tertiary-fixed-variant bg-tertiary-fixed px-space-xs py-0.5 rounded">Ritmo Regular</span>
+</div>
+</section>
+<!-- Initial Shift Inspection FORM: 0020 (Checklist) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+<span class="font-label-md text-label-md uppercase text-secondary font-bold tracking-wider">Inspeção Pré-Operacional</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-on-tertiary-fixed-variant font-bold">3/3 Conformes</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Loose Components -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold">1. Componentes e Parafusos Estruturais</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Carcaça, mancais bipartidos e volante de inércia</span>
+<div class="inline-flex items-center gap-1 mt-1.5 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+            Fixação verificada sem folgas
+          </div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold shrink-0">OK</span>
+</div>
+<!-- Item 2: Jaw Wear & Gap -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold">2. Desgaste das Mandíbulas (Fixa / Móvel)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Perfil estriado íntegro · Gap CSS aferido</span>
+<div class="inline-flex items-center gap-1 mt-1.5 text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">straighten</span>
+            Abertura: 120mm (Desgaste Normal)
+          </div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold shrink-0">120 mm</span>
+</div>
+<!-- Item 3: Hydraulic Rompedor Tank -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold">3. Nível Hidráulico do Rompedor de Praça</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Visor do tanque central de acionamento</span>
+<div class="inline-flex items-center gap-1 mt-1.5 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+            Fluido HD68 dentro da faixa ideal
+          </div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold shrink-0">NORMAL</span>
+</div>
+</div>
+</section>
+<!-- Large Tactile Action Area -->
+<section class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Launch Scale Data Quick Action -->
+<button class="w-full min-h-[56px] rounded-xl bg-surface-container-highest text-primary active:bg-surface-variant font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-sm shadow-sm transition-all" id="btnLaunchScale" onclick="openAddScaleModal()" type="button">
+<span class="material-symbols-outlined text-[24px]">scale</span>
+<span>+ Lançar Apontamento de Balança</span>
+</button>
+<!-- Master Save / Sync to Database -->
+<button class="w-full min-h-[56px] rounded-xl bg-primary text-on-primary active:bg-primary-container font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-sm shadow-md transition-all relative overflow-hidden" id="btnSaveRecord" onclick="handleSaveRDO()" type="button">
+<span class="material-symbols-outlined text-[24px]">cloud_sync</span>
+<span id="saveBtnText">Salvar Apontamento do Turno (JSONB)</span>
+</button>
+</section>
+<!-- Microfeedback Toast Notification -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 w-[92%] max-w-md p-space-md rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl flex items-center justify-between gap-space-sm transition-all duration-300 transform opacity-0 translate-y-4 pointer-events-none z-50" id="toastNotification">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-[24px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">Lote RDO Sincronizado</span>
+<span class="font-body-sm text-body-sm opacity-90">Registro #0020 gravado no Supabase</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold">200 OK</span>
+</div>
+</div>
+<script>
+  // Shift Selector Logic
+  function selectShift(shiftNumber) {
+    const btn1 = document.getElementById('shiftBtn1');
+    const btn2 = document.getElementById('shiftBtn2');
+    
+    if (shiftNumber === 1) {
+      btn1.className = "h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center bg-primary text-on-primary shadow-sm transition-all";
+      btn2.className = "h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all";
+    } else {
+      btn2.className = "h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center bg-primary text-on-primary shadow-sm transition-all";
+      btn1.className = "h-12 rounded-lg font-label-md text-label-md font-bold flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all";
+    }
+  }
+
+  // Quick Action Modal Simulation
+  function openAddScaleModal() {
+    const btn = document.getElementById('btnLaunchScale');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[22px]">sync</span><span>Aferindo Balança BC-01...</span>`;
+    
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-tertiary text-[22px]">done</span><span>Leitura de +350 t Capturada!</span>`;
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+      }, 1800);
+    }, 800);
+  }
+
+  // Save RDO Flow with Supabase Feedback
+  function handleSaveRDO() {
+    const saveBtn = document.getElementById('btnSaveRecord');
+    const saveText = document.getElementById('saveBtnText');
+    const toast = document.getElementById('toastNotification');
+    
+    // Tactile saving state
+    saveBtn.disabled = true;
+    saveText.textContent = "Gravando payload JSONB...";
+    saveBtn.classList.add('opacity-90');
+
+    setTimeout(() => {
+      // Success feedback
+      saveText.textContent = "Apontamento Salvo com Sucesso!";
+      saveBtn.classList.remove('opacity-90');
+      
+      // Trigger toast
+      toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        saveText.textContent = "Salvar Apontamento do Turno (JSONB)";
+        saveBtn.disabled = false;
+      }, 3000);
+    }, 1100);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold bg-surface-container-low"><div class="flex items-stretch justify-around h-16 px-space-xs"><a aria-current="page" class="flex flex-1 flex-col items-center justify-center py-1 gap-0.5 transition-colors min-h-[44px] min-w-[44px] text-primary font-bold bg-surface-container-low" data-path="apontamento" href="#"><span class="material-symbols-outlined text-[24px]">precision_manufacturing</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Apontamento</span></a><a class="flex flex-1 flex-col items-center justify-center py-1 gap-0.5 text-on-surface-variant transition-colors min-h-[44px] min-w-[44px]" data-path="rebritagem" href="#"><span class="material-symbols-outlined text-[24px]">layers</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Rebritagem</span></a><a class="flex flex-1 flex-col items-center justify-center py-1 gap-0.5 text-on-surface-variant transition-colors min-h-[44px] min-w-[44px]" data-path="checklist" href="#"><span class="material-symbols-outlined text-[24px]">fact_check</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Checklist</span></a><a class="flex flex-1 flex-col items-center justify-center py-1 gap-0.5 text-on-surface-variant transition-colors min-h-[44px] min-w-[44px]" data-path="paradas" href="#"><span class="material-symbols-outlined text-[24px]">warning</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Paradas</span></a></div></nav>
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

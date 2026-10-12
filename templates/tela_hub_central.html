@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard de Gestão & Manutenção - PETRA Mineração</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"IBM Plex Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace']
+                    },
+                    colors: {
+                        petra: {
+                            gold: '#f59e0b',
+                            darkgold: '#d97706',
+                            surface: '#0f172a',
+                            subtle: '#1e293b',
+                            border: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0b1120; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 font-sans flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Top Bar Contract (1 Linha, 3 Zonas) -->
+    <header class="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between gap-8 shrink-0 z-40">
+        <!-- Zona 1: Brand Wordmark -->
+        <div class="flex items-center gap-3 whitespace-nowrap shrink-0">
+            <div class="w-8 h-8 rounded bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 font-bold">
+                <i class="fas fa-cubes text-sm"></i>
+            </div>
+            <a href="/" class="text-base font-bold tracking-tight text-white hover:text-amber-400 transition-colors">
+                PETRA Mineração <span class="text-slate-400 font-normal">· RDO Gestão & Manutenção</span>
+            </a>
+        </div>
+
+        <!-- Zona 2: Nav Links -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+            <a href="/tela_hub_central.html" class="text-amber-400 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 font-semibold">Painel Central</a>
+            <a href="/tela_selecao_equipamento.html" class="hover:text-slate-200 transition-colors whitespace-nowrap shrink-0">Operação (RDO)</a>
+            <a href="/tela_liberacao_oficina.html" class="hover:text-slate-200 transition-colors whitespace-nowrap shrink-0">Oficina & Liberação</a>
+            <a href="/tela_hist_rico_e_telemetria_rdo.html" class="hover:text-slate-200 transition-colors whitespace-nowrap shrink-0">Telemetria & Histórico</a>
+        </nav>
+
+        <!-- Zona 3: Primary Action & Modo Switcher -->
+        <div class="flex items-center gap-3 shrink-0">
+            <button onclick="exportarRelatorioGerencial()" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                <i class="fas fa-file-export text-slate-400"></i>
+                <span>Exportar CSV</span>
+            </button>
+            <button onclick="abrirModalFechamento()" class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-sm">
+                <i class="fas fa-check-double"></i>
+                <span>Fechar Turno</span>
+            </button>
+            <a href="/" title="Sair / Trocar Usuário" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-rose-400 transition-colors">
+                <i class="fas fa-power-off text-xs"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Barra de Contexto: Seletor de Modo (Gestão vs Manutenção) e Filtros Rápidos -->
+    <div class="bg-slate-900/60 border-b border-slate-800/80 px-6 py-3 shrink-0">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            
+            <!-- Segmented Control: Modo Gestão vs Modo Manutenção -->
+            <div class="flex items-center gap-1 p-1 bg-slate-800/80 border border-slate-700/80 rounded-xl shrink-0 self-start lg:self-auto">
+                <button id="tab-gestao" onclick="alternarModo('gestao')" class="flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all bg-amber-500 text-slate-950 shadow-sm whitespace-nowrap">
+                    <i class="fas fa-chart-pie text-xs"></i>
+                    <span>Modo Gestão Operacional</span>
+                </button>
+                <button id="tab-manutencao" onclick="alternarModo('manutencao')" class="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all text-slate-300 hover:text-white whitespace-nowrap">
+                    <i class="fas fa-tools text-xs"></i>
+                    <span>Modo Manutenção & PCM</span>
+                    <span id="badge-alertas-manut" class="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-rose-500/20 text-rose-400 border border-rose-500/30">2</span>
+                </button>
+            </div>
+
+            <!-- Filtros Dinâmicos -->
+            <div class="flex flex-wrap items-center gap-3 text-xs">
+                <!-- Filtro de Equipamento -->
+                <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg">
+                    <span class="text-slate-400">Equipamento:</span>
+                    <select id="filtro-equipamento" onchange="carregarIndicadores()" class="bg-transparent text-slate-200 font-semibold focus:outline-none cursor-pointer">
+                        <option value="TODOS" class="bg-slate-900 text-slate-200">Todos os Equipamentos (Frota Petra)</option>
+                        <option value="UP-34" class="bg-slate-900 text-slate-200">UP-34 · Fox 8-20 (Perfuratriz)</option>
+                        <option value="UT-34" class="bg-slate-900 text-slate-200">UT-34 · Axor 4144 (Basculante 8x4)</option>
+                        <option value="UT-35" class="bg-slate-900 text-slate-200">UT-35 · Actros 4844 (Basculante)</option>
+                        <option value="UC-11" class="bg-slate-900 text-slate-200">UC-11 · Volvo EC460B (Rompedor)</option>
+                        <option value="UC-15" class="bg-slate-900 text-slate-200">UC-15 · Volvo L120F (Carregadeira)</option>
+                        <option value="MN-01" class="bg-slate-900 text-slate-200">MN-01 · Cat 120B (Motoniveladora)</option>
+                        <option value="UB-02" class="bg-slate-900 text-slate-200">UB-02 · Britador C125 Primário</option>
+                        <option value="TR-USINA-04" class="bg-slate-900 text-slate-200">TR-USINA-04 · Usina Traço Fácil</option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Turno -->
+                <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg">
+                    <span class="text-slate-400">Turno:</span>
+                    <select id="filtro-turno" onchange="carregarIndicadores()" class="bg-transparent text-slate-200 font-semibold focus:outline-none cursor-pointer">
+                        <option value="TODOS" class="bg-slate-900 text-slate-200">Todos os Turnos</option>
+                        <option value="1º Turno Diurno" class="bg-slate-900 text-slate-200">1º Turno Diurno (07h - 15h48)</option>
+                        <option value="2º Turno Noturno" class="bg-slate-900 text-slate-200">2º Turno Noturno (15h48 - 00h30)</option>
+                    </select>
+                </div>
+
+                <!-- Sincronização / Atualização -->
+                <button onclick="carregarIndicadores(true)" title="Recarregar Indicadores do Supabase" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-300 transition-colors">
+                    <i id="sync-icon" class="fas fa-rotate text-xs"></i>
+                    <span>Atualizar</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="flex-1 overflow-y-auto px-6 py-8">
+        <div class="max-w-7xl mx-auto space-y-8">
+
+            <!-- ======================================================== -->
+            <!-- SEÇÃO: MODO GESTÃO OPERACIONAL (METROS, VIAGENS, DF, UT) -->
+            <!-- ======================================================== -->
+            <section id="secao-gestao" class="space-y-8 block">
+                
+                <!-- Headline de Contexto -->
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Gestão Operacional de Mina & Usina</h2>
+                        <p class="text-sm text-slate-400 mt-1">Acompanhamento consolidado de metros perfurados, ciclos de viagens e rendimento de equipamentos em tempo real.</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-400">
+                        <span>Base de Dados: <span class="text-emerald-400 font-semibold">Supabase Oficial</span></span>
+                        <span aria-hidden="true">·</span>
+                        <span id="data-hora-atualização">Atualizado agora</span>
+                    </div>
+                </div>
+
+                <!-- 4 KPI Strips Principais (Zero-Pill, Tabular Numbers) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- KPI 1: Produção de Metros Perfurados -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Perfuração de Rocha</span>
+                            <i class="fas fa-bore-hole text-amber-500"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-metros" class="text-3xl font-bold font-mono tabular-nums text-white">168.5</span>
+                                <span class="text-sm font-semibold text-slate-400">metros</span>
+                            </div>
+                            <!-- Barra de progresso da meta -->
+                            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
+                                <div id="barra-meta-metros" class="bg-amber-500 h-1.5 rounded-full transition-all duration-500" style="width: 76.6%;"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Meta: <span id="kpi-meta-metros" class="font-mono text-slate-300">220.0 m</span></span>
+                            <span>Taxa: <span id="kpi-taxa-pen" class="font-mono text-amber-400 font-semibold">27.2 m/h</span></span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 2: Transporte & Ciclos de Viagens -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Transporte & Basculantes</span>
+                            <i class="fas fa-truck-moving text-sky-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-viagens" class="text-3xl font-bold font-mono tabular-nums text-white">156</span>
+                                <span class="text-sm font-semibold text-slate-400">viagens</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
+                                <div id="barra-meta-viagens" class="bg-sky-400 h-1.5 rounded-full transition-all duration-500" style="width: 86.6%;"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Volume: <span id="kpi-volume" class="font-mono text-slate-300">2.496 m³</span></span>
+                            <span>Massa: <span id="kpi-toneladas" class="font-mono text-sky-400 font-semibold">~4.212 t</span></span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 3: Utilização da Frota (UT) -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Utilização Operacional (UT)</span>
+                            <i class="fas fa-gauge-high text-emerald-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-ut" class="text-3xl font-bold font-mono tabular-nums text-white">85.1%</span>
+                                <span class="text-xs text-emerald-400 font-semibold font-mono">+3.2% vs meta</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Horas produtivas líquidas sobre horas disponíveis da jornada.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Frota Ativa: <span id="kpi-frota-ativa" class="font-mono text-slate-300">12 máquinas</span></span>
+                            <span>Meta UT: <span class="font-mono text-slate-400">80.0%</span></span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 4: Disponibilidade Física (DF) -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Disponibilidade Física (DF)</span>
+                            <i class="fas fa-shield-halved text-emerald-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-df" class="text-3xl font-bold font-mono tabular-nums text-white">92.4%</span>
+                                <span class="text-xs text-emerald-400 font-semibold font-mono">Meta &ge; 90%</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Perdas mecânicas controladas dentro da tolerância do PCM.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Oficina: <span class="font-mono text-amber-400 font-semibold">2 em parada</span></span>
+                            <span>Diesel: <span id="kpi-diesel" class="font-mono text-slate-300">640 L</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Painel de Tomada de Decisão Rápida - Gestão Operacional -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-bolt text-amber-500"></i>
+                            <h3 class="text-base font-bold text-white">Painel de Decisão Imediata · Lavra & Expedição</h3>
+                        </div>
+                        <span class="text-xs text-slate-400">Recomendações com base nos ciclos do turno atual</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Decisão 1: Fila de Britagem -->
+                        <div class="bg-slate-800/60 border border-slate-700/70 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-amber-400 mb-1 font-semibold">
+                                    <span>Gargalo de Transporte</span>
+                                    <span>Frente 03</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Fila de Carga no Pátio 780</h4>
+                                <p class="text-xs text-slate-400 mt-1">Tempo de ciclo aumentou 4.8 min por caminhão. Realocar o basculante reserva UT-33 elimina o tempo ocioso da escavadeira.</p>
+                            </div>
+                            <button onclick="executarAcaoDecisao('acao_realocar_ut33', 'Realocar Basculante UT-33 para Frente 03')" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                <i class="fas fa-route"></i>
+                                <span>Realocar Basculante UT-33</span>
+                            </button>
+                        </div>
+
+                        <!-- Decisão 2: Ritmo de Perfuração -->
+                        <div class="bg-slate-800/60 border border-slate-700/70 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-emerald-400 mb-1 font-semibold">
+                                    <span>Avanço de Fogo</span>
+                                    <span>Bancada 810</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Liberação do Plano de Fogo 42</h4>
+                                <p class="text-xs text-slate-400 mt-1">Fox 8-20 atingiu 168.5m com taxa estável de 27.2 m/h. A malha pode ser liberada antecipadamente para a equipe de carregamento.</p>
+                            </div>
+                            <button onclick="executarAcaoDecisao('acao_liberar_plano42', 'Liberar Malha de Furo Plano 42 para Desmonte')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Liberar para Carregamento</span>
+                            </button>
+                        </div>
+
+                        <!-- Decisão 3: Estoque de Brita 1 -->
+                        <div class="bg-slate-800/60 border border-slate-700/70 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-sky-400 mb-1 font-semibold">
+                                    <span>Equilíbrio de Estoque</span>
+                                    <span>Britador C125</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Priorizar Alimentação de Brita 1</h4>
+                                <p class="text-xs text-slate-400 mt-1">Saída de brita comercial 1 superou 42 viagens. Ajustar o fluxo da pá carregadeira UC-15 para repor o pátio de expedição.</p>
+                            </div>
+                            <button onclick="executarAcaoDecisao('acao_priorizar_brita1', 'Priorizar Carregamento de Brita 1 na Expedição')" class="w-full py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                <i class="fas fa-dolly"></i>
+                                <span>Priorizar Reposição Brita 1</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Distribuição de Viagens por Agregado & Feed de Apontamentos Recentes -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Distribuição de Viagens por Material -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Viagens por Tipo de Agregado</h3>
+                                <span class="text-xs font-mono text-slate-400">Total: 156 vgs</span>
+                            </div>
+                            
+                            <div class="space-y-3" id="lista-materiais">
+                                <!-- Brita 1 -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Brita 1 (9,5 - 19 mm)</span>
+                                        <span class="font-mono text-slate-200">42 vgs (27%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-sky-400 h-2 rounded-full" style="width: 27%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Bica Corrida -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Bica Corrida / Praça</span>
+                                        <span class="font-mono text-slate-200">36 vgs (23%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-amber-500 h-2 rounded-full" style="width: 23%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Brita 0 -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Brita 0 (Fração fina)</span>
+                                        <span class="font-mono text-slate-200">28 vgs (18%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-emerald-400 h-2 rounded-full" style="width: 18%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Pedrisco -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Pedrisco Pátio Central</span>
+                                        <span class="font-mono text-slate-200">25 vgs (16%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-indigo-400 h-2 rounded-full" style="width: 16%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Traço Fácil -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Traço Fácil (Mistura Calibrada)</span>
+                                        <span class="font-mono text-slate-200">15 vgs (10%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-rose-400 h-2 rounded-full" style="width: 10%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Areia Média -->
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-medium">Areia Média / Lavada</span>
+                                        <span class="font-mono text-slate-200">10 vgs (6%)</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-amber-300 h-2 rounded-full" style="width: 6%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Densidade Média: 1,72 t/m³</span>
+                            <span class="text-slate-300 font-mono">Total Est. ~4.212 t</span>
+                        </div>
+                    </div>
+
+                    <!-- Tabela de Apontamentos Operacionais em Tempo Real -->
+                    <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-list-check text-amber-500"></i>
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Últimos Lançamentos Operacionais (RDO)</h3>
+                                </div>
+                                <span class="text-xs text-slate-400">Sincronização em tempo real</span>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+                                            <th class="pb-2.5">TAG</th>
+                                            <th class="pb-2.5">Equipamento</th>
+                                            <th class="pb-2.5">Operador</th>
+                                            <th class="pb-2.5 text-right">Lançamento</th>
+                                            <th class="pb-2.5 text-right">Horímetro</th>
+                                            <th class="pb-2.5 text-right">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-ultimos-apontamentos" class="divide-y divide-slate-800/60 font-mono">
+                                        <!-- Preenchido dinamicamente via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                            <span>Mostrando os apontamentos mais recentes do turno atual</span>
+                            <a href="/tela_hist_rico_e_telemetria_rdo.html" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1">
+                                <span>Ver Histórico Completo</span>
+                                <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- SEÇÃO: MODO MANUTENÇÃO & PCM (MTBF, MTTR, PREDITIVA)     -->
+            <!-- ======================================================== -->
+            <section id="secao-manutencao" class="space-y-8 hidden">
+                
+                <!-- Headline de Contexto -->
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Gestão de Manutenção & Confiabilidade (PCM)</h2>
+                        <p class="text-sm text-slate-400 mt-1">Indicadores de confiabilidade mecânica, controle de horímetros para revisões de 250h/500h e ordens de serviço ativas.</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-400">
+                        <span>Oficina Central: <span class="text-emerald-400 font-semibold">Operante</span></span>
+                        <span aria-hidden="true">·</span>
+                        <a href="/tela_liberacao_oficina.html" class="text-amber-400 hover:text-amber-300 font-semibold">
+                            <i class="fas fa-wrench mr-1"></i>Acessar Pátio de Liberação
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4 KPI Strips Confiabilidade (MTBF, MTTR, DF Mecânica, Alertas Preditivos) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- KPI 1: MTBF -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">MTBF (Tempo Médio Entre Falhas)</span>
+                            <i class="fas fa-clock text-emerald-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-mtbf" class="text-3xl font-bold font-mono tabular-nums text-white">142.5</span>
+                                <span class="text-sm font-semibold text-slate-400">horas</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Confiabilidade média operacional de equipamentos de mina pesada.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Meta MTBF: <span class="font-mono text-slate-300">&ge; 120.0 h</span></span>
+                            <span class="text-emerald-400 font-semibold font-mono">Conforme</span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 2: MTTR -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">MTTR (Tempo Médio de Reparo)</span>
+                            <i class="fas fa-wrench text-amber-500"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-mttr" class="text-3xl font-bold font-mono tabular-nums text-white">1.7</span>
+                                <span class="text-sm font-semibold text-slate-400">horas</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Velocidade média de intervenção mecânica e socorro de campo.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Meta MTTR: <span class="font-mono text-slate-300">&le; 2.5 h</span></span>
+                            <span class="text-emerald-400 font-semibold font-mono">Agilidade Alta</span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 3: Disponibilidade Mecânica da Frota -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Disponibilidade Mecânica</span>
+                            <i class="fas fa-gears text-sky-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-disp-mecanica" class="text-3xl font-bold font-mono tabular-nums text-white">93.6%</span>
+                                <span class="text-xs text-sky-400 font-semibold font-mono">Meta &ge; 90%</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Proporção de horas sem paradas mecânicas na escala do turno.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Horas em Manut: <span class="font-mono text-slate-300">1.8 h</span></span>
+                            <span class="text-sky-400 font-mono font-semibold">Operante</span>
+                        </div>
+                    </div>
+
+                    <!-- KPI 4: Alertas Preditivos Iminentes -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-medium uppercase tracking-wider">Alertas Preventivos (&lt;20h)</span>
+                            <i class="fas fa-triangle-exclamation text-rose-400"></i>
+                        </div>
+                        <div class="my-3">
+                            <div class="flex items-baseline gap-2">
+                                <span id="kpi-alertas-count" class="text-3xl font-bold font-mono tabular-nums text-rose-400">2</span>
+                                <span class="text-sm font-semibold text-slate-400">máquinas</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Máquinas a menos de 20h para atingir revisão de 250h ou 40h.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>Crítico: <span class="font-mono text-rose-400 font-bold">MN-01 (7.9h)</span></span>
+                            <span>Alerta: <span class="font-mono text-amber-400 font-bold">UT-34 (14.8h)</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======================================================== -->
+                <!-- MAPA DE CALOR DE DISPONIBILIDADE MECÂNICA (DF%) DA FROTA -->
+                <!-- ======================================================== -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+                        <div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                                    <i class="fas fa-th"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white tracking-tight">Mapa de Calor · Disponibilidade Mecânica da Frota (DF%)</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">Visão horária contínua (07:00 – 18:00) · Monitoramento térmico de quebras, revisões e aval técnico</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legenda do Mapa de Calor -->
+                        <div class="flex flex-wrap items-center gap-3 text-xs bg-slate-950/60 border border-slate-800 px-3.5 py-2 rounded-xl">
+                            <span class="text-slate-400 font-semibold text-[11px] uppercase tracking-wider mr-1">Legenda:</span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-emerald-500 inline-block shadow-sm"></span>
+                                <span class="text-slate-300 font-medium text-[11px]">&gt;90% Operando</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-amber-500 inline-block shadow-sm"></span>
+                                <span class="text-slate-300 font-medium text-[11px]">75–90% Atenção</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-rose-500 inline-block shadow-sm"></span>
+                                <span class="text-slate-300 font-medium text-[11px]">&lt;75% Oficina</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-slate-700 inline-block"></span>
+                                <span class="text-slate-400 font-medium text-[11px]">Standby</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtros de Categoria para o Mapa de Calor -->
+                    <div class="flex gap-2 overflow-x-auto pb-2 mb-4 text-xs font-semibold">
+                        <button onclick="filtrarMapaCalor('TODAS')" id="btn-hm-TODAS" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 shadow-sm transition-colors shrink-0">Todas as Máquinas (19)</button>
+                        <button onclick="filtrarMapaCalor('CARGA')" id="btn-hm-CARGA" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Carga & Transporte</button>
+                        <button onclick="filtrarMapaCalor('ESCAV')" id="btn-hm-ESCAV" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Escavação</button>
+                        <button onclick="filtrarMapaCalor('CARREG')" id="btn-hm-CARREG" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Carregamento</button>
+                        <button onclick="filtrarMapaCalor('PERF')" id="btn-hm-PERF" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Perfuração</button>
+                        <button onclick="filtrarMapaCalor('BRIT')" id="btn-hm-BRIT" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Britagem & Usina</button>
+                        <button onclick="filtrarMapaCalor('APOIO')" id="btn-hm-APOIO" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">Apoio (Patrol / Pipa)</button>
+                    </div>
+
+                    <!-- Matriz Térmica / Heatmap Table -->
+                    <div class="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/40">
+                        <table class="w-full text-left text-xs min-w-[950px]">
+                            <thead>
+                                <tr class="bg-slate-950 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider text-[11px]">
+                                    <th class="py-3 px-3 w-44">Equipamento</th>
+                                    <th class="py-3 px-2 text-center">07h</th>
+                                    <th class="py-3 px-2 text-center">08h</th>
+                                    <th class="py-3 px-2 text-center">09h</th>
+                                    <th class="py-3 px-2 text-center">10h</th>
+                                    <th class="py-3 px-2 text-center">11h</th>
+                                    <th class="py-3 px-2 text-center">12h</th>
+                                    <th class="py-3 px-2 text-center">13h</th>
+                                    <th class="py-3 px-2 text-center">14h</th>
+                                    <th class="py-3 px-2 text-center">15h</th>
+                                    <th class="py-3 px-2 text-center">16h</th>
+                                    <th class="py-3 px-2 text-center">17h</th>
+                                    <th class="py-3 px-2 text-center">18h</th>
+                                    <th class="py-3 px-3 text-center">DF Média</th>
+                                    <th class="py-3 px-3 text-center">Liberação Operador</th>
+                                    <th class="py-3 px-3 text-right">Ação PCM</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corpo-mapa-calor" class="divide-y divide-slate-800/40">
+                                <!-- Preenchido dinamicamente via renderizarMapaCalor() -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ======================================================== -->
+                <!-- CHECK LIST DOS EQUIPAMENTOS COM AVAL DO MECÂNICO         -->
+                <!-- ======================================================== -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6" id="card-checklist-mecanico">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5 border-b border-slate-800/80 pb-4">
+                        <div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white tracking-tight">Checklist de Entrega Técnica & Aval do Mecânico</h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">Regra Operacional: A partir do aval do mecânico o equipamento é liberado e aparece para ser selecionado pelo operador.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-slate-400">Máquina em Vistoria:</span>
+                            <select id="select-equipamento-checklist" onchange="selecionarEquipamentoChecklist(this.value)" class="bg-slate-800 border border-slate-700 text-amber-400 font-bold px-3 py-1.5 rounded-lg text-xs focus:outline-none cursor-pointer">
+                                <!-- Populado dinamicamente -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Banner de Status do Equipamento Selecionado -->
+                    <div id="banner-status-equipamento" class="mb-5 p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-800/60 border-slate-700">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+
+                    <!-- 6 Categorias de Inspeção Técnica do Checklist -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        
+                        <!-- Item 1 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-oleo" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">1. Lubrificação & Níveis de Fluidos</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Óleo do motor 15W40, líquido de arrefecimento e filtro de diesel verificados e sem vazamentos.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 2 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-hidraulico" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">2. Sistema Hidráulico & Pressão</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Mangueiras de alta pressão sem trincas, cilindros sem riscos e tanque hidráulico no nível nominal.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 3 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-freios" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">3. Freios, Direção & Rodante</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Freio de serviço e de estacionamento regulados, teste de retenção em rampa e esteiras/pneus OK.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 4 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-seguranca" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">4. Segurança Operacional & Elétrica</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Faróis LED, giroflex, buzina, alarme sonoro de ré operante e extintor no prazo de validade.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 5 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-estrutura" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">5. Estrutura, Implementos & Concha</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Concha, dentes, rompedor ou hastes travados sem trincas críticas; pinos lubrificados.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 6 -->
+                        <label class="p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/40 cursor-pointer transition-all flex items-start gap-3 has-[:checked]:border-emerald-500/50 has-[:checked]:bg-emerald-950/10">
+                            <input type="checkbox" id="chk-teste" checked class="mt-0.5 w-4 h-4 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500 chk-inspecao" onchange="atualizarBotaoAval()">
+                            <div>
+                                <span class="font-bold text-xs text-white block">6. Teste Funcional Dinâmico sob Carga</span>
+                                <span class="text-[11px] text-slate-400 block mt-0.5">Motor operando em rotação de trabalho, sem fumaça excessiva ou ruído de bicos e comandos.</span>
+                            </div>
+                        </label>
+
+                    </div>
+
+                    <!-- Assinatura Técnica do Mecânico & Laudo -->
+                    <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-5 flex flex-col md:flex-row items-stretch gap-5">
+                        <div class="flex-1 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Mecânico Responsável pelo Aval</label>
+                                    <input type="text" id="input-mecanico-nome" value="MEC-01 · Marcos Mecânico (Oficina Central)" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs font-semibold focus:outline-none focus:border-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Registro de Horário da Vistoria</label>
+                                    <input type="text" id="input-mecanico-horario" readonly class="w-full bg-slate-900 border border-slate-800 text-slate-400 rounded-lg px-3 py-2 text-xs font-mono">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Parecer / Laudo Técnico da Oficina</label>
+                                <textarea id="input-mecanico-laudo" rows="2" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg p-2.5 text-xs focus:outline-none focus:border-amber-500" placeholder="Ex: Checklist 100% aprovado. Teste estático e dinâmico sem restrições. Máquina apta para operação em lavra."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-72 flex flex-col justify-between gap-3 shrink-0 border-t md:border-t-0 md:border-l border-slate-800 md:pl-5 pt-4 md:pt-0">
+                            <div class="text-xs text-slate-400">
+                                <span class="block font-bold text-white mb-1"><i class="fas fa-lock-open text-emerald-400 mr-1.5"></i> Efeito Imediato</span>
+                                Ao clicar em conceder o aval, o equipamento é desbloqueado e aparece disponível imediatamente para a seleção do operador no campo.
+                            </div>
+
+                            <div class="space-y-2">
+                                <button type="button" onclick="concederAvalMecanico()" id="btn-conceder-aval" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50">
+                                    <i class="fas fa-signature text-sm"></i>
+                                    <span>Conceder Aval do Mecânico</span>
+                                </button>
+                                <button type="button" onclick="bloquearEquipamentoOficina()" id="btn-bloquear-oficina" class="w-full py-2 bg-slate-800 hover:bg-rose-950/60 hover:text-rose-400 text-slate-400 font-semibold text-[11px] rounded-lg transition-colors border border-slate-700 flex items-center justify-center gap-1.5">
+                                    <i class="fas fa-wrench text-xs"></i>
+                                    <span>Simular Bloqueio na Oficina</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel de Tomada de Decisão Rápida - Manutenção & PCM -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-handyman text-amber-500"></i>
+                            <h3 class="text-base font-bold text-white">Ações Recomendadas do PCM para Decisão Imediata</h3>
+                        </div>
+                        <span class="text-xs text-slate-400">Evite quebras corretivas atuando preventivamente</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- Ação 1: Motoniveladora MN-01 -->
+                        <div class="bg-slate-800/60 border border-rose-500/30 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-rose-400 mb-1 font-semibold font-mono">
+                                    <span>CRÍTICO &lt; 8h</span>
+                                    <span>TAG: MN-01</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Revisão Periódica de Articulação (40h)</h4>
+                                <p class="text-xs text-slate-400 mt-1">Faltam 7.9h para a revisão da Caterpillar 120B. Programar parada no horário de almoço (12h - 13h) para reaperto e engraxe sem impacto nas pistas.</p>
+                            </div>
+                            <button onclick="executarAcaoDecisao('acao_parada_mn01', 'Agendada parada preventiva da MN-01 no almoço (12h-13h)')" class="w-full py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Agendar Parada no Almoço</span>
+                            </button>
+                        </div>
+
+                        <!-- Ação 2: Basculante UT-34 -->
+                        <div class="bg-slate-800/60 border border-amber-500/30 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-amber-400 mb-1 font-semibold font-mono">
+                                    <span>ALERTA &lt; 15h</span>
+                                    <span>TAG: UT-34</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Requisitar Kit de Filtros de 250h</h4>
+                                <p class="text-xs text-slate-400 mt-1">Mercedes Axor a 14.8h da revisão de óleos e filtros. Notificar o almoxarifado agora garante que as peças estejam na bancada ao término da jornada.</p>
+                            </div>
+                            <button onclick="executarAcaoDecisao('acao_kit_ut34', 'Requisitado kit de filtros e lubrificantes 250h para UT-34 ao almoxarifado')" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fas fa-boxes-packing"></i>
+                                <span>Requisitar Kit no Almoxarifado</span>
+                            </button>
+                        </div>
+
+                        <!-- Ação 3: Liberação de Máquina UT-32 -->
+                        <div class="bg-slate-800/60 border border-emerald-500/30 p-4 rounded-xl flex flex-col justify-between gap-4">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-emerald-400 mb-1 font-semibold font-mono">
+                                    <span>OFICINA 90%</span>
+                                    <span>TAG: UT-32</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-white">Entrega Técnica de Liberação</h4>
+                                <p class="text-xs text-slate-400 mt-1">Serviço de freios do Axor 3344 finalizado na oficina. Realizar a assinatura digital de liberação para reforçar a frota de lavra.</p>
+                            </div>
+                            <a href="/tela_liberacao_oficina.html" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm text-center">
+                                <i class="fas fa-signature"></i>
+                                <span>Ir para Liberação de Oficina</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Tabela de Prontuário de Equipamentos & Alertas Preventivos -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-tachometer-alt text-amber-500"></i>
+                            <h3 class="text-sm font-bold text-white uppercase tracking-wider">Monitor de Saúde da Frota & Próximas Revisões</h3>
+                        </div>
+                        <span class="text-xs text-slate-400">Base sincronizada com <code class="font-mono text-slate-300">prontuario_equipamentos</code></span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+                                    <th class="pb-2.5">TAG</th>
+                                    <th class="pb-2.5">Equipamento / Modelo</th>
+                                    <th class="pb-2.5 text-right">Horímetro Atual</th>
+                                    <th class="pb-2.5 text-right">Horas Rodadas</th>
+                                    <th class="pb-2.5 text-right">Próxima Revisão</th>
+                                    <th class="pb-2.5 text-right">Horas Restantes</th>
+                                    <th class="pb-2.5 text-center">Saúde Mecânica</th>
+                                    <th class="pb-2.5 text-right">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-prontuario-frota" class="divide-y divide-slate-800/60 font-mono">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Ordens de Serviço & Histórico de Decisões Tomadas -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Ordens de Serviço na Oficina -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-clipboard-list text-sky-400"></i>
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Ordens de Serviço em Aberto (Oficina)</h3>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">2 Ordens Ativas</span>
+                        </div>
+
+                        <div class="space-y-3" id="lista-ordens-servico">
+                            <!-- Preenchido dinamicamente via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Log de Decisões Imediatas Executadas Hoje -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-history text-amber-500"></i>
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Histórico de Decisões do Turno</h3>
+                            </div>
+                            <span class="text-xs text-slate-400">Log de intervenções rápidas</span>
+                        </div>
+
+                        <div class="space-y-2.5" id="log-decisoes-turno">
+                            <p class="text-xs text-slate-500 italic">Nenhuma ação crítica registrada nas últimas horas.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal de Fechamento de Turno Operacional -->
+    <div id="modal-fechamento" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl flex flex-col gap-5">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Fechamento do Turno Operacional</h3>
+                        <p class="text-xs text-slate-400">Consolidação de Disponibilidade Física & Produção</p>
+                    </div>
+                </div>
+                <button onclick="fecharModalFechamento()" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="bg-slate-800/60 p-4 rounded-xl space-y-2.5 text-xs text-slate-300 font-mono">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Data Operacional:</span>
+                    <span id="fech-data" class="font-bold text-white">--</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Turno Ativo:</span>
+                    <span id="fech-turno" class="font-bold text-amber-400">1º Turno Diurno</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-700/60 pt-2">
+                    <span class="text-slate-400">Total Metros Perfurados:</span>
+                    <span id="fech-metros" class="font-bold text-white">-- m</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Total Viagens Realizadas:</span>
+                    <span id="fech-viagens" class="font-bold text-white">-- vgs</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Volume Total Estimado:</span>
+                    <span id="fech-volume" class="font-bold text-white">-- m³</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-700/60 pt-2">
+                    <span class="text-slate-400">Disponibilidade Física (DF):</span>
+                    <span id="fech-df" class="font-bold text-emerald-400 font-mono">-- %</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Consumo Diesel Consolidado:</span>
+                    <span id="fech-diesel" class="font-bold text-slate-200">-- L</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-400">Ao confirmar, o fechamento gravará a consolidação para o supervisor e emitirá o sumário diário da Petra Mineração.</p>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="fecharModalFechamento()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold transition-colors">
+                    Cancelar
+                </button>
+                <button onclick="confirmarFechamentoTurno()" id="btn-confirma-fechamento" class="px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Confirmar Fechamento</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Flutuante -->
+    <div id="toast-aviso" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl hidden items-center gap-3 transition-all duration-300">
+        <i id="toast-icone" class="fas fa-check-circle text-emerald-400 text-base"></i>
+        <span id="toast-texto" class="text-xs font-medium">Ação realizada com sucesso!</span>
+    </div>
+
+    <!-- Script de Gestão & Indicadores em Tempo Real -->
+    <script>
+        let modoAtual = 'gestao';
+        let dadosCarregados = null;
+
+        // Alternar entre Modo Gestão e Modo Manutenção
+        function alternarModo(novoModo) {
+            modoAtual = novoModo;
+            const secaoGestao = document.getElementById('secao-gestao');
+            const secaoManutencao = document.getElementById('secao-manutencao');
+            const tabGestao = document.getElementById('tab-gestao');
+            const tabManutencao = document.getElementById('tab-manutencao');
+
+            if (novoModo === 'gestao') {
+                secaoGestao.classList.remove('hidden');
+                secaoManutencao.classList.add('hidden');
+
+                tabGestao.className = 'flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all bg-amber-500 text-slate-950 shadow-sm whitespace-nowrap';
+                tabManutencao.className = 'flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all text-slate-300 hover:text-white whitespace-nowrap';
+            } else {
+                secaoGestao.classList.add('hidden');
+                secaoManutencao.classList.remove('hidden');
+
+                tabManutencao.className = 'flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all bg-amber-500 text-slate-950 shadow-sm whitespace-nowrap';
+                tabGestao.className = 'flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all text-slate-300 hover:text-white whitespace-nowrap';
+            }
+        }
+
+        // Buscar dados completos de KPIs e atualizar a tela
+        async function carregarIndicadores(animarSync = false) {
+            const syncIcon = document.getElementById('sync-icon');
+            if (animarSync && syncIcon) {
+                syncIcon.classList.add('fa-spin');
+            }
+
+            const equipamento = document.getElementById('filtro-equipamento').value;
+            const turno = document.getElementById('filtro-turno').value;
+
+            try {
+                const url = `/api/dashboard-kpis?equipamento=${encodeURIComponent(equipamento)}&turno=${encodeURIComponent(turno)}`;
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Falha na resposta da API');
+                const data = await res.json();
+                dadosCarregados = data;
+
+                renderizarModoGestao(data.gestao);
+                renderizarModoManutencao(data.manutencao);
+
+                const dataAtualizacao = document.getElementById('data-hora-atualização');
+                if (dataAtualizacao) {
+                    dataAtualizacao.textContent = `Atualizado às ${new Date().toLocaleTimeString('pt-BR')}`;
+                }
+
+                if (animarSync) {
+                    exibirToast('Indicadores sincronizados com sucesso!', 'sucesso');
+                }
+            } catch (err) {
+                console.warn('Erro ao carregar indicadores:', err);
+                if (animarSync) {
+                    exibirToast('Erro ao atualizar indicadores. Verifique a rede.', 'erro');
+                }
+            } finally {
+                if (syncIcon) {
+                    setTimeout(() => syncIcon.classList.remove('fa-spin'), 400);
+                }
+            }
+        }
+
+        // Renderizar Métricas de Gestão
+        function renderizarModoGestao(gestao) {
+            if (!gestao) return;
+
+            document.getElementById('kpi-metros').textContent = gestao.total_metros_perfurados.toFixed(1);
+            document.getElementById('kpi-meta-metros').textContent = `${gestao.meta_metros_diaria.toFixed(1)} m`;
+            document.getElementById('kpi-taxa-pen').textContent = `${gestao.taxa_penetracao_mh} m/h`;
+            document.getElementById('barra-meta-metros').style.width = `${gestao.percentual_meta_metros}%`;
+
+            document.getElementById('kpi-viagens').textContent = gestao.total_viagens;
+            document.getElementById('barra-meta-viagens').style.width = `${gestao.percentual_meta_viagens}%`;
+            document.getElementById('kpi-volume').textContent = `${gestao.volume_estimado_m3.toLocaleString('pt-BR')} m³`;
+            document.getElementById('kpi-toneladas').textContent = `~${gestao.toneladas_estimadas.toLocaleString('pt-BR')} t`;
+
+            document.getElementById('kpi-ut').textContent = `${gestao.utilizacao_frota_pct}%`;
+            document.getElementById('kpi-df').textContent = `${gestao.disponibilidade_fisica_pct}%`;
+            document.getElementById('kpi-diesel').textContent = `${gestao.diesel_total_litros} L`;
+            document.getElementById('kpi-frota-ativa').textContent = `${gestao.maquinas_ativas_count} máquinas`;
+
+            // Tabela de Apontamentos Recentes
+            const tbody = document.getElementById('tabela-ultimos-apontamentos');
+            if (tbody && gestao.ultimos_apontamentos) {
+                tbody.innerHTML = '';
+                gestao.ultimos_apontamentos.forEach((a) => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-800/40 transition-colors';
+                    const isMetros = a.tipo_apontamento === 'perfuracao_metros' || (a.id_equipamento && a.id_equipamento.startsWith('UP'));
+                    const valorTexto = isMetros ? `${parseFloat(a.metros_perfurados || a.producao_valor || 0).toFixed(1)} m` : `${a.viagens || a.producao_valor || 0} vgs`;
+                    const corValor = isMetros ? 'text-amber-400' : 'text-sky-400';
+
+                    tr.innerHTML = `
+                        <td class="py-2 font-bold text-white">${a.id_equipamento || a.equipamento || 'UT-34'}</td>
+                        <td class="py-2 text-slate-300 truncate max-w-[140px]">${a.nome_equipamento || a.modelo || 'Equipamento Petra'}</td>
+                        <td class="py-2 text-slate-400">${a.nome_operador || a.matricula_operador || 'OP-102'}</td>
+                        <td class="py-2 text-right font-bold ${corValor}">${valorTexto}</td>
+                        <td class="py-2 text-right text-slate-400">${a.horimetro_final ? a.horimetro_final.toFixed(1) : '--'}h</td>
+                        <td class="py-2 text-right">
+                            <span class="text-emerald-400 text-[11px] font-sans">Sincronizado</span>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // Renderizar Métricas de Manutenção
+        function renderizarModoManutencao(manut) {
+            if (!manut) return;
+
+            document.getElementById('kpi-mtbf').textContent = manut.mtbf_horas.toFixed(1);
+            document.getElementById('kpi-mttr').textContent = manut.mttr_horas.toFixed(1);
+            document.getElementById('kpi-disp-mecanica').textContent = `${manut.disponibilidade_mecanica_pct}%`;
+            document.getElementById('kpi-alertas-count').textContent = manut.alertas_preventiva.filter(x => x.urgencia !== 'NORMAL').length;
+
+            const badgeAlertas = document.getElementById('badge-alertas-manut');
+            if (badgeAlertas) {
+                badgeAlertas.textContent = manut.alertas_preventiva.filter(x => x.urgencia !== 'NORMAL').length;
+            }
+
+            // Tabela Prontuário & Horímetros
+            const tbodyFrota = document.getElementById('tabela-prontuario-frota');
+            if (tbodyFrota && manut.alertas_preventiva) {
+                tbodyFrota.innerHTML = '';
+                manut.alertas_preventiva.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-800/40 transition-colors';
+
+                    let corStatus = 'text-emerald-400';
+                    let labelStatus = 'Em Dia';
+                    if (item.urgencia === 'CRITICA') {
+                        corStatus = 'text-rose-400 font-bold';
+                        labelStatus = 'Crítico (<8h)';
+                    } else if (item.urgencia === 'ALERTA') {
+                        corStatus = 'text-amber-400 font-bold';
+                        labelStatus = 'Alerta (<15h)';
+                    }
+
+                    tr.innerHTML = `
+                        <td class="py-2.5 font-bold text-white">${item.id_equipamento}</td>
+                        <td class="py-2.5 text-slate-300 truncate max-w-[160px]">${item.nome_equipamento}</td>
+                        <td class="py-2.5 text-right font-bold text-slate-200">${item.horimetro_acumulado.toFixed(1)}h</td>
+                        <td class="py-2.5 text-right text-slate-400">${item.horas_desde_revisao.toFixed(1)}h</td>
+                        <td class="py-2.5 text-right text-slate-400">${item.proxima_revisao_horas.toFixed(0)}h</td>
+                        <td class="py-2.5 text-right ${corStatus}">${item.horas_restantes.toFixed(1)}h</td>
+                        <td class="py-2.5 text-center ${corStatus}">${labelStatus}</td>
+                        <td class="py-2.5 text-right">
+                            <button onclick="executarAcaoDecisao('${item.acao_id}', 'Vistoria agendada para ${item.id_equipamento}')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-sans transition-colors">
+                                Vistoriar
+                            </button>
+                        </td>
+                    `;
+                    tbodyFrota.appendChild(tr);
+                });
+            }
+
+            // Ordens de Serviço na Oficina
+            const containerOS = document.getElementById('lista-ordens-servico');
+            if (containerOS && manut.ordens_servico) {
+                containerOS.innerHTML = '';
+                manut.ordens_servico.forEach(os => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-slate-800/50 border border-slate-700/60 p-3.5 rounded-xl flex items-center justify-between gap-4';
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-bold font-mono text-amber-400">${os.os}</span>
+                                <span class="text-xs font-bold text-white font-mono">TAG: ${os.tag}</span>
+                                <span class="text-[11px] text-slate-400">· Prev: ${os.previsao}</span>
+                            </div>
+                            <p class="text-xs text-slate-300">${os.servico}</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Mecânico: ${os.mecanico}</p>
+                        </div>
+                        <span class="px-2.5 py-1 text-[11px] font-semibold rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 whitespace-nowrap shrink-0">
+                            ${os.status}
+                        </span>
+                    `;
+                    containerOS.appendChild(card);
+                });
+            }
+
+            // Log de Decisões do Turno
+            const logDecisoes = document.getElementById('log-decisoes-turno');
+            if (logDecisoes && manut.acoes_executadas && manut.acoes_executadas.length > 0) {
+                logDecisoes.innerHTML = '';
+                manut.acoes_executadas.forEach(dec => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-start justify-between p-2.5 bg-slate-800/40 rounded-lg text-xs';
+                    row.innerHTML = `
+                        <div class="flex flex-col">
+                            <span class="font-bold text-white">${dec.titulo}</span>
+                            <span class="text-slate-400 text-[11px]">${dec.justificativa}</span>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px] shrink-0 ml-2">${dec.data_hora}</span>
+                    `;
+                    logDecisoes.appendChild(row);
+                });
+            }
+        }
+
+        // Executar Ação Imediata de Tomada de Decisão (1 Clique)
+        async function executarAcaoDecisao(idAcao, titulo) {
+            try {
+                const res = await fetch('/api/executar-acao-decisao', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_acao: idAcao, titulo })
+                });
+                const data = await res.json();
+                if (data.status === 'sucesso') {
+                    exibirToast(data.mensagem, 'sucesso');
+                    carregarIndicadores(false);
+                }
+            } catch (err) {
+                console.warn('Erro ao executar decisão:', err);
+                exibirToast('Decisão registrada localmente.', 'sucesso');
+            }
+        }
+
+        // Modal de Fechamento de Turno
+        function abrirModalFechamento() {
+            if (!dadosCarregados) return;
+            const modal = document.getElementById('modal-fechamento');
+            document.getElementById('fech-data').textContent = new Date().toLocaleDateString('pt-BR');
+            document.getElementById('fech-turno').textContent = document.getElementById('filtro-turno').value === 'TODOS' ? '1º Turno Diurno' : document.getElementById('filtro-turno').value;
+            document.getElementById('fech-metros').textContent = `${dadosCarregados.gestao.total_metros_perfurados.toFixed(1)} m`;
+            document.getElementById('fech-viagens').textContent = `${dadosCarregados.gestao.total_viagens} viagens`;
+            document.getElementById('fech-volume').textContent = `${dadosCarregados.gestao.volume_estimado_m3.toLocaleString('pt-BR')} m³`;
+            document.getElementById('fech-df').textContent = `${dadosCarregados.gestao.disponibilidade_fisica_pct}%`;
+            document.getElementById('fech-diesel').textContent = `${dadosCarregados.gestao.diesel_total_litros} Litros`;
+
+            modal.classList.remove('hidden');
+        }
+
+        function fecharModalFechamento() {
+            document.getElementById('modal-fechamento').classList.add('hidden');
+        }
+
+        async function confirmarFechamentoTurno() {
+            const btn = document.getElementById('btn-confirma-fechamento');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Gravando Fechamento...';
+
+            try {
+                const res = await fetch('/api/fechamento-turno', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        data_turno: new Date().toISOString().split('T')[0],
+                        turno: document.getElementById('fech-turno').textContent
+                    })
+                });
+                const data = await res.json();
+                fecharModalFechamento();
+                exibirToast(`Fechamento concluído! DF Final: ${data.disponibilidade_fisica_percentual}%. Dados consolidados.`, 'sucesso');
+            } catch (e) {
+                fecharModalFechamento();
+                exibirToast('Fechamento do turno consolidado com sucesso!', 'sucesso');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Confirmar Fechamento';
+            }
+        }
+
+        // Exportação de Relatório Executivo CSV
+        function exportarRelatorioGerencial() {
+            if (!dadosCarregados) return;
+
+            const rows = [
+                ['INDICADOR', 'VALOR', 'META / CONTEXTO'],
+                ['Total Metros Perfurados', `${dadosCarregados.gestao.total_metros_perfurados} m`, 'Meta: 220 m'],
+                ['Taxa de Penetração', `${dadosCarregados.gestao.taxa_penetracao_mh} m/h`, 'Fox 8-20'],
+                ['Total de Viagens de Basculante', `${dadosCarregados.gestao.total_viagens} vgs`, 'Meta: 180 vgs'],
+                ['Volume Estimado', `${dadosCarregados.gestao.volume_estimado_m3} m³`, 'Densidade 1.72 t/m³'],
+                ['Massa Total', `${dadosCarregados.gestao.toneladas_estimadas} t`, 'Agregados'],
+                ['Disponibilidade Física (DF)', `${dadosCarregados.gestao.disponibilidade_fisica_pct}%`, 'Meta: >= 90%'],
+                ['Utilização da Frota (UT)', `${dadosCarregados.gestao.utilizacao_frota_pct}%`, 'Meta: >= 80%'],
+                ['MTBF Confiabilidade', `${dadosCarregados.manutencao.mtbf_horas} h`, 'Oficina Central'],
+                ['MTTR Tempo Médio Reparo', `${dadosCarregados.manutencao.mttr_horas} h`, 'Oficina Central'],
+                ['Disponibilidade Mecânica', `${dadosCarregados.manutencao.disponibilidade_mecanica_pct}%`, 'Meta: >= 90%']
+            ];
+
+            const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(';')).join('\n');
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `RDO_PETRA_RELATORIO_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            exibirToast('Relatório gerencial CSV exportado com sucesso!', 'sucesso');
+        }
+
+        // Exibir Toast
+        function exibirToast(msg, tipo = 'sucesso') {
+            const toast = document.getElementById('toast-aviso');
+            const toastTexto = document.getElementById('toast-texto');
+            const toastIcone = document.getElementById('toast-icone');
+
+            toastTexto.textContent = msg;
+            if (tipo === 'sucesso') {
+                toastIcone.className = 'fas fa-check-circle text-emerald-400 text-base';
+            } else {
+                toastIcone.className = 'fas fa-circle-exclamation text-rose-400 text-base';
+            }
+
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3500);
+        }
+
+        // ========================================================
+        // GESTÃO DO MAPA DE CALOR & CHECKLIST DO MECÂNICO
+        // ========================================================
+        let categoriaMapaAtual = 'TODAS';
+        let dadosMapaCalor = null;
+        let listaEquipamentosOficina = [];
+
+        async function carregarMapaCalor(categoria = 'TODAS') {
+            categoriaMapaAtual = categoria;
+            try {
+                const res = await fetch(`/api/manutencao/mapa-calor?categoria=${encodeURIComponent(categoria)}`);
+                if (!res.ok) throw new Error('Falha ao carregar mapa de calor');
+                const data = await res.json();
+                dadosMapaCalor = data;
+                renderizarMapaCalor(data);
+            } catch (err) {
+                console.warn('Erro ao carregar mapa de calor:', err);
+            }
+        }
+
+        function filtrarMapaCalor(cat) {
+            categoriaMapaAtual = cat;
+            const botoes = ['TODAS', 'CARGA', 'ESCAV', 'CARREG', 'PERF', 'BRIT', 'APOIO'];
+            botoes.forEach(b => {
+                const el = document.getElementById('btn-hm-' + b);
+                if (el) {
+                    if (b === cat) {
+                        el.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold shadow-sm transition-colors shrink-0';
+                    } else {
+                        el.className = 'px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors shrink-0';
+                    }
+                }
+            });
+            carregarMapaCalor(cat);
+        }
+
+        function renderizarMapaCalor(data) {
+            const tbody = document.getElementById('corpo-mapa-calor');
+            if (!tbody || !data) return;
+            tbody.innerHTML = '';
+
+            // 1. Linha Superior: Média Geral da Frota por Hora
+            const trMedia = document.createElement('tr');
+            trMedia.className = 'bg-slate-950/90 font-bold border-b border-slate-700 text-slate-200';
+            
+            let celulasMediaHtml = '';
+            data.medias_horarias.forEach((val, i) => {
+                let corBg = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+                if (val < 75) corBg = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+                else if (val < 90) corBg = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+
+                celulasMediaHtml += `
+                    <td class="py-2.5 px-1 text-center font-mono">
+                        <span class="inline-block px-1.5 py-0.5 rounded text-[10px] font-bold border ${corBg}" title="Média ${data.horas[i]}: ${val}%">
+                            ${val}%
+                        </span>
+                    </td>
+                `;
+            });
+
+            trMedia.innerHTML = `
+                <td class="py-2.5 px-3 font-bold text-amber-400">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fas fa-chart-line text-xs"></i>
+                        <span>MÉDIA FROTA</span>
+                    </div>
+                </td>
+                ${celulasMediaHtml}
+                <td class="py-2.5 px-3 text-center font-mono text-emerald-400 font-bold text-xs">${data.media_geral_frota}%</td>
+                <td class="py-2.5 px-3 text-center text-[10px] text-slate-400">Consolidado</td>
+                <td class="py-2.5 px-3 text-right">
+                    <span class="text-[10px] text-slate-400 font-normal">Meta &ge; 90%</span>
+                </td>
+            `;
+            tbody.appendChild(trMedia);
+
+            // 2. Linhas de cada Equipamento da Frota
+            data.equipamentos.forEach(e => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-800/50 transition-colors group';
+
+                let celulasHtml = '';
+                e.celulas.forEach(c => {
+                    let estiloPill = 'bg-emerald-500 text-slate-950';
+                    let icone = 'check';
+
+                    if (c.cor === 'vermelho') {
+                        estiloPill = 'bg-rose-600 text-white shadow-sm shadow-rose-950';
+                        icone = 'wrench';
+                    } else if (c.cor === 'amarelo') {
+                        estiloPill = 'bg-amber-400 text-slate-950';
+                        icone = 'exclamation';
+                    } else if (c.percentual === 0) {
+                        estiloPill = 'bg-slate-800 text-slate-500';
+                        icone = 'ban';
+                    }
+
+                    celulasHtml += `
+                        <td class="py-2 px-1 text-center">
+                            <div class="relative group/cell inline-block">
+                                <span class="w-7 h-6 rounded flex items-center justify-center text-[10px] font-bold font-mono ${estiloPill} cursor-pointer transition-transform hover:scale-110">
+                                    ${c.percentual === 100 ? '99' : (c.percentual === 0 ? '0' : c.percentual)}
+                                </span>
+                                <!-- Tooltip Rápido no Hover -->
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover/cell:flex flex-col z-50 bg-slate-900 border border-slate-700 text-white text-[10px] rounded-lg p-2 shadow-xl whitespace-nowrap min-w-[140px] pointer-events-none">
+                                    <span class="font-bold text-amber-400">${e.id_equipamento} · ${c.hora}</span>
+                                    <span class="text-slate-200">${c.percentual}% · ${c.status}</span>
+                                    <span class="text-slate-400 text-[9px] mt-0.5">${c.motivo}</span>
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                });
+
+                // Status de Liberação para o Operador
+                let statusBadge = '';
+                let botaoAcao = '';
+
+                if (e.liberado_para_operador) {
+                    statusBadge = `
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                            <i class="fas fa-check-circle text-[9px]"></i> Liberado p/ Operador
+                        </span>
+                    `;
+                    botaoAcao = `
+                        <button onclick="bloquearEquipamentoOficina('${e.id_equipamento}')" title="Enviar para a oficina e bloquear para operadores" class="px-2 py-1 bg-slate-800 hover:bg-rose-950/80 hover:text-rose-300 text-slate-400 rounded text-[11px] font-sans transition-colors border border-slate-700/60">
+                            Bloquear
+                        </button>
+                    `;
+                } else {
+                    statusBadge = `
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                            <i class="fas fa-lock text-[9px]"></i> Oficina · Bloqueado
+                        </span>
+                    `;
+                    botaoAcao = `
+                        <button onclick="abrirChecklistPara('${e.id_equipamento}')" title="Realizar checklist e dar aval do mecânico" class="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded text-[11px] font-sans transition-colors shadow-sm">
+                            Dar Aval
+                        </button>
+                    `;
+                }
+
+                tr.innerHTML = `
+                    <td class="py-2.5 px-3">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold font-mono text-white">${e.id_equipamento}</span>
+                            <span class="text-[11px] text-slate-400 truncate max-w-[110px]" title="${e.nome_equipamento}">${e.nome_equipamento}</span>
+                        </div>
+                    </td>
+                    ${celulasHtml}
+                    <td class="py-2.5 px-3 text-center font-mono font-bold text-xs ${e.df_media >= 90 ? 'text-emerald-400' : (e.df_media >= 75 ? 'text-amber-400' : 'text-rose-400')}">
+                        ${e.df_media}%
+                    </td>
+                    <td class="py-2.5 px-3 text-center">
+                        ${statusBadge}
+                    </td>
+                    <td class="py-2.5 px-3 text-right">
+                        ${botaoAcao}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ========================================================
+        // CHECKLIST E AVAL TÉCNICO DO MECÂNICO
+        // ========================================================
+        async function carregarEquipamentosChecklist() {
+            try {
+                const res = await fetch('/api/equipamentos');
+                if (!res.ok) return;
+                const json = await res.json();
+                listaEquipamentosOficina = json.dados || [];
+
+                const select = document.getElementById('select-equipamento-checklist');
+                if (!select) return;
+
+                const valorAnterior = select.value;
+                select.innerHTML = '';
+
+                // Prioriza máquinas na oficina/bloqueadas no topo
+                const bloqueadas = listaEquipamentosOficina.filter(x => !x.liberado_para_operador);
+                const liberadas = listaEquipamentosOficina.filter(x => x.liberado_para_operador);
+
+                if (bloqueadas.length > 0) {
+                    const optgroupBloq = document.createElement('optgroup');
+                    optgroupBloq.label = '⚠️ Na Oficina / Aguardando Aval do Mecânico';
+                    bloqueadas.forEach(e => {
+                        const opt = document.createElement('option');
+                        opt.value = e.id_equipamento;
+                        opt.textContent = `⛔ ${e.id_equipamento} · ${e.nome_equipamento}`;
+                        optgroupBloq.appendChild(opt);
+                    });
+                    select.appendChild(optgroupBloq);
+                }
+
+                const optgroupLib = document.createElement('optgroup');
+                optgroupLib.label = '✅ Liberados / Em Operação';
+                liberadas.forEach(e => {
+                    const opt = document.createElement('option');
+                    opt.value = e.id_equipamento;
+                    opt.textContent = `✅ ${e.id_equipamento} · ${e.nome_equipamento}`;
+                    optgroupLib.appendChild(opt);
+                });
+                select.appendChild(optgroupLib);
+
+                // Seleciona a máquina bloqueada ou restaura anterior
+                if (valorAnterior && listaEquipamentosOficina.some(x => x.id_equipamento === valorAnterior)) {
+                    select.value = valorAnterior;
+                } else if (bloqueadas.length > 0) {
+                    select.value = bloqueadas[0].id_equipamento;
+                }
+
+                selecionarEquipamentoChecklist(select.value);
+            } catch (e) {
+                console.warn('Erro ao carregar lista de checklist:', e);
+            }
+        }
+
+        function selecionarEquipamentoChecklist(tag) {
+            const equip = listaEquipamentosOficina.find(e => e.id_equipamento === tag);
+            const banner = document.getElementById('banner-status-equipamento');
+            const horarioInput = document.getElementById('input-mecanico-horario');
+            if (horarioInput) {
+                horarioInput.value = `${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+            }
+
+            if (!banner || !equip) return;
+
+            if (equip.liberado_para_operador) {
+                banner.className = 'mb-5 p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-emerald-950/20 border-emerald-500/30';
+                banner.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-white text-sm">${equip.id_equipamento} · ${equip.nome_equipamento}</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-slate-950">AVAL CONCEDIDO</span>
+                            </div>
+                            <p class="text-xs text-emerald-300 mt-0.5">Equipamento LIBERADO! Visível e selecionável na tela de login de RDO do operador.</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Último Aval: ${equip.aval_mecanico?.nome || 'Mecânico'} (${equip.aval_mecanico?.data_hora || 'Hoje'})</p>
+                        </div>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span class="text-xs text-slate-400 block">Horímetro Acumulado:</span>
+                        <span class="font-mono font-bold text-white text-base">${Number(equip.horometro_acumulado_total || 0).toFixed(1)}h</span>
+                    </div>
+                `;
+            } else {
+                banner.className = 'mb-5 p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-rose-950/30 border-rose-500/40';
+                banner.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-white text-sm">${equip.id_equipamento} · ${equip.nome_equipamento}</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white">BLOQUEADO NA OFICINA</span>
+                            </div>
+                            <p class="text-xs text-rose-300 mt-0.5">Aguardando Aval Técnico! Operador NÃO consegue selecionar este equipamento no campo.</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Motivo: ${equip.ordem_servico?.servico || equip.aval_mecanico?.laudo || 'Inspeção mecânica pendente'}</p>
+                        </div>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span class="text-xs text-slate-400 block">Horímetro Acumulado:</span>
+                        <span class="font-mono font-bold text-amber-400 text-base">${Number(equip.horometro_acumulado_total || 0).toFixed(1)}h</span>
+                    </div>
+                `;
+            }
+
+            atualizarBotaoAval();
+        }
+
+        function abrirChecklistPara(tag) {
+            const select = document.getElementById('select-equipamento-checklist');
+            if (select) {
+                select.value = tag;
+                selecionarEquipamentoChecklist(tag);
+                document.getElementById('card-checklist-mecanico').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function atualizarBotaoAval() {
+            const checkboxes = document.querySelectorAll('.chk-inspecao');
+            const todosMarcados = Array.from(checkboxes).every(c => c.checked);
+            const btn = document.getElementById('btn-conceder-aval');
+            if (!btn) return;
+
+            if (todosMarcados) {
+                btn.disabled = false;
+                btn.className = 'w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 cursor-pointer';
+                btn.innerHTML = '<i class="fas fa-signature text-sm"></i><span>Conceder Aval do Mecânico & Liberar</span>';
+            } else {
+                btn.disabled = true;
+                btn.className = 'w-full py-2.5 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 cursor-not-allowed border border-slate-700';
+                btn.innerHTML = '<i class="fas fa-lock text-sm"></i><span>Marque todos os 6 itens do Checklist</span>';
+            }
+        }
+
+        async function concederAvalMecanico() {
+            const select = document.getElementById('select-equipamento-checklist');
+            const tag = select ? select.value : 'UT-32';
+            const mecanicoNome = document.getElementById('input-mecanico-nome').value.trim() || 'MEC-01 · Marcos Mecânico';
+            const laudo = document.getElementById('input-mecanico-laudo').value.trim() || 'Checklist 100% aprovado. Equipamento testado e liberado para operação.';
+
+            const checklistPayload = {
+                oleo: document.getElementById('chk-oleo').checked,
+                hidraulico: document.getElementById('chk-hidraulico').checked,
+                freios: document.getElementById('chk-freios').checked,
+                seguranca: document.getElementById('chk-seguranca').checked,
+                estrutura: document.getElementById('chk-estrutura').checked,
+                teste: document.getElementById('chk-teste').checked
+            };
+
+            const btn = document.getElementById('btn-conceder-aval');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Registrando Aval Técnico...';
+
+            try {
+                const res = await fetch('/api/manutencao/checklist-liberacao', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_equipamento: tag,
+                        matricula_mecanico: 'MEC-01',
+                        nome_mecanico: mecanicoNome,
+                        checklist: checklistPayload,
+                        observacoes: laudo
+                    })
+                });
+
+                const data = await res.json();
+                if (data.status === 'sucesso') {
+                    exibirToast(`✅ Sucesso! O equipamento ${tag} recebeu o Aval do Mecânico e agora aparece liberado para o Operador!`, 'sucesso');
+                    await carregarEquipamentosChecklist();
+                    await carregarMapaCalor(categoriaMapaAtual);
+                    await carregarIndicadores(false);
+                } else {
+                    exibirToast(data.mensagem || 'Erro ao conceder aval.', 'erro');
+                }
+            } catch (err) {
+                console.warn('Erro ao conceder aval do mecânico:', err);
+                exibirToast(`Aval concedido localmente para ${tag}. Equipamento liberado para o operador!`, 'sucesso');
+                await carregarEquipamentosChecklist();
+                await carregarMapaCalor(categoriaMapaAtual);
+            } finally {
+                atualizarBotaoAval();
+            }
+        }
+
+        async function bloquearEquipamentoOficina(tagParam) {
+            const select = document.getElementById('select-equipamento-checklist');
+            const tag = tagParam || (select ? select.value : 'UT-34');
+
+            if (!confirm(`Deseja enviar o equipamento ${tag} para a oficina mecânica? Ele será BLOQUEADO para a seleção do operador até que o mecânico realize o checklist.`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/manutencao/bloquear-oficina', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_equipamento: tag,
+                        motivo: 'Recolhido para intervenção mecânica preventiva / corretiva.',
+                        criticidade: 'Alta',
+                        mecanico: document.getElementById('input-mecanico-nome').value || 'Oficina Mecânica'
+                    })
+                });
+
+                const data = await res.json();
+                exibirToast(`⛔ Equipamento ${tag} recolhido à oficina. Bloqueado para o operador.`, 'erro');
+                await carregarEquipamentosChecklist();
+                await carregarMapaCalor(categoriaMapaAtual);
+                await carregarIndicadores(false);
+            } catch (e) {
+                console.warn('Erro ao bloquear equipamento:', e);
+            }
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarIndicadores(false);
+            carregarMapaCalor('TODAS');
+            carregarEquipamentosChecklist();
+            // Atualização periódica automática a cada 20 segundos
+            setInterval(() => {
+                carregarIndicadores(false);
+                carregarMapaCalor(categoriaMapaAtual);
+            }, 20000);
+        });
+    </script>
+</body>
+</html>

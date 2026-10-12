@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-surface": "#0d1c2e", "surface-container-highest": "#d5e3fc", "on-error-container": "#93000a", "surface-tint": "#455f87", "tertiary-fixed": "#7ffc97", "error-container": "#ffdad6", "surface-container": "#e6eeff", "on-secondary-fixed-variant": "#004b73", "inverse-on-surface": "#eaf1ff", "inverse-surface": "#233144", "on-error": "#ffffff", "on-primary": "#ffffff", "on-tertiary": "#ffffff", "on-secondary-container": "#00476e", "inverse-primary": "#adc8f5", "secondary-container": "#5bb8fe", "primary-fixed": "#d5e3ff", "on-primary-fixed": "#001c3b", "on-secondary": "#ffffff", "surface": "#f8f9ff", "surface-dim": "#ccdbf3", "error": "#ba1a1a", "on-background": "#0d1c2e", "secondary-fixed-dim": "#93ccff", "surface-container-high": "#dce9ff", "on-tertiary-container": "#38b95d", "tertiary-container": "#004319", "primary": "#022448", "on-primary-container": "#8aa4cf", "surface-variant": "#d5e3fc", "on-primary-fixed-variant": "#2d486d", "outline": "#74777f", "primary-container": "#1e3a5f", "tertiary": "#002a0d", "on-secondary-fixed": "#001d31", "background": "#f8f9ff", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#adc8f5", "surface-container-low": "#eff4ff", "tertiary-fixed-dim": "#62df7d", "on-tertiary-fixed": "#002109", "on-tertiary-fixed-variant": "#005320", "secondary": "#006398", "surface-bright": "#f8f9ff", "outline-variant": "#c4c6cf", "secondary-fixed": "#cce5ff", "on-surface-variant": "#43474e" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "space-md": "0.75rem", "space-sm": "0.5rem", "gutter": "0.75rem", "margin": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.25rem" }, fontFamily: { "label-lg": ["IBM Plex Sans"], "headline-lg-mobile": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "telemetry-metric": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"] }, fontSize: { "label-lg": ["15px", { lineHeight: "20px", fontWeight: "600" }], "headline-lg-mobile": ["26px", { lineHeight: "32px", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "700" }], "headline-md": ["22px", { lineHeight: "28px", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }], "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }], "telemetry-metric": ["28px", { lineHeight: "34px", fontWeight: "700" }], "label-md": ["13px", { lineHeight: "16px", fontWeight: "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex flex-col justify-center min-w-0"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">PETRA MINERAÇÃO</span><span class="font-label-sm text-label-sm text-outline">•</span><span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase truncate">120B · MN-01</span></div><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">Apontamento</h1><div class="flex items-center gap-space-xs mt-0.5"><span class="bg-surface-container px-space-xs py-0.5 rounded text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">1º Turno</span><span class="bg-tertiary-container px-space-xs py-0.5 rounded text-on-tertiary-container font-label-sm text-label-sm uppercase font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>Em Operação</span></div></div><div class="flex items-center flex-shrink-0 pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-margin pt-space-md pb-space-lg flex flex-col gap-space-md">
+<!-- Top Metadata Status Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">
+          FORM: 0012 · REV: 01 · PO-PRD.0007
+        </span>
+<div class="flex items-center gap-1.5 bg-tertiary-fixed-dim/30 px-space-xs py-0.5 rounded">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">Sincronizado Supabase</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm mt-1">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">construction</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="font-headline-sm text-headline-sm text-on-surface truncate">Motoniveladora 120B · MN-01</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">
+            Apoio Mina e Conservação de Acessos e Pistas de Lavra
+          </p>
+</div>
+</div>
+</div>
+<!-- Card 1: Programação de Turno & Operador Responsável -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-lg text-label-lg text-on-surface">Programação de Turno</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">RDO Ativo</span>
+</div>
+<!-- Segmented Shift Toggle -->
+<div class="grid grid-cols-2 bg-surface-container-low p-1 rounded-lg gap-1" id="turnoSelector">
+<button class="turno-btn py-3 px-2 rounded-md bg-primary text-on-primary flex flex-col items-center justify-center transition-all text-center" data-shift="1" type="button">
+<span class="font-label-md text-label-md">1º Turno</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim font-normal">07:00 – 15:48</span>
+</button>
+<button class="turno-btn py-3 px-2 rounded-md text-on-surface-variant hover:bg-surface-container flex flex-col items-center justify-center transition-all text-center" data-shift="2" type="button">
+<span class="font-label-md text-label-md">2º Turno</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">15:48 – 00:30</span>
+</button>
+</div>
+<!-- Operador Responsável Selector -->
+<div class="flex flex-col gap-1.5 pt-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">
+          Operador Titular (tb_operadores)
+        </label>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0 text-on-surface">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface truncate">Raimundo Nonato</span>
+<span class="bg-surface-container px-1 rounded text-on-secondary-container font-label-sm text-label-sm">OP-512</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Motoniveladorista Sênior · Apoio Mina</span>
+</div>
+</div>
+<button aria-label="Alterar operador" class="p-2 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">swap_horiz</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Card 2: Frente de Serviço & Bancada Ativa -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">terrain</span>
+<span class="font-label-lg text-label-lg text-on-surface">Frente de Serviço &amp; Bancada</span>
+</div>
+<span class="bg-surface-container-high text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm uppercase font-bold">Cota +740m</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-2">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Acessos Principais &amp; Pista Banco 03</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Nivelamento contínuo, conformação de abaulamento central e drenagem de crista pluvial.
+            </span>
+</div>
+<span class="material-symbols-outlined text-secondary shrink-0">expand_more</span>
+</div>
+<div class="flex flex-wrap items-center gap-1.5 pt-1">
+<span class="bg-surface-container-highest text-on-surface px-space-xs py-0.5 rounded font-label-sm text-label-sm">Trecho T-04 a T-09</span>
+<span class="bg-surface-container-highest text-on-surface px-space-xs py-0.5 rounded font-label-sm text-label-sm">Largura Útil: 14m</span>
+<span class="bg-surface-container-highest text-on-surface px-space-xs py-0.5 rounded font-label-sm text-label-sm">Greide Médio: 8,5%</span>
+</div>
+</div>
+</section>
+<!-- Card 3: Controle de Horímetro (Motor 3306) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">speed</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Controle de Horímetro</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Motor Cat 3306 DITA</span>
+</div>
+</div>
+<span class="bg-surface-container px-space-xs py-0.5 rounded text-secondary font-label-sm text-label-sm font-bold">Telemetria Real</span>
+</div>
+<!-- Grid de Horímetros Inicial / Final -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold">Início (07:00)</span>
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-1">16.320,4</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">horas totais</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold">Término (15:48)</span>
+<span class="material-symbols-outlined text-[16px]">stop_circle</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary mt-1">16.328,6</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">horas totais</span>
+</div>
+</div>
+<!-- Resumo Horas Efetivas & Rendimento -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-secondary-container">Horas Efetivas Produzidas</span>
+<span class="font-headline-md text-headline-md text-on-secondary-container font-bold">8,20 h</span>
+</div>
+<!-- Progress Bar do Turno -->
+<div class="w-full bg-surface-container-highest rounded-full h-2.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 93.2%;"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Jornada nominal: 8h 48m</span>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+            93.2% (Meta &gt; 90% Atingida)
+          </span>
+</div>
+</div>
+</section>
+<!-- Card 4: Produção & Serviços Executados no Turno -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">precision_manufacturing</span>
+<span class="font-label-lg text-label-lg text-on-surface">Produção &amp; Serviços na Pista</span>
+</div>
+<span class="bg-tertiary-container text-on-tertiary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">Ciclo Concluído</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">straighten</span>
+<span class="font-label-sm text-label-sm">Extensão Mantida</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">6,4 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">km</span></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Acessos Banco 03</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+<span class="font-label-sm text-label-sm">Conformação / Leira</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">14 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">passadas</span></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lâmina e escarificador</span>
+</div>
+</div>
+<!-- Condição da Pista -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Condição após Nivelamento</span>
+<span class="bg-tertiary-container text-on-tertiary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">BOA / LIBERADA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Pista regularizada sem ondulações excessivas. Garante tráfego contínuo da frota de basculantes Mercedes Axor/Actros sem perda de tração ou danos de pneu.
+        </p>
+</div>
+</section>
+<!-- Card 5: Checklist Status -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex items-center justify-between gap-space-sm shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Checklist Pré-Operacional</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">7/7 Itens Conformes · Equipamento Apto</span>
+</div>
+</div>
+<button class="shrink-0 px-space-sm py-2 rounded-lg bg-surface-container text-secondary hover:bg-surface-container-high transition-colors font-label-sm text-label-sm font-bold" type="button">
+        Ver Laudo
+      </button>
+</section>
+<!-- Card 6: Telemetria Preditiva & Insumos Petra (CSV 120B) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">oil_barrel</span>
+<span class="font-label-lg text-label-lg text-on-surface">Manutenção Preditiva &amp; Revisão</span>
+</div>
+<span class="bg-surface-container-highest text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">Plano 250h</span>
+</div>
+<!-- Status da Próxima Parada -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Próxima Revisão Preventiva</span>
+<span class="font-headline-sm text-headline-sm text-primary">Semestral / em 40,2 h</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alvo</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">16.368,8 h</span>
+</div>
+</div>
+<!-- Insumos Petra Vinculados ao Modelo -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">
+          Insumos Petra Cadastrados (Almoxarifado Mina)
+        </span>
+<div class="flex flex-col gap-1.5">
+<!-- Item 1 -->
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[18px] text-secondary">filter_alt</span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">FILTRO LUBRIFICANTE W1173</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-1.5 py-0.5 rounded shrink-0">Cód: 540199</span>
+</div>
+<!-- Item 2 -->
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[18px] text-secondary">filter_alt</span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">FILTRO DIESEL P557440</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-1.5 py-0.5 rounded shrink-0">Cód: 540209</span>
+</div>
+<!-- Item 3 -->
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[18px] text-secondary">air</span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">FILTRO DE AR PRIMÁRIO 4M9334</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-1.5 py-0.5 rounded shrink-0">Cód: 540205</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Operational Actions -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Secondary Outline Button -->
+<button class="w-full min-h-[52px] px-space-md py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm hover:bg-surface-container-low active:bg-surface-container transition-all flex items-center justify-center gap-space-xs font-label-lg text-label-lg" id="btnAddTrecho" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Lançar Trecho de Pista / Manutenção</span>
+</button>
+<!-- Primary Full-Width Save CTA -->
+<button class="w-full min-h-[56px] px-space-md py-3.5 rounded-lg bg-primary text-on-primary shadow-md hover:bg-primary-container active:scale-[0.99] transition-all flex items-center justify-center gap-space-sm font-label-lg text-label-lg" id="btnSalvarApontamento" type="button">
+<span class="material-symbols-outlined text-[22px]">save</span>
+<span>Salvar Apontamento do Turno (JSONB)</span>
+</button>
+<!-- Sync Offline Disclaimer -->
+<div class="flex items-center justify-center gap-1.5 pt-1 text-center">
+<span class="material-symbols-outlined text-[15px] text-tertiary">cloud_done</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Gravação offline garantida · Sincronização automática com Supabase
+        </span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Interação do seletor de turno
+    const shiftButtons = document.querySelectorAll('.turno-btn');
+    shiftButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        shiftButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('text-on-surface-variant');
+          const subText = b.querySelector('span:last-child');
+          if (subText) {
+            subText.classList.remove('text-primary-fixed-dim');
+            subText.classList.add('text-on-surface-variant');
+          }
+        });
+        btn.classList.remove('text-on-surface-variant');
+        btn.classList.add('bg-primary', 'text-on-primary');
+        const sub = btn.querySelector('span:last-child');
+        if (sub) {
+          sub.classList.remove('text-on-surface-variant');
+          sub.classList.add('text-primary-fixed-dim');
+        }
+      });
+    });
+
+    // Feedback tátil de gravação
+    const saveBtn = document.getElementById('btnSalvarApontamento');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function() {
+        const originalHtml = this.innerHTML;
+        this.innerHTML = `
+          <span class="material-symbols-outlined animate-spin text-[22px]">sync</span>
+          <span>Gravando no Cache Local &amp; Nuvem...</span>
+        `;
+        this.disabled = true;
+
+        setTimeout(() => {
+          this.innerHTML = `
+            <span class="material-symbols-outlined text-[22px]">check_circle</span>
+            <span>Apontamento Salvo com Sucesso!</span>
+          `;
+          setTimeout(() => {
+            this.innerHTML = originalHtml;
+            this.disabled = false;
+          }, 2000);
+        }, 850);
+      });
+    }
+
+    // Modal simples ou alerta suave para novo trecho
+    const addTrechoBtn = document.getElementById('btnAddTrecho');
+    if (addTrechoBtn) {
+      addTrechoBtn.addEventListener('click', function() {
+        alert('Abertura do formulário de sub-segmentação de pista: Trecho T-10 adicionado à fila de registro.');
+      });
+    }
+
+    // Marcação da aba ativa no footer da casca
+    const tabApontamento = document.querySelector('nav a[data-path="apontamento"]');
+    if (tabApontamento) {
+      tabApontamento.classList.remove('text-on-surface-variant');
+      tabApontamento.classList.add('text-secondary', 'font-bold');
+      const icon = tabApontamento.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.style.fontVariationSettings = "'FILL' 1";
+      }
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-secondary font-bold"><div class="grid grid-cols-4 items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors text-secondary font-bold" data-path="apontamento" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-label-sm text-label-sm tracking-tight">Apontamento</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="pista-servicos" href="#"><span class="material-symbols-outlined text-[24px]">alt_route</span><span class="font-label-sm text-label-sm tracking-tight">Pista &amp; Serv.</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="checklist" href="#"><span class="material-symbols-outlined text-[24px]">fact_check</span><span class="font-label-sm text-label-sm tracking-tight">Checklist</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="paradas" href="#"><span class="material-symbols-outlined text-[24px]">warning</span><span class="font-label-sm text-label-sm tracking-tight">Paradas</span></a></div></nav>
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

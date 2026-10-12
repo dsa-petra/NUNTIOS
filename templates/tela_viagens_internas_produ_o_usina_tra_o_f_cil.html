@@ -1,0 +1,538 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-variant": "#d5e3fc", "on-secondary-fixed-variant": "#004b73", "on-background": "#0d1c2e", "surface-container-lowest": "#ffffff", "on-secondary-fixed": "#001d31", "on-tertiary-fixed": "#002109", "secondary-fixed": "#cce5ff", "surface-container-high": "#dce9ff", "on-tertiary-container": "#38b95d", "tertiary-fixed-dim": "#62df7d", "primary-fixed": "#d5e3ff", "secondary-container": "#5bb8fe", "on-secondary": "#ffffff", "primary-fixed-dim": "#adc8f5", "error-container": "#ffdad6", "inverse-on-surface": "#eaf1ff", "on-surface-variant": "#43474e", "tertiary": "#002a0d", "inverse-primary": "#adc8f5", "on-error": "#ffffff", "error": "#ba1a1a", "primary": "#022448", "on-primary-container": "#8aa4cf", "surface-dim": "#ccdbf3", "on-tertiary-fixed-variant": "#005320", "surface-container-low": "#eff4ff", "on-primary-fixed": "#001c3b", "surface-container-highest": "#d5e3fc", "background": "#f8f9ff", "secondary-fixed-dim": "#93ccff", "on-error-container": "#93000a", "secondary": "#006398", "surface": "#f8f9ff", "outline": "#74777f", "surface-bright": "#f8f9ff", "tertiary-fixed": "#7ffc97", "surface-tint": "#455f87", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#2d486d", "outline-variant": "#c4c6cf", "surface-container": "#e6eeff", "tertiary-container": "#004319", "on-primary": "#ffffff", "inverse-surface": "#233144", "on-surface": "#0d1c2e", "on-secondary-container": "#00476e", "primary-container": "#1e3a5f" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xl": "2rem", "gutter": "0.75rem", "space-sm": "0.5rem", "space-lg": "1.25rem", "space-xs": "0.25rem", "margin": "1rem", "space-md": "0.75rem" }, "fontFamily": { "label-md": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "telemetry-metric": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "headline-lg-mobile": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }], "label-lg": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }], "telemetry-metric": ["28px", { "lineHeight": "34px", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }] } } } }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary truncate">PETRA MINERAÇÃO</span><span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider">USINA TRAÇO FÁCIL</span></div><div class="flex items-center gap-space-sm mt-0.5"><span class="font-label-sm text-label-sm text-secondary font-bold">1º TURNO</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-tertiary-container font-semibold"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim inline-block animate-pulse"></span>Em Operação</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">• Produção &amp; Traços</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex flex-col relative w-full px-margin pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-md">
+<!-- Document Header Tag -->
+<div class="flex items-center justify-between bg-primary text-on-primary p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center shrink-0 text-on-primary">
+<span class="material-symbols-outlined text-[20px]">content_paste</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">FORM: 20</span>
+<span class="font-label-md text-label-md text-on-primary truncate">Controle de Viagens Internas e Produção</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-tertiary text-tertiary-fixed font-label-sm text-label-sm shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed inline-block"></span>
+      Sincronizado
+    </span>
+</div>
+<!-- Operational KPI Row (Single Glance Tonal Trio) -->
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="flex flex-col p-space-sm bg-surface-container rounded-xl shadow-sm min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Viagens Totais</span>
+<div class="flex items-baseline gap-0.5 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-primary" id="kpi-total-vgs">38</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vgs</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary truncate mt-0.5">Entrada usina</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container rounded-xl shadow-sm min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Volume Total</span>
+<div class="flex items-baseline gap-0.5 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-primary">684</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">m³</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary truncate mt-0.5">Capacidade 18m³</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-high rounded-xl shadow-sm min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold truncate">Traço Expedido</span>
+<div class="flex items-baseline gap-0.5 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-primary">740</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant">t</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold truncate mt-0.5">22 carretas</span>
+</div>
+</div>
+<!-- Card 1: Viagens Internas de Material (Tactile Counters Table/List) -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">local_shipping</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Viagens Internas de Material</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Alimentação dos silos por báscula e fornecedor
+        </p>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm shrink-0">
+        1º Turno
+      </span>
+</div>
+<!-- Drivers List with Tactile Touch Triggers -->
+<div class="flex flex-col gap-space-md" id="drivers-container">
+<!-- Driver 1: Carlos M. -->
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl gap-space-sm" data-driver-card="carlos">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[16px]">engineering</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Carlos M.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prefixo: {{ EQUIPAMENTO }} • Basculante Traçado</span>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-space-xs py-1 rounded-lg shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal:</span>
+<span class="font-label-lg text-label-lg text-primary driver-total font-bold">12</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vgs</span>
+</div>
+</div>
+<!-- Tactile Material Grid -->
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- Areia Média -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Areia Média</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">4</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #0 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #0</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">3</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #1 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #1</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">5</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Driver 2: José R. -->
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl gap-space-sm" data-driver-card="jose">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[16px]">engineering</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">José R.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prefixo: {{ EQUIPAMENTO }} • Basculante Traçado</span>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-space-xs py-1 rounded-lg shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal:</span>
+<span class="font-label-lg text-label-lg text-primary driver-total font-bold">14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vgs</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- Areia Média -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Areia Média</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">6</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #0 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #0</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">4</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #1 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #1</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">4</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Driver 3: Valdir P. -->
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl gap-space-sm" data-driver-card="valdir">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[16px]">engineering</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Valdir P.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prefixo: {{ EQUIPAMENTO }} • Basculante Traçado</span>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-space-xs py-1 rounded-lg shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal:</span>
+<span class="font-label-lg text-label-lg text-primary driver-total font-bold">12</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vgs</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- Areia Média -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Areia Média</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">3</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #0 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #0</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">5</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Brita #1 -->
+<div class="flex flex-col items-center bg-surface-container-lowest p-space-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Brita #1</span>
+<div class="flex items-center justify-between w-full mt-1">
+<button aria-label="Diminuir viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, -1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-lg text-label-lg text-primary item-count">4</span>
+<button aria-label="Aumentar viagem" class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary active:bg-surface-variant transition-colors" onclick="updateVal(this, 1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick total badge banner -->
+<div class="flex items-center gap-space-xs bg-secondary-fixed text-on-secondary-fixed p-space-sm rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">verified</span>
+<span class="font-label-sm text-label-sm leading-tight">
+<strong id="badge-total-vgs">38 viagens internas registradas</strong> para alimentação contínua dos silos da usina.
+      </span>
+</div>
+</div>
+<!-- Plant Overview Imagery Card (Industrial Visual Richness) -->
+<div class="relative w-full h-32 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A modern industrial concrete and asphalt batch plant operating under daylight, showing large aggregate silos, elevated conveyor belts moving gravel and sand, heavy mining dump trucks parked nearby, crisp industrial environment with vibrant blue and slate gray tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvv6Ke2zLfwH3drLRjFyD5NnbG9YacQgDVeqQNqRQL-8oE7IeJrRrzf39-B1ONACNsJcvRsNNOrUOumkj89dIxJQYXEqk9nsFl7AiJzv84xZdSwkwwaMhKESReKpm7VOaazo3svyrLcXX63qjb8gNyhq_vkCdOHAnb8bpKqMb7__SSa0ItP72oErs_y6AGZF4kKuUy6CzqwxDgOd3fYeYatxDHdGGs5iFTgFm2-TcEaxu8A4lckEkq">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent flex items-end p-space-sm">
+<div class="flex items-center justify-between w-full text-on-primary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">precision_manufacturing</span>
+<span class="font-label-md text-label-md">Silos dosadores em ciclo contínuo</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container/20 px-space-xs py-0.5 rounded text-on-primary backdrop-blur-sm">
+          Fluxo Normal
+        </span>
+</div>
+</div>
+</div>
+<!-- Card 2: Saída / Expedição do Produto Traço Fácil -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">output</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Expedição: Traço Fácil</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Frente da Mina &amp; Pavimentação</p>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+        Em Carga
+      </span>
+</div>
+<!-- Dispatch Operational Metric Cards -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="font-label-sm text-label-sm truncate">Caminhões Expedidos</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">22</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">carretas/trucks</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary mt-1">100% pesadas em balança</span>
+</div>
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+<span class="font-label-sm text-label-sm truncate">Média por Carga</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">33,6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">toneladas</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold mt-1">PBT Conforme</span>
+</div>
+</div>
+<!-- Moisture Quality Telemetry Gauge -->
+<div class="flex flex-col p-space-sm bg-surface-container-low rounded-xl gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">water_drop</span>
+<span class="font-label-md text-label-md text-on-surface">Umidade da Mistura</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-label-lg text-label-lg text-tertiary font-bold">4,8%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(Ideal: 4,5% - 5,5%)</span>
+</div>
+</div>
+<!-- Linear moisture indicator -->
+<div class="relative w-full h-3 bg-surface-container rounded-full overflow-hidden mt-1">
+<!-- Target Range Zone -->
+<div class="absolute left-[45%] w-[10%] h-full bg-tertiary-fixed-dim/40"></div>
+<!-- Progress Bar Indicator -->
+<div class="h-full bg-secondary rounded-full" style="width: 48%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+<span class="">Seco (3.0%)</span>
+<span class="text-tertiary font-bold">Faixa Ideal Operacional</span>
+<span class="">Saturado (7.0%)</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Balanço de Massa de Insumos -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">inventory_2</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Balanço de Massa de Insumos</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Estoque de Agregados</p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</div>
+</div>
+<!-- Aggregate Consumption Bars -->
+<div class="flex flex-col gap-space-sm">
+<!-- Areia Média -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface">Areia Média</span>
+<span class="text-primary font-bold">240 t consumidas</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 32%;"></div>
+</div>
+</div>
+<!-- Brita 0 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface">Brita #0</span>
+<span class="text-primary font-bold">210 t consumidas</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+<!-- Brita 1 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface">Brita #1</span>
+<span class="text-primary font-bold">290 t consumidas</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+</div>
+<!-- Final Yard Stock Level (Radial / Stacked Capacity) -->
+<div class="p-space-sm bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Estoque Pátio Usina</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">1.450 t</span>
+<span class="font-label-sm text-label-sm text-secondary truncate">Capacidade Máxima: 3.000 t</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<!-- SVG Gauge -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 transform -rotate-90" viewBox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="48, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<span class="absolute font-label-sm text-label-sm font-bold text-primary">48%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Field Confirmation CTA -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full min-h-[56px] px-space-md py-space-sm bg-primary text-on-primary font-label-lg text-label-lg rounded-xl shadow-md flex items-center justify-center gap-space-xs active:bg-primary-container transition-all" id="btn-submit" onclick="confirmDispatch(this)" type="button">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+<span class="">Confirmar Lançamento de Viagens e Estoque</span>
+</button>
+<div class="flex items-center justify-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">offline_pin</span>
+<span class="">Disponível para gravação em modo offline</span>
+</div>
+</div>
+</div>
+<!-- Micro-Interactions Script for Counters & Validation Feedback -->
+<script>
+  function updateVal(btn, delta) {
+    const parent = btn.parentElement;
+    const countEl = parent.querySelector('.item-count');
+    if (!countEl) return;
+    
+    let cur = parseInt(countEl.textContent, 10) || 0;
+    cur = Math.max(0, cur + delta);
+    countEl.textContent = cur;
+
+    // Recalculate driver subtotal
+    const card = btn.closest('[data-driver-card]');
+    if (card) {
+      const items = card.querySelectorAll('.item-count');
+      let sum = 0;
+      items.forEach(el => sum += parseInt(el.textContent, 10) || 0);
+      const subtotalEl = card.querySelector('.driver-total');
+      if (subtotalEl) subtotalEl.textContent = sum;
+    }
+
+    // Recalculate Grand Total
+    const allCounts = document.querySelectorAll('.item-count');
+    let grandTotal = 0;
+    allCounts.forEach(el => grandTotal += parseInt(el.textContent, 10) || 0);
+
+    const kpiTotal = document.getElementById('kpi-total-vgs');
+    const badgeTotal = document.getElementById('badge-total-vgs');
+    if (kpiTotal) kpiTotal.textContent = grandTotal;
+    if (badgeTotal) badgeTotal.textContent = `${grandTotal} viagens internas registradas`;
+  }
+
+  function confirmDispatch(btn) {
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[22px] animate-spin">refresh</span><span>Registrando apontamento...</span>`;
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-[22px]">task_alt</span><span>Lançamento Salvo com Sucesso!</span>`;
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-tertiary-container', 'text-tertiary-fixed');
+
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.classList.remove('bg-tertiary-container', 'text-tertiary-fixed');
+        btn.classList.add('bg-primary');
+        btn.disabled = false;
+      }, 2500);
+    }, 600);
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]" data-active-classes="text-primary bg-primary-fixed/40"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] py-1 px-space-xs rounded text-on-surface-variant transition-all" data-path="apontamento" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-label-sm text-label-sm mt-0.5">Apontamento</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] py-1 px-space-xs rounded text-on-surface-variant transition-all" data-path="producao-&amp;-tracos" href="#"><span class="material-symbols-outlined text-[24px]">factory</span><span class="font-label-sm text-label-sm mt-0.5">Produção</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] py-1 px-space-xs rounded text-on-surface-variant transition-all" data-path="checklist" href="#"><span class="material-symbols-outlined text-[24px]">fact_check</span><span class="font-label-sm text-label-sm mt-0.5">Checklist</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] py-1 px-space-xs rounded text-on-surface-variant transition-all" data-path="paradas" href="#"><span class="material-symbols-outlined text-[24px]">warning</span><span class="font-label-sm text-label-sm mt-0.5">Paradas</span></a></div></nav>
+
+
+<!-- ========================================== -->
+<!-- MOTOR DE SINCRONIZAÇÃO OFFLINE DSA MINING  -->
+<!-- ========================================== -->
+<script>
+const CHAVE_STORAGE = 'petra_apontamentos_pendentes';
+
+function enviarDados() {
+    const dados = {
+        equipamento: "{{ EQUIPAMENTO }}",
+        matricula: "OP-102", // No futuro, puxar do cache de login
+        data_hora_local: new Date().toISOString()
+        // Dica: Adicione aqui as leituras dos inputs de cada tela específica
+    };
+
+    if (navigator.onLine) {
+        tentarEnviarServidor(dados);
+    } else {
+        salvarOffline(dados);
+    }
+}
+
+function tentarEnviarServidor(dados) {
+    fetch('/salvar_apontamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(resposta => {
+        if (!resposta.ok) throw new Error("Servidor inacessível");
+        return resposta.json();
+    })
+    .then(data => {
+        if(data.status === "sucesso") {
+            alert("✅ Sucesso! Apontamento enviado ao Supabase.");
+        }
+    })
+    .catch(erro => {
+        console.warn("Falha na rede detectada. Salvando offline...", erro);
+        salvarOffline(dados);
+    });
+}
+
+function salvarOffline(dados) {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    pendentes.push(dados);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(pendentes));
+    alert(`📶 Sem sinal de rede! Apontamento salvo no tablet. O sistema sincronizará automaticamente ao detectar rede.`);
+}
+
+function sincronizarPendentes() {
+    let pendentes = JSON.parse(localStorage.getItem(CHAVE_STORAGE) || '[]');
+    if (pendentes.length === 0 || !navigator.onLine) return;
+
+    Promise.all(pendentes.map(dados => {
+        return fetch('/salvar_apontamento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }))
+    .then(() => {
+        localStorage.removeItem(CHAVE_STORAGE);
+        alert("🔄 Sincronização offline concluída! Os dados foram enviados à base.");
+    })
+    .catch(erro => console.error("Erro ao sincronizar lote:", erro));
+}
+
+// Dispara quando o tablet conectar na rede
+window.addEventListener('online', sincronizarPendentes);
+// Dispara quando a tela for recarregada
+window.addEventListener('load', sincronizarPendentes);
+</script>
+
+</body></html>

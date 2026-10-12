@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Login PIN - Petra Mineração RDO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['IBM Plex Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @layer base {
+            body {
+                overscroll-behavior: none;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+        .pin-key:active {
+            transform: scale(0.94);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col items-center justify-between p-4 selection:bg-amber-500">
+
+    <!-- Header / Brand -->
+    <header class="w-full max-w-sm pt-4 flex flex-col items-center text-center">
+        <div class="flex items-center gap-3 mb-2">
+            <div class="w-12 h-12 bg-amber-500/20 rounded-2xl border border-amber-500/40 flex items-center justify-center text-amber-500 text-2xl shadow-lg shadow-amber-500/10">
+                <i class="fas fa-hard-hat"></i>
+            </div>
+            <div class="text-left">
+                <h1 class="text-xl font-bold tracking-tight text-white leading-tight">PETRA MINERAÇÃO</h1>
+                <p class="text-xs text-amber-500 font-semibold tracking-wider uppercase">RDO Digital · Mina & Planta</p>
+            </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">Digite seu PIN de 4 dígitos para acessar o turno</p>
+    </header>
+
+    <!-- Main Keypad Card -->
+    <main class="w-full max-w-sm bg-slate-800/90 backdrop-blur-md border border-slate-700 rounded-3xl p-6 shadow-2xl my-auto transition-transform">
+        
+        <!-- PIN Dots Display -->
+        <div class="flex flex-col items-center mb-6">
+            <div class="flex justify-center items-center gap-4 mb-3">
+                <div class="pin-dot w-4 h-4 rounded-full border-2 border-slate-500 transition-all duration-150"></div>
+                <div class="pin-dot w-4 h-4 rounded-full border-2 border-slate-500 transition-all duration-150"></div>
+                <div class="pin-dot w-4 h-4 rounded-full border-2 border-slate-500 transition-all duration-150"></div>
+                <div class="pin-dot w-4 h-4 rounded-full border-2 border-slate-500 transition-all duration-150"></div>
+            </div>
+            
+            <!-- Error message container -->
+            <p id="mensagemErro" class="text-xs font-semibold text-rose-400 opacity-0 transition-opacity duration-200 min-h-[1.25rem] text-center">
+                PIN não reconhecido
+            </p>
+        </div>
+
+        <!-- Numeric Keypad Grid -->
+        <div class="grid grid-cols-3 gap-3">
+            <button type="button" onclick="window.addNumber(1)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">1</button>
+            <button type="button" onclick="window.addNumber(2)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">2</button>
+            <button type="button" onclick="window.addNumber(3)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">3</button>
+            
+            <button type="button" onclick="window.addNumber(4)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">4</button>
+            <button type="button" onclick="window.addNumber(5)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">5</button>
+            <button type="button" onclick="window.addNumber(6)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">6</button>
+            
+            <button type="button" onclick="window.addNumber(7)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">7</button>
+            <button type="button" onclick="window.addNumber(8)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">8</button>
+            <button type="button" onclick="window.addNumber(9)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">9</button>
+            
+            <button type="button" onclick="window.clearPin()" class="pin-key h-16 rounded-2xl bg-slate-800 hover:bg-slate-700 active:bg-rose-500 active:text-white border border-slate-700 text-lg font-semibold text-slate-400 transition flex items-center justify-center">
+                <i class="fas fa-backspace"></i>
+            </button>
+            <button type="button" onclick="window.addNumber(0)" class="pin-key h-16 rounded-2xl bg-slate-700/70 hover:bg-slate-700 active:bg-amber-500 active:text-slate-900 border border-slate-600/60 text-2xl font-bold text-white transition flex items-center justify-center shadow-sm">0</button>
+            <button type="button" onclick="window.submitPin()" class="pin-key h-16 rounded-2xl bg-amber-500 hover:bg-amber-600 active:bg-amber-400 text-slate-950 font-bold text-lg transition flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Quick Access Profiles (Demo / Atalhos de Campo) -->
+        <div class="mt-6 pt-5 border-t border-slate-700/70 flex flex-col gap-2">
+            <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-center">Atalhos Operacionais Rápidos</span>
+            <div class="grid grid-cols-3 gap-2">
+                <button type="button" onclick="quickLogin('1234')" class="px-2 py-2 rounded-xl bg-slate-700/40 hover:bg-slate-700 border border-slate-600/40 text-[11px] font-medium text-slate-300 flex flex-col items-center gap-1 transition">
+                    <i class="fas fa-tools text-amber-400 text-sm"></i>
+                    <span>Oficina</span>
+                    <span class="text-[10px] text-slate-400 font-mono">1234</span>
+                </button>
+                <button type="button" onclick="quickLogin('5678')" class="px-2 py-2 rounded-xl bg-slate-700/40 hover:bg-slate-700 border border-slate-600/40 text-[11px] font-medium text-slate-300 flex flex-col items-center gap-1 transition">
+                    <i class="fas fa-truck text-emerald-400 text-sm"></i>
+                    <span>Operação</span>
+                    <span class="text-[10px] text-slate-400 font-mono">5678</span>
+                </button>
+                <button type="button" onclick="quickLogin('9999')" class="px-2 py-2 rounded-xl bg-slate-700/40 hover:bg-slate-700 border border-slate-600/40 text-[11px] font-medium text-slate-300 flex flex-col items-center gap-1 transition">
+                    <i class="fas fa-chart-line text-blue-400 text-sm"></i>
+                    <span>Gestão</span>
+                    <span class="text-[10px] text-slate-400 font-mono">9999</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer System Status -->
+    <footer class="w-full max-w-sm pb-4 text-center">
+        <div class="inline-flex items-center gap-2 text-xs text-slate-400 bg-slate-800/60 px-3 py-1.5 rounded-full border border-slate-700/50">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Sistema Offline-First · Mina Sul</span>
+        </div>
+    </footer>
+
+    <!-- Script de Lógica do Teclado e Roteamento -->
+    <script type="module">
+        import { processarLogin } from '/static/js/operacionalController.js';
+
+        window.currentPin = "";
+        window.maxDigits = 4;
+
+        window.updateDisplay = function() {
+            const dots = document.querySelectorAll('.pin-dot');
+            dots.forEach((dot, index) => {
+                if (index < window.currentPin.length) {
+                    dot.classList.add('bg-amber-500', 'border-amber-500', 'scale-110');
+                    dot.classList.remove('border-slate-500');
+                } else {
+                    dot.classList.remove('bg-amber-500', 'border-amber-500', 'scale-110');
+                    dot.classList.add('border-slate-500');
+                }
+            });
+            const err = document.getElementById('mensagemErro');
+            if (err) err.classList.add('opacity-0');
+        }
+
+        window.addNumber = function(num) {
+            if (window.currentPin.length < window.maxDigits) {
+                window.currentPin += num.toString();
+                window.updateDisplay();
+                if (window.currentPin.length === window.maxDigits) {
+                    setTimeout(window.submitPin, 180); 
+                }
+            }
+        }
+
+        window.clearPin = function() {
+            window.currentPin = window.currentPin.slice(0, -1);
+            window.updateDisplay();
+        }
+
+        window.mostrarErro = function(mensagem) {
+            window.currentPin = "";
+            window.updateDisplay();
+            const msgErro = document.getElementById('mensagemErro');
+            if (msgErro) {
+                msgErro.innerText = mensagem || "PIN não reconhecido";
+                msgErro.classList.remove('opacity-0');
+            }
+            
+            const box = document.querySelector('.max-w-sm');
+            if (box) {
+                box.classList.add('animate-pulse');
+                setTimeout(() => box.classList.remove('animate-pulse'), 500);
+            }
+        }
+
+        window.submitPin = async function() {
+            if (window.currentPin.length === 0) return;
+
+            const resultado = await processarLogin(window.currentPin);
+            
+            if (resultado && resultado.sucesso) {
+                window.location.href = resultado.rota;
+            } else {
+                window.mostrarErro((resultado && resultado.mensagem) ? resultado.mensagem : "PIN inválido");
+            }
+        }
+
+        window.quickLogin = function(pin) {
+            window.currentPin = pin;
+            window.updateDisplay();
+            setTimeout(window.submitPin, 100);
+        }
+
+        // Listen for keyboard number entry on desktop
+        window.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') {
+                window.addNumber(e.key);
+            } else if (e.key === 'Backspace') {
+                window.clearPin();
+            } else if (e.key === 'Enter') {
+                window.submitPin();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "PETRA Mineração - RDO Digital",
+  "description": "Sistema Operacional e Relatório Diário de Obra (RDO) Digital da Petra Mineração para Mina e Planta",
+  "requestFramePermissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
